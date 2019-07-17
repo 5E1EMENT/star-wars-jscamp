@@ -1,0 +1,13 @@
+@import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
+.app{
+    &-title {
+        display: block;
+    }
+    &-wrapper {
+        justify-content: space-between;
+    & button {
+        margin: 0 10px;
+    }    
+    }
+    
+}

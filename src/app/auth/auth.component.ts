@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from './auth.service';
-import { MatDialog } from '@angular/material';
+import {MatDialog } from '@angular/material/dialog';
 import { LoginComponent } from './login/login.component';
 import { RegistrationComponent } from './registration/registration.component';
 
@@ -16,14 +16,18 @@ export class AuthComponent implements OnInit {
               public dialog: MatDialog
               ) { }
 
+  loginData(data) {
+    console.log(data)
+  }            
+
   login() {
     this.auth.login().subscribe()
   }
   openLoginDialog() {
-    this.dialog.open(LoginComponent, {width: '250px', data: {title: 'Войти'} }) 
+    this.dialog.open(LoginComponent, {width: '350px', data: {title: 'Войти'} }) 
   }
   openRegisterDialog() {
-    this.dialog.open(RegistrationComponent, {width: '250px', data: {title: 'Регистрация'} }) 
+    this.dialog.open(RegistrationComponent, {width: '350px', data: {title: 'Регистрация'} }) 
   }
   ngOnInit() {
 

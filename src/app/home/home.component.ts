@@ -8,19 +8,17 @@ import { HomeService } from './home.service'
 })
 
 export class HomeComponent implements OnInit {
-
-  dataFilms:any = []
+  public User:any
+  public dataFilms:any = []
 
   constructor(private home: HomeService) { }
+
   
-  getData() {
+
+  ngOnInit() {
     this.home.getData().subscribe(data => {
       this.dataFilms = Object.values(data["films"]).map(film => film["fields"])
       console.log(this.dataFilms)
     })
-  }
-  
-  ngOnInit() {
-
   }
 }

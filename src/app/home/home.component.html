@@ -1,4 +1,15 @@
-<button mat-raised-button color="primary" (click)="getData()">Get films</button>
-<ul class="films-list">
-  <li class="films-list_item" *ngFor="let film of dataFilms">{{ film.title }}</li>
-</ul>
+<table class="table" *ngIf="home.User">
+  <thead class="thead-dark">
+    <tr >
+      <th>Название фильма</th>
+    </tr>
+
+  </thead>
+  <tbody>
+    <tr *ngFor="let film of dataFilms" >
+      <td scope="row">{{ film.title }}</td>
+    </tr>
+
+
+  </tbody>
+</table>

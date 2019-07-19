@@ -16,12 +16,18 @@ export class HomeService {
   private userEmail: string;
   constructor(private http: HttpClient) { }
 
-  private authUser(user: object): any {
+  /**
+   * Mehtod authorizes the user
+   */
+  public authUser(user: string): any {
     this.User = user;
     console.log(this.User.email);
     return this.User;
   }
-  private displayAuth(user: any): any {
+  /**
+   * Mehtod displays who is authorized now
+   */
+  public displayAuth(user: any): any {
     this.userEmail = user.email;
   }
   /**

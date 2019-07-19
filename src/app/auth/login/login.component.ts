@@ -15,9 +15,8 @@ import { LoginService } from './login.service';
   styleUrls: ['./login.component.scss'],
 })
 
-export class LoginComponent implements OnInit {
+export class LoginComponent {
   private authForm: FormGroup;
-  private FormData: any;
   private error: string;
 
   constructor(private matDialogRef: MatDialogRef<LoginComponent>,
@@ -31,6 +30,7 @@ export class LoginComponent implements OnInit {
       });
 
    }
+
    private login(): any {
       this.error = '';
       this.loginService.login(this.authForm.value).subscribe(data => {
@@ -43,10 +43,5 @@ export class LoginComponent implements OnInit {
       });
 
     }
-    /**
-     * Login init metnod
-     */
-  public ngOnInit(): any {
-  }
 
 }

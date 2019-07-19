@@ -16,7 +16,7 @@ import { RegistrationComponent } from './registration/registration.component';
   templateUrl: './auth.component.html',
   styleUrls: ['./auth.component.scss'],
 })
-export class AuthComponent implements OnInit {
+export class AuthComponent {
 
   constructor(private auth: AuthService,
               private dialog: MatDialog,
@@ -33,10 +33,5 @@ export class AuthComponent implements OnInit {
   private openRegisterDialog(): any {
     this.dialog.open(RegistrationComponent, {data: {title: 'Регистрация'} });
   }
-  /**
- * ngOnInit
- */
-  public ngOnInit(): any {
 
-  }
 }

@@ -22,7 +22,10 @@ export class AuthComponent implements OnInit {
     console.log(data)
   }            
 
- 
+  logout() {
+    this.home.authUser('')
+    this.home.displayAuth('')
+  }
   openLoginDialog() {
     this.dialog.open(LoginComponent, { data: {title: 'Войти'} }) 
   }

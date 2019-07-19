@@ -3,6 +3,7 @@
     <h2 *ngIf="home.userEmail">Вы вошли как: {{ home.userEmail }}</h2>
     <div class="app-auth__buttons">
         <button mat-raised-button color="primary" *ngIf="!home.User" (click)="openLoginDialog()">Login</button>
+        <button mat-raised-button color="primary" *ngIf="home.User" (click)="logout()">Logout</button>
         <button mat-raised-button color="accent" disabled (click)="openRegisterDialog()">Register</button>
     </div>
     

@@ -2,15 +2,15 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 /**
- * interface for Login Data
+ * Interface for Login Data
  */
 export interface LoginData {
   /**
-   * emal : email data from input
+   * Email : email data from input
    */
   email: string;
   /**
-   * password : password data from input
+   * Password : password data from input
    */
   password: string;
 }
@@ -22,15 +22,15 @@ export interface LoginData {
 })
 
 export class LoginService {
-  private login_api_key = 'AIzaSyBggsqbMyphOxNDjpgko8FvQ6jabHr9Pm0';
-  private login_api = `https://www.googleapis.com/identitytoolkit/v3/relyingparty/verifyPassword?key=${this.login_api_key}`;
+  private loginApiKey = 'AIzaSyBggsqbMyphOxNDjpgko8FvQ6jabHr9Pm0';
+  private loginApi = `https://www.googleapis.com/identitytoolkit/v3/relyingparty/verifyPassword?key=${this.loginApiKey}`;
   constructor(private http: HttpClient) { }
   /**
    * Login method access to login in firebase
    * @param data data from form inputs: email and password
    */
   public login(data: LoginData): any {
-    return this.http.post(this.login_api, {
+    return this.http.post(this.loginApi, {
       'email': data.email, // Data for successful auth :dan@mail.ru / test@mail.ru
       'password': data.password, // Data for successful auth: 123456
       'returnSecureToken': false,

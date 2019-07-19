@@ -8,7 +8,7 @@ import { LoginComponent } from './login/login.component';
 import { RegistrationComponent } from './registration/registration.component';
 
 /**
- * class AuthComponent for authentication
+ * Class AuthComponent for authentication
  */
 
 @Component({

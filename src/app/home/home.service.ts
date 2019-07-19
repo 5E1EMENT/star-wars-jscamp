@@ -11,8 +11,8 @@ import { map } from 'rxjs/operators';
   providedIn: 'root',
 })
 export class HomeService {
-  private fetch_data = 'https://angular-film-app.firebaseio.com/swapi.json';
-  private User: any;
+  private fetchData = 'https://angular-film-app.firebaseio.com/swapi.json';
+  private User: string;
   private userEmail: string;
   constructor(private http: HttpClient) { }
 
@@ -21,7 +21,6 @@ export class HomeService {
    */
   public authUser(user: string): any {
     this.User = user;
-    console.log(this.User.email);
     return this.User;
   }
   /**
@@ -35,7 +34,7 @@ export class HomeService {
    */
   public getData(): any {
 
-    return this.http.get(this.fetch_data).pipe(map(res => {
+    return this.http.get(this.fetchData).pipe(map(res => {
       if (!res) {
         return [];
       }

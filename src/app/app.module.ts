@@ -13,6 +13,8 @@ import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatButtonModule} from '@angular/material/button';
 import {MatDialogModule} from '@angular/material/dialog';
 import {MatInputModule} from '@angular/material/input'
+import { MatDividerModule } from "@angular/material/divider"
+import {MatTableModule} from '@angular/material/table';
 
 import { LoginComponent } from './auth/login/login.component';
 import { RegistrationComponent } from './auth/registration/registration.component';
@@ -39,7 +41,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     MatToolbarModule,
     MatButtonModule,
     MatDialogModule,
-    MatInputModule
+    MatInputModule,
+    MatDividerModule,
+    MatTableModule
   ],
   entryComponents: [LoginComponent,RegistrationComponent],
   providers: [],

@@ -9,10 +9,16 @@ import { Observable } from 'rxjs';
 export class HomeService {
   fetch_data = 'https://angular-film-app.firebaseio.com/swapi.json'
   public User: any
+  public userEmail: string
   constructor(private http: HttpClient) { }
 
+  authUser(user) {
+    this.User = user
+    console.log(this.User.email)
+    return this.User
+  }
   displayAuth(user) {
-    return this.User = user
+    this.userEmail = user.email
   }
   getData() {
 

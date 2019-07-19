@@ -1,5 +1,6 @@
 import { Component, OnInit, Inject, Input, Output, EventEmitter } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+
 import { FormControl, Validators, FormGroup } from '@angular/forms';
 import { LoginService } from './login.service';
 import { HomeService } from 'src/app/home/home.service';
@@ -17,6 +18,7 @@ export class LoginComponent implements OnInit {
   public FormData: any
   public error: string
 
+
   @Output() SendData = new EventEmitter()
   constructor(public matDialogRef: MatDialogRef<LoginComponent>,
               @Inject(MAT_DIALOG_DATA) public data: any, 
@@ -32,9 +34,14 @@ export class LoginComponent implements OnInit {
     public login() {
       this.error = ''
       this.LoginService.login(this.authForm.value).subscribe(data => {
-      this.Home.displayAuth(data)  
+      this.Home.authUser(data)
+      this.Home.displayAuth(data)
+      if(!this.error) {
+        this.matDialogRef.close()
+      }
 
       }, err => {
+        
         this.error = err.error.error.message
       })
       

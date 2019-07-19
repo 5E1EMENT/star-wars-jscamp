@@ -1,1 +1,12 @@
 @import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
+.login{
+    &-title {
+        text-align: center
+    }
+    &-form {
+        text-align: center;
+    }
+    &-enter__btn {
+        margin-top: 10px;
+    }
+}

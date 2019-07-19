@@ -18,11 +18,16 @@ import { LoginService } from './login.service';
 export class LoginComponent {
   private authForm: FormGroup;
   private error: string;
-
+  /**
+   * @param matDialogRef Is a material modal component.
+   * @param data Is a data whitch we are sending from auth component from openLoginDialog method
+   * @param loginService Is a login service
+   * @param Home Is a home service
+   */
   constructor(private matDialogRef: MatDialogRef<LoginComponent>,
               @Inject(MAT_DIALOG_DATA) private data: any,
               public loginService: LoginService,
-              public Home: HomeService) {
+              public homeService: HomeService) {
 
       this.authForm = new FormGroup({
       email: new FormControl(),
@@ -34,8 +39,8 @@ export class LoginComponent {
    private login(): any {
       this.error = '';
       this.loginService.login(this.authForm.value).subscribe(data => {
-      this.Home.authUser(data);
-      this.Home.displayAuth(data);
+      this.homeService.authUser(data);
+      this.homeService.displayAuth(data);
       this.matDialogRef.close();
       }, err => {
         this.matDialogRef.close();

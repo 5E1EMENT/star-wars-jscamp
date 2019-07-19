@@ -14,8 +14,7 @@ import { HomeService } from './home.service';
 export class HomeComponent implements OnInit {
   private User: any;
 
-
-  constructor(private HomeService: HomeService) { }
+  constructor(private homeService: HomeService) { }
 
   private displayedColumns: string[] = ['title', 'episode', 'release_date', 'director'];
   private dataSource = [];
@@ -23,7 +22,7 @@ export class HomeComponent implements OnInit {
    * Initialize films data witch will be used to display to the user
    */
   public ngOnInit(): any {
-    this.HomeService.getData().subscribe(data => {
+    this.homeService.getData().subscribe(data => {
       this.dataSource = Object.values(data['films']).map(film => film['fields']);
       console.log(this.dataSource);
     });

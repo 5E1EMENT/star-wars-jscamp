@@ -10,7 +10,10 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
   styleUrls: ['./registration.component.scss'],
 })
 export class RegistrationComponent  {
-
+  /**
+   * @param matDialogRef is a material modal component.
+   * @param data is a data whitch we can send to html
+   */
   constructor(private matDialogRef: MatDialogRef<RegistrationComponent>, @Inject(MAT_DIALOG_DATA) public data: any) { }
 
 }

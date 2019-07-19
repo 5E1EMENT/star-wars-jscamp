@@ -1,32 +1,39 @@
-import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { map } from 'rxjs/operators';
+import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
+
+/**
+ * Servece data to interact with user data
+ */
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class HomeService {
-  fetch_data = 'https://angular-film-app.firebaseio.com/swapi.json'
-  public User: any
-  public userEmail: string
+  private fetch_data = 'https://angular-film-app.firebaseio.com/swapi.json';
+  private User: any;
+  private userEmail: string;
   constructor(private http: HttpClient) { }
 
-  authUser(user) {
-    this.User = user
-    console.log(this.User.email)
-    return this.User
+  private authUser(user: object): any {
+    this.User = user;
+    console.log(this.User.email);
+    return this.User;
   }
-  displayAuth(user) {
-    this.userEmail = user.email
+  private displayAuth(user: any): any {
+    this.userEmail = user.email;
   }
-  getData() {
+  /**
+   * Mehtod allows to get response film data
+   */
+  public getData(): any {
 
     return this.http.get(this.fetch_data).pipe(map(res => {
-      if(!res) {
-        return []
+      if (!res) {
+        return [];
       }
-    return res
+    return res;
     }));
   }
 

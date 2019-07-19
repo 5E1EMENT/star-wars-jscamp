@@ -1,17 +1,20 @@
 import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material';
+
 import { LoginComponent } from './auth/login/login.component';
-
-
-
+/**
+ * class AppComponent
+ */
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  styleUrls: ['./app.component.scss'],
 })
-export class AppComponent {
-  title = 'film-app';
-  constructor() {}
-  
-}
 
+export class AppComponent {
+  /**
+   * .ctor
+   * AppComponent
+   */
+  public constructor() {}
+}

@@ -1,15 +1,22 @@
-<table class="table" *ngIf="home.User">
-  <thead class="thead-dark">
-    <tr >
-      <th>Название фильма</th>
-    </tr>
-
-  </thead>
-  <tbody>
-    <tr *ngFor="let film of dataFilms" >
-      <td scope="row">{{ film.title }}</td>
-    </tr>
-
-
-  </tbody>
-</table>
+<mat-table [dataSource]="dataSource" class="mat-elevation-z8" *ngIf="home.User">
+    <!-- Position Column -->
+    <ng-container matColumnDef="title">
+      <mat-header-cell *matHeaderCellDef>Название фильма</mat-header-cell>
+      <mat-cell *matCellDef="let film"> {{film.title}} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="episode">
+      <mat-header-cell *matHeaderCellDef>Номер эпизода</mat-header-cell>
+      <mat-cell *matCellDef="let film"> {{film.episode_id}} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="release_date">
+      <mat-header-cell *matHeaderCellDef>Дата выпуска</mat-header-cell>
+      <mat-cell *matCellDef="let film"> {{film.release_date}} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="director">
+      <mat-header-cell *matHeaderCellDef>Режиссёр</mat-header-cell>
+      <mat-cell *matCellDef="let film"> {{film.director}} </mat-cell>
+    </ng-container>
+  
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+  </mat-table>

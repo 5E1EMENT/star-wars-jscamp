@@ -1,6 +1,4 @@
-
-    <mat-toolbar class="auth-toolbar">
-        <app-auth (SendData)="loginData($event)" class="app-auth"></app-auth>
-        
-    </mat-toolbar>
-    <app-home></app-home>
+<mat-card>
+  <app-auth (SendData)="loginData($event)" class="app-auth"></app-auth>
+</mat-card>
+<app-home></app-home>

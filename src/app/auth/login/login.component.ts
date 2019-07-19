@@ -1,53 +1,52 @@
 import { Component, OnInit, Inject, Input, Output, EventEmitter } from '@angular/core';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-
 import { FormControl, Validators, FormGroup } from '@angular/forms';
-import { LoginService } from './login.service';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { HomeService } from 'src/app/home/home.service';
 
+import { LoginService } from './login.service';
 
+/**
+ * LoginComponent class
+ */
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
+  styleUrls: ['./login.component.scss'],
 })
 
 export class LoginComponent implements OnInit {
-  public authForm: FormGroup
-  public FormData: any
-  public error: string
+  private authForm: FormGroup;
+  private FormData: any;
+  private error: string;
 
+  constructor(private matDialogRef: MatDialogRef<LoginComponent>,
+              @Inject(MAT_DIALOG_DATA) private data: any,
+              public loginService: LoginService,
+              public Home: HomeService) {
 
-  @Output() SendData = new EventEmitter()
-  constructor(public matDialogRef: MatDialogRef<LoginComponent>,
-              @Inject(MAT_DIALOG_DATA) public data: any, 
-              private LoginService: LoginService,
-              private Home: HomeService) {
-                
       this.authForm = new FormGroup({
       email: new FormControl(),
-      password: new FormControl()
-      })
+      password: new FormControl(),
+      });
 
    }
-    public login() {
-      this.error = ''
-      this.LoginService.login(this.authForm.value).subscribe(data => {
-      this.Home.authUser(data)
-      this.Home.displayAuth(data)
-      if(!this.error) {
-        this.matDialogRef.close()
-      }
-
+   private login(): any {
+      this.error = '';
+      this.loginService.login(this.authForm.value).subscribe(data => {
+      this.Home.authUser(data);
+      this.Home.displayAuth(data);
+      this.matDialogRef.close();
       }, err => {
-        
-        this.error = err.error.error.message
-      })
-      
+        this.matDialogRef.close();
+        this.error = err.error.error.message;
+      });
+
     }
-  ngOnInit() {
+    /**
+     * Login init metnod
+     */
+  public ngOnInit(): any {
   }
-  
 
 }

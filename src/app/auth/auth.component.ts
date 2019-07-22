@@ -10,7 +10,6 @@ import { RegistrationComponent } from './registration/registration.component';
 /**
  * Class AuthComponent for authentication
  */
-
 @Component({
   selector: 'app-auth',
   templateUrl: './auth.component.html',
@@ -18,8 +17,7 @@ import { RegistrationComponent } from './registration/registration.component';
 })
 export class AuthComponent {
 
-  constructor(private auth: AuthService,
-              private dialog: MatDialog,
+  constructor(private dialog: MatDialog,
               private home: HomeService,
               ) { }
 

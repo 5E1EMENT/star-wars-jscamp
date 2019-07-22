@@ -1,4 +1,4 @@
-import { Component, OnInit, Inject, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Inject } from '@angular/core';
 import { FormControl, Validators, FormGroup } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { HomeService } from 'src/app/home/home.service';
@@ -14,7 +14,6 @@ import { LoginService } from './login.service';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss'],
 })
-
 export class LoginComponent {
   private authForm: FormGroup;
   private error: string;
@@ -22,7 +21,7 @@ export class LoginComponent {
    * @param matDialogRef Is a material modal component.
    * @param data Is a data whitch we are sending from auth component from openLoginDialog method
    * @param loginService Is a login service
-   * @param Home Is a home service
+   * @param homeService Is a home service
    */
   constructor(private matDialogRef: MatDialogRef<LoginComponent>,
               @Inject(MAT_DIALOG_DATA) private data: any,
@@ -35,8 +34,11 @@ export class LoginComponent {
       });
 
    }
+   /**
+    * login method allows to login exists user
+    */
 
-   private login(): any {
+   private login(): void {
       this.error = '';
       this.loginService.login(this.authForm.value).subscribe(data => {
       this.homeService.authUser(data);

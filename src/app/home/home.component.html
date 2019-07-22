@@ -1,19 +1,19 @@
-<mat-table [dataSource]="dataSource" class="mat-elevation-z8" *ngIf="homeService.User">
+<mat-table [dataSource]="dataSource" class="mat-elevation-z8" *ngIf="homeService.user">
     <!-- Position Column -->
     <ng-container matColumnDef="title">
-      <mat-header-cell *matHeaderCellDef>Название фильма</mat-header-cell>
+      <mat-header-cell *matHeaderCellDef>Film title</mat-header-cell>
       <mat-cell *matCellDef="let film"> {{film.title}} </mat-cell>
     </ng-container>
-    <ng-container matColumnDef="episode">
-      <mat-header-cell *matHeaderCellDef>Номер эпизода</mat-header-cell>
-      <mat-cell *matCellDef="let film"> {{film.episode_id}} </mat-cell>
+    <ng-container matColumnDef="episodeId">
+      <mat-header-cell *matHeaderCellDef>Episode number</mat-header-cell>
+      <mat-cell *matCellDef="let film"> {{film.episodeId}} </mat-cell>
     </ng-container>
-    <ng-container matColumnDef="release_date">
-      <mat-header-cell *matHeaderCellDef>Дата выпуска</mat-header-cell>
-      <mat-cell *matCellDef="let film"> {{film.release_date}} </mat-cell>
+    <ng-container matColumnDef="releaseDate">
+      <mat-header-cell *matHeaderCellDef>Release date</mat-header-cell>
+      <mat-cell *matCellDef="let film"> {{film.releaseDate | date}} </mat-cell>
     </ng-container>
     <ng-container matColumnDef="director">
-      <mat-header-cell *matHeaderCellDef>Режиссёр</mat-header-cell>
+      <mat-header-cell *matHeaderCellDef>Director</mat-header-cell>
       <mat-cell *matCellDef="let film"> {{film.director}} </mat-cell>
     </ng-container>
   

@@ -23,7 +23,7 @@ export class LoginComponent {
    * @param loginService Is a login service
    * @param homeService Is a home service
    */
-  constructor(private matDialogRef: MatDialogRef<LoginComponent>,
+  public constructor(private matDialogRef: MatDialogRef<LoginComponent>,
               @Inject(MAT_DIALOG_DATA) private data: any,
               public loginService: LoginService,
               public homeService: HomeService) {
@@ -33,7 +33,7 @@ export class LoginComponent {
       password: new FormControl(),
       });
 
-   }
+    }
    /**
     * login method allows to login exists user
     */
@@ -42,7 +42,6 @@ export class LoginComponent {
       this.error = '';
       this.loginService.login(this.authForm.value).subscribe(data => {
       this.homeService.authUser(data);
-      this.homeService.displayAuth(data);
       this.matDialogRef.close();
       }, err => {
         this.matDialogRef.close();

@@ -19,8 +19,8 @@ import { AppComponent } from './app.component';
 import { AuthComponent } from './auth/auth.component';
 import { LoginComponent } from './auth/login/login.component';
 import { RegistrationComponent } from './auth/registration/registration.component';
+import {CoreModule} from './core/core.module';
 import { HomeComponent } from './home/home.component';
-
 /**
  * class AppModule
  */
@@ -49,6 +49,7 @@ import { HomeComponent } from './home/home.component';
     MatDividerModule,
     MatTableModule,
     MatCardModule,
+    CoreModule,
   ],
   entryComponents: [LoginComponent, RegistrationComponent],
   providers: [],

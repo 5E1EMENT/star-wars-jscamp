@@ -3,7 +3,6 @@ import {MatDialog } from '@angular/material/dialog';
 
 import { HomeService } from '../home/home.service';
 
-import { AuthService } from './auth.service';
 import { LoginComponent } from './login/login.component';
 import { RegistrationComponent } from './registration/registration.component';
 
@@ -21,15 +20,28 @@ export class AuthComponent {
               private home: HomeService,
               ) { }
 
-  private logout(): any {
-    this.home.authUser('');
-    this.home.displayAuth('');
+  /**
+   * logout method allows to logout current user
+   */
+
+  public logout(): void {
+    this.home.authUser(null);
   }
-  private openLoginDialog(): any {
-    this.dialog.open(LoginComponent, { data: {title: 'Войти'} });
+
+  /**
+   * openLoginDialog method allows to open Login modal window
+   */
+
+  public openLoginDialog(): void {
+    this.dialog.open(LoginComponent, { data: {title: 'Login'} });
   }
-  private openRegisterDialog(): any {
-    this.dialog.open(RegistrationComponent, {data: {title: 'Регистрация'} });
+
+  /**
+   * openLoginDialog method allows to open Registration modal window
+   */
+
+  public openRegisterDialog(): void {
+    this.dialog.open(RegistrationComponent, {data: {title: 'Registration'} });
   }
 
 }

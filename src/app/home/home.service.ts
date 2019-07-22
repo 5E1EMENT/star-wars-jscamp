@@ -1,7 +1,9 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { tap } from 'rxjs/operators';
+import { map } from 'rxjs/operators';
+
+import { User } from '../core/models/user';
 
 /**
  * Servece data to interact with user data
@@ -11,35 +13,23 @@ import { tap } from 'rxjs/operators';
   providedIn: 'root',
 })
 export class HomeService {
-  private fetchData = 'https://angular-film-app.firebaseio.com/swapi.json';
-  private User: Object;
-  private userEmail: string;
-  constructor(private http: HttpClient) { }
+  /**
+   * user - user variable
+   */
+  public user: User;
+  /**
+   * userEmail - user email
+   */
+  public userEmail: string;
+  public constructor() { }
 
   /**
    * Mehtod authorizes the user
    */
-  public authUser(user: string): any {
-    this.User = user;
-    return this.User;
-  }
-  /**
-   * Mehtod displays who is authorized now
-   */
-  public displayAuth(user: any): any {
+  public authUser(user: User): User {
+    this.user = user;
     this.userEmail = user.email;
-  }
-  /**
-   * Mehtod allows to get response film data
-   */
-  public getData(): Observable<any> {
-
-    return this.http.get(this.fetchData).pipe(tap(res => {
-      if (!res) {
-        return [];
-      }
-    return res;
-    }));
+    return this.user;
   }
 
 }

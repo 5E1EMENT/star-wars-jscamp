@@ -18,6 +18,7 @@ export class LoginComponent {
   private authForm: FormGroup;
   private error: string;
   /**
+   * .ctor
    * @param matDialogRef Is a material modal component.
    * @param data Is a data whitch we are sending from auth component from openLoginDialog method
    * @param loginService Is a login service

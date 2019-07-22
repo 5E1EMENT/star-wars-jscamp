@@ -12,9 +12,5 @@ import { LoginComponent } from './auth/login/login.component';
 })
 
 export class AppComponent {
-  /**
-   * .ctor
-   * AppComponent
-   */
-  public constructor() {}
+  
 }

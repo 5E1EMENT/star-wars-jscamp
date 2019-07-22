@@ -21,7 +21,6 @@ export class HomeService {
    * userEmail - user email
    */
   public userEmail: string;
-  public constructor() { }
 
   /**
    * Mehtod authorizes the user

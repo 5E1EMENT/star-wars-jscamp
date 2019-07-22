@@ -24,6 +24,10 @@ export interface LoginData {
 export class LoginService {
   private loginApiKey = 'AIzaSyBggsqbMyphOxNDjpgko8FvQ6jabHr9Pm0';
   private loginApi = `https://www.googleapis.com/identitytoolkit/v3/relyingparty/verifyPassword?key=${this.loginApiKey}`;
+  /**
+   * .ctor
+   * @param http - http package module
+   */
   constructor(private http: HttpClient) { }
   /**
    * Login method access to login in firebase

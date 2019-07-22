@@ -4,19 +4,19 @@
 
 export interface Film {
     /**
-     * title - film name
+     * Field title - film name
      */
     title: string;
     /**
-     * releaseDate - release date
+     * Field releaseDate - release date
      */
     releaseDate: Date;
     /**
-     * episodeId - episode number
+     * Field episodeId - episode number
      */
     episodeId: number;
     /**
-     * director - episode director
+     * Field director - episode director
      */
     director: string;
 }

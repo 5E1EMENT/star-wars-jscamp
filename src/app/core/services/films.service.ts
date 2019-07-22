@@ -15,6 +15,10 @@ import { FilmDto } from './dto/film-dto';
 
 export class FilmsService {
   private filmsUrl = 'https://angular-film-app.firebaseio.com/swapi/films.json';
+  /**
+   * .ctor
+   * @param http - http package
+   */
   constructor(private http: HttpClient) {
 
    }

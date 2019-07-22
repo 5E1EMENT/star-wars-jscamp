@@ -11,6 +11,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 })
 export class RegistrationComponent  {
   /**
+   * .ctor
    * @param matDialogRef is a material modal component.
    * @param data is a data whitch we can send to html
    */

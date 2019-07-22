@@ -14,7 +14,11 @@ import { HomeService } from './home.service';
 })
 
 export class HomeComponent implements OnInit {
-
+  /**
+   * .ctor
+   * @param homeService - home page service
+   * @param filmsService - films service
+   */
   constructor(public homeService: HomeService,
               private filmsService: FilmsService) { }
   private displayedColumns: string[] = ['releaseDate', 'title', 'episodeId', 'director'];

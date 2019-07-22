@@ -12,14 +12,13 @@ import { FilmDto } from './dto/film-dto';
 @Injectable({
   providedIn: 'root',
 })
-
 export class FilmsService {
   private filmsUrl = 'https://angular-film-app.firebaseio.com/swapi/films.json';
   /**
    * .ctor
    * @param http - http package
    */
-  constructor(private http: HttpClient) {
+  public constructor(private http: HttpClient) {
 
    }
    /**
@@ -28,6 +27,7 @@ export class FilmsService {
    public getFilms(): Observable<Film[]> {
     return this.http.get<FilmDto[]>(this.filmsUrl).pipe(map(filmsDto => {
       return filmsDto.map(filmDto => {
+        console.log(filmDto)
         const title: string = filmDto.fields.title;
         const episodeId: number = filmDto.fields.episode_id;
         const releaseDate: Date = new Date(filmDto.fields.release_date);

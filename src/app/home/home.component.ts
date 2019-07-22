@@ -30,7 +30,6 @@ export class HomeComponent implements OnInit {
   public ngOnInit(): void {
     this.filmsService.getFilms().subscribe(films => {
       this.dataSource = films;
-      console.log(this.dataSource);
     });
   }
 }

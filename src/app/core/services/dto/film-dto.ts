@@ -3,19 +3,19 @@
  */
 interface FilmRecordDto {
     /**
-     * frelease_date - film release date
+     * Film release date - frelease_date
      */
     release_date: string;
     /**
-     * title - film title
+     * Film title - title
      */
     title: string;
     /**
-     * episode_id - film episode id
+     * Film episode id - episode_id
      */
     episode_id: number;
     /**
-     * director - film director
+     * Film director - director
      */
     director: string;
   }
@@ -32,7 +32,7 @@ export interface FilmDto extends DatabaseRecord<FilmRecordDto> {
 
 export interface DatabaseRecord<T> {
     /**
-   * fields - films data
+   * Films data - fields
    */
   fields: T;
 }

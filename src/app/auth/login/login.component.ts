@@ -8,7 +8,6 @@ import { LoginService } from '../../core/services/login.service';
 /**
  * LoginComponent class
  */
-
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',

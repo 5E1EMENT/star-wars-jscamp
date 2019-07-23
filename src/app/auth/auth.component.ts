@@ -27,8 +27,7 @@ export class AuthComponent {
    * @param dialogWindow service for modal windows
    */
   public constructor(private home: HomeService,
-              private dialogWindow: DialogService,
-              ) { }
+              private dialogWindow: DialogService) { }
 
   /**
    * Logout method allows to logout current user

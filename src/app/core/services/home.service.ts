@@ -8,7 +8,6 @@ import { User } from '../models/user';
 /**
  * Servece data to interact with user data
  */
-
 @Injectable({
   providedIn: 'root',
 })

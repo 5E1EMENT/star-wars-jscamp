@@ -1,11 +1,15 @@
 import { Injectable } from '@angular/core';
+
 import { User } from '../models/user';
 
+/**
+ * UserService for user status data
+ */
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class UserService {
- /**
+  /**
    * User - user variable
    */
   public user: User;
@@ -22,6 +26,5 @@ export class UserService {
     this.userEmail = user.email;
     return this.user;
   }
-  constructor() { }
-  
+  constructor() {}
 }

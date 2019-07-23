@@ -1,7 +1,6 @@
 import { Component, Inject } from '@angular/core';
 import { FormControl, Validators, FormGroup } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-
 import { AuthorizationService } from 'src/app/core/services/authorization.service';
 
 /**
@@ -26,7 +25,7 @@ export class LoginComponent {
     private matDialogRef: MatDialogRef<LoginComponent>,
     @Inject(MAT_DIALOG_DATA)
     private data: string,
-    public authorizationService: AuthorizationService
+    public authorizationService: AuthorizationService,
   ) {
     this.authForm = new FormGroup({
       email: new FormControl(),

@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
 import { FilmsService } from '../core/services/films.service';
-
 import { HomeService } from '../core/services/home.service';
 
 /**

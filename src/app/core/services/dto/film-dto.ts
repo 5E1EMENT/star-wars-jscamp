@@ -24,8 +24,11 @@ interface FilmRecordDto {
    * FilmDto - film dto
    */
 export interface FilmDto extends DatabaseRecord<FilmRecordDto> {
-  
+
 }
+/**
+ * DatabaseRecord for fields wrapper
+ */
 
 export interface DatabaseRecord<T> {
     /**

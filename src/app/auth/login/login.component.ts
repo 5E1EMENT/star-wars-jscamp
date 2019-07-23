@@ -45,7 +45,6 @@ export class LoginComponent {
       this.homeService.authUser(data);
       this.matDialogRef.close();
       }, err => {
-        this.matDialogRef.close();
         this.error = err.error.error.message;
       });
 

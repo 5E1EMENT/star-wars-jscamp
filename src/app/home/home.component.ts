@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 import { FilmsService } from '../core/services/films.service';
 
-import { HomeService } from './home.service';
+import { HomeService } from '../core/services/home.service';
 
 /**
  * Home component for displaying film data when user will login
@@ -19,7 +19,7 @@ export class HomeComponent implements OnInit {
    * @param homeService - home page service
    * @param filmsService - films service
    */
-  constructor(public homeService: HomeService,
+  public constructor(public homeService: HomeService,
               private filmsService: FilmsService) { }
 
   /**

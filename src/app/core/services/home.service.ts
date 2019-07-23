@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
-import { User } from '../core/models/user';
+import { User } from '../models/user';
 
 /**
  * Servece data to interact with user data

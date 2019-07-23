@@ -10,9 +10,12 @@ import { RegistrationComponent } from 'src/app/auth/registration/registration.co
   providedIn: 'root',
 })
 export class DialogService {
-
-  constructor(private dialog: MatDialog,
-              ) { }
+  /**
+   * .ctor
+   * @param dialog uses material design dialog window
+   */
+  public constructor(private dialog: MatDialog,
+                    ) { }
   /**
    * OpenLoginDialog method allows to open Login modal window
    */

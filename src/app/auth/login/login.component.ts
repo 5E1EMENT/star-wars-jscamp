@@ -1,9 +1,9 @@
 import { Component, Inject } from '@angular/core';
 import { FormControl, Validators, FormGroup } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { HomeService } from 'src/app/home/home.service';
+import { HomeService } from 'src/app/core/services/home.service';
 
-import { LoginService } from './login.service';
+import { LoginService } from '../../core/services/login.service';
 
 /**
  * LoginComponent class

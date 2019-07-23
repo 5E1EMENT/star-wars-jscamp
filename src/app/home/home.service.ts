@@ -14,11 +14,11 @@ import { User } from '../core/models/user';
 })
 export class HomeService {
   /**
-   * user - user variable
+   * User - user variable
    */
   public user: User;
   /**
-   * userEmail - user email
+   * User Email - userEmail
    */
   public userEmail: string;
 
@@ -29,6 +29,13 @@ export class HomeService {
     this.user = user;
     this.userEmail = user.email;
     return this.user;
+  }
+  /**
+   * Method logout the user
+   */
+  public logout(): void {
+    this.userEmail = '';
+    this.user = null;
   }
 
 }

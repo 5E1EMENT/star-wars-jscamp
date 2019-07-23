@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {MatDialog } from '@angular/material/dialog';
 
+import { User } from '../core/models/user';
+import { DialogService } from '../core/services/dialog/dialog.service';
 import { HomeService } from '../home/home.service';
 
 import { LoginComponent } from './login/login.component';
@@ -15,33 +17,32 @@ import { RegistrationComponent } from './registration/registration.component';
   styleUrls: ['./auth.component.scss'],
 })
 export class AuthComponent {
-
-  constructor(private dialog: MatDialog,
-              private home: HomeService,
+  /**
+   * User data
+   */
+  public user: User;
+  constructor(private home: HomeService,
+              private dialogWindow: DialogService,
               ) { }
 
   /**
-   * logout method allows to logout current user
+   * Logout method allows to logout current user
    */
 
   public logout(): void {
-    this.home.authUser(null);
+    this.home.logout();
   }
-
   /**
-   * openLoginDialog method allows to open Login modal window
+   * Login - Inherit
    */
-
-  public openLoginDialog(): void {
-    this.dialog.open(LoginComponent, { data: {title: 'Login'} });
+  public login(): void {
+    this.dialogWindow.openLoginDialog();
   }
-
   /**
-   * openLoginDialog method allows to open Registration modal window
+   * Registration - Inherit
    */
-
-  public openRegisterDialog(): void {
-    this.dialog.open(RegistrationComponent, {data: {title: 'Registration'} });
+  public registration(): void {
+    this.dialogWindow.openRegisterDialog();
   }
 
 }

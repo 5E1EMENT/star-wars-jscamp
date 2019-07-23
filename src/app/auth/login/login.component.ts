@@ -25,7 +25,7 @@ export class LoginComponent {
    * @param homeService Is a home service
    */
   public constructor(private matDialogRef: MatDialogRef<LoginComponent>,
-              @Inject(MAT_DIALOG_DATA) private data: any,
+              @Inject(MAT_DIALOG_DATA) private data: string,
               public loginService: LoginService,
               public homeService: HomeService) {
 
@@ -39,7 +39,7 @@ export class LoginComponent {
     * login method allows to login exists user
     */
 
-   private login(): void {
+   public login(): void {
       this.error = '';
       this.loginService.login(this.authForm.value).subscribe(data => {
       this.homeService.authUser(data);

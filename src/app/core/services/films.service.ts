@@ -20,14 +20,13 @@ export class FilmsService {
    */
   public constructor(private http: HttpClient) {
 
-   }
-   /**
-    * FilmsService allows to get data about films
-    */
-   public getFilms(): Observable<Film[]> {
+  }
+  /**
+   * FilmsService allows to get data about films
+   */
+  public getFilms(): Observable<Film[]> {
     return this.http.get<FilmDto[]>(this.filmsUrl).pipe(map(filmsDto => {
       return filmsDto.map(filmDto => {
-        console.log(filmDto)
         const title: string = filmDto.fields.title;
         const episodeId: number = filmDto.fields.episode_id;
         const releaseDate: Date = new Date(filmDto.fields.release_date);
@@ -41,5 +40,5 @@ export class FilmsService {
         return film;
       });
     }));
-   }
+  }
 }

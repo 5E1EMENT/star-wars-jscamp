@@ -21,8 +21,15 @@ export class HomeComponent implements OnInit {
    */
   constructor(public homeService: HomeService,
               private filmsService: FilmsService) { }
-  private displayedColumns: string[] = ['releaseDate', 'title', 'episodeId', 'director'];
-  private dataSource = [];
+
+  /**
+   *  displayedColumns - mat-header-row uses this data
+   */
+  public displayedColumns: string[] = ['releaseDate', 'title', 'episodeId', 'director'];
+  /**
+   * dataSource - films data arr connected to template
+   */
+  public dataSource = [];
 
   /**
    * Initialize films data witch will be used to display to the user

@@ -1,19 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { LoginData } from 'src/app/core/models/login';
 
-/**
- * Interface for Login Data
- */
-export interface LoginData {
-  /**
-   * Email : email data from input
-   */
-  email: string;
-  /**
-   * Password : password data from input
-   */
-  password: string;
-}
 /**
  * LoginService class for connecting firebase and login
  */
@@ -35,9 +23,9 @@ export class LoginService {
    */
   public login(data: LoginData): any {
     return this.http.post(this.loginApi, {
-      'email': data.email, // Data for successful auth :dan@mail.ru / test@mail.ru
-      'password': data.password, // Data for successful auth: 123456
-      'returnSecureToken': false,
+      email: data.email, // Data for successful auth :dan@mail.ru / test@mail.ru
+      password: data.password, // Data for successful auth: 123456
+      returnSecureToken: false,
     });
 }
 }

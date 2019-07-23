@@ -8,7 +8,6 @@ import { FilmsService } from './services/films.service';
  */
 @NgModule({
   declarations: [],
-  providers: [FilmsService],
   imports: [
     CommonModule,
   ],

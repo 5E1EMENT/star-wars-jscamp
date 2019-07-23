@@ -14,17 +14,19 @@ export class DialogService {
    * .ctor
    * @param dialog uses material design dialog window
    */
-  public constructor(private dialog: MatDialog) { }
+  public constructor(private dialog: MatDialog) {}
   /**
    * OpenLoginDialog method allows to open Login modal window
    */
   public openLoginDialog(): void {
-    this.dialog.open(LoginComponent, { data: {title: 'Login'} });
+    this.dialog.open(LoginComponent, { data: { title: 'Login' } });
   }
   /**
    * OpenLoginDialog method allows to open Registration modal window
    */
   public openRegisterDialog(): void {
-    this.dialog.open(RegistrationComponent, {data: {title: 'Registration'} });
+    this.dialog.open(RegistrationComponent, {
+      data: { title: 'Registration' },
+    });
   }
 }

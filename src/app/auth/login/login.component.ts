@@ -1,9 +1,8 @@
 import { Component, Inject } from '@angular/core';
 import { FormControl, Validators, FormGroup } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { HomeService } from 'src/app/core/services/home.service';
 
-import { LoginService } from '../../core/services/login.service';
+import { AuthorizationService } from 'src/app/core/services/authorization.service';
 
 /**
  * LoginComponent class
@@ -23,30 +22,31 @@ export class LoginComponent {
    * @param loginService Is a login service
    * @param homeService Is a home service
    */
-  public constructor(private matDialogRef: MatDialogRef<LoginComponent>,
-              @Inject(MAT_DIALOG_DATA) private data: string,
-              public loginService: LoginService,
-              public homeService: HomeService) {
-
-      this.authForm = new FormGroup({
+  public constructor(
+    private matDialogRef: MatDialogRef<LoginComponent>,
+    @Inject(MAT_DIALOG_DATA)
+    private data: string,
+    public authorizationService: AuthorizationService
+  ) {
+    this.authForm = new FormGroup({
       email: new FormControl(),
       password: new FormControl(),
-      });
+    });
+  }
+  /**
+   * login method allows to login exists user
+   */
 
-    }
-   /**
-    * login method allows to login exists user
-    */
-
-   public login(): void {
-      this.error = '';
-      this.loginService.login(this.authForm.value).subscribe(data => {
-      this.homeService.authUser(data);
-      this.matDialogRef.close();
-      }, err => {
+  public login(): void {
+    this.error = '';
+    this.authorizationService.login(this.authForm.value).subscribe(
+      data => {
+        this.authorizationService.authUser(data);
+        this.matDialogRef.close();
+      },
+      err => {
         this.error = err.error.error.message;
-      });
-
-    }
-
+      },
+    );
+  }
 }

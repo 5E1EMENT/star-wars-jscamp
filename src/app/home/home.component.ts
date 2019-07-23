@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 
 import { FilmsService } from '../core/services/films.service';
-import { HomeService } from '../core/services/home.service';
+import { UserService } from '../core/services/user.service';
+import { AuthorizationService } from '../core/services/authorization.service';
 
 /**
  * Home component for displaying film data when user will login
@@ -11,20 +12,27 @@ import { HomeService } from '../core/services/home.service';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
 })
-
 export class HomeComponent implements OnInit {
   /**
    * .ctor
-   * @param homeService - home page service
+   * @param userService - user service
    * @param filmsService - films service
    */
-  public constructor(public homeService: HomeService,
-              private filmsService: FilmsService) { }
+  public constructor(
+    public userService: UserService,
+    private filmsService: FilmsService,
+    public auhtorizationService: AuthorizationService
+  ) {}
 
   /**
    *  displayedColumns - mat-header-row uses this data
    */
-  public displayedColumns: string[] = ['releaseDate', 'title', 'episodeId', 'director'];
+  public displayedColumns: string[] = [
+    'releaseDate',
+    'title',
+    'episodeId',
+    'director',
+  ];
   /**
    * dataSource - films data arr connected to template
    */

@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 import { AuthorizationService } from '../core/services/authorization.service';
 import { FilmsService } from '../core/services/films.service';
-import { UserService } from '../core/services/user.service';
+
 
 /**
  * Home component for displaying film data when user will login
@@ -19,7 +19,6 @@ export class HomeComponent implements OnInit {
    * @param filmsService - films service
    */
   public constructor(
-    public userService: UserService,
     private filmsService: FilmsService,
     public auhtorizationService: AuthorizationService,
   ) {}

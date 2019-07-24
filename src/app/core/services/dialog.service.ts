@@ -19,7 +19,7 @@ export class DialogService {
    * OpenLoginDialog method allows to open Login modal window
    */
   public openLoginDialog(): void {
-    this.dialog.open(LoginComponent, { data: { title: 'Login' } });
+    this.dialog.open(LoginComponent, {width: '350px', data: { title: 'Login' } });
   }
   /**
    * OpenLoginDialog method allows to open Registration modal window

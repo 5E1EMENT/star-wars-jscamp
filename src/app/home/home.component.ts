@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
 
+import { Film } from '../core/models/film';
 import { AuthorizationService } from '../core/services/authorization.service';
 import { FilmsService } from '../core/services/films.service';
-
 
 /**
  * Home component for displaying film data when user will login
@@ -33,16 +34,14 @@ export class HomeComponent implements OnInit {
     'director',
   ];
   /**
-   * dataSource - films data arr connected to template
+   * Stream of films data data array connected to template
    */
-  public dataSource = [];
+  public dataSource$: Observable<Film[]>;
 
   /**
    * Initialize films data witch will be used to display to the user
    */
   public ngOnInit(): void {
-    this.filmsService.getFilms().subscribe(films => {
-      this.dataSource = films;
-    });
+    this.dataSource$ = this.filmsService.getFilms();
   }
 }

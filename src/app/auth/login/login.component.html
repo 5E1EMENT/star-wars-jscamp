@@ -1,11 +1,15 @@
 <h1 mat-dialog-title class="login-title">{{ data.title }}</h1>
 <div mat-dialog-content class="login-form">
-  <form [formGroup]="authForm">
+  <form [formGroup]="authForm" (submit)="login()">
     <mat-form-field class="example-full-width email-data">
       <label for="email">Email</label>
-      <input matInput formControlName="email" type="text" name="email" #email />
+      <input 
+        matInput 
+        formControlName="email" 
+        type="text" 
+        name="email" 
+        #email />
     </mat-form-field>
-
     <mat-form-field class="example-full-width password-data">
       <label for="password">Password</label>
       <input
@@ -16,9 +20,7 @@
         #password
       />
     </mat-form-field>
-    <mat-divider> </mat-divider>
       <button mat-raised-button color="primary" (click)="login()" class="login-enter__btn">Войти</button>
-   
   </form>
   <h2>{{ error }}</h2>
 </div>

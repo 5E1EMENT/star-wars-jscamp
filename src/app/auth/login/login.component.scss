@@ -1,11 +1,10 @@
+form {
+    display: flex;
+    flex-direction: column;
+}
 .login{
     &-title {
         text-align: center
     }
-    &-form {
-        text-align: center;
-    }
-    &-enter__btn {
-        margin-top: 10px;
-    }
+    
 }

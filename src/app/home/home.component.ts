@@ -21,7 +21,7 @@ export class HomeComponent implements OnInit {
    */
   public constructor(
     private filmsService: FilmsService,
-    public auhtorizationService: AuthorizationService,
+    private auhtorizationService: AuthorizationService,
   ) {}
 
   /**

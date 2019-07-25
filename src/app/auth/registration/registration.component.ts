@@ -18,6 +18,6 @@ export class RegistrationComponent {
   public constructor(
     private matDialogRef: MatDialogRef<RegistrationComponent>,
     @Inject(MAT_DIALOG_DATA)
-    public data: any,
+    public data: string,
   ) {}
 }

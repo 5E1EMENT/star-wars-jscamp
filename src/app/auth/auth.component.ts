@@ -1,12 +1,9 @@
-import { Component, OnInit } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
+import { Component } from '@angular/core';
 
 import { User } from '../core/models/user';
 import { AuthorizationService } from '../core/services/authorization.service';
 import { DialogService } from '../core/services/dialog.service';
 
-import { LoginComponent } from './login/login.component';
-import { RegistrationComponent } from './registration/registration.component';
 
 /**
  * Class AuthComponent for authentication

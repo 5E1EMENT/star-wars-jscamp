@@ -25,7 +25,7 @@ export class LoginComponent {
     private matDialogRef: MatDialogRef<LoginComponent>,
     @Inject(MAT_DIALOG_DATA)
     private data: string,
-    public authorizationService: AuthorizationService,
+    private authorizationService: AuthorizationService,
   ) {
     this.authForm = new FormGroup({
       email: new FormControl(null, [Validators.required, Validators.email]),

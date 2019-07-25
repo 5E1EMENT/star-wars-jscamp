@@ -12,17 +12,11 @@ import { User } from '../models/user';
 })
 export class AuthorizationService {
   private loginApiKey = 'AIzaSyBggsqbMyphOxNDjpgko8FvQ6jabHr9Pm0';
-  private loginApi = `https://www.googleapis.com/identitytoolkit/v3/relyingparty/verifyPassword?key=${
-    this.loginApiKey
-  }`;
+  private loginApi = `https://www.googleapis.com/identitytoolkit/v3/relyingparty/verifyPassword?key=${this.loginApiKey}`;
   /**
    * User - user variable
    */
   public user: User;
-  /**
-   * User Email - userEmail
-   */
-  public userEmail: string;
   /**
    * .ctor
    * @param http - http package module
@@ -33,7 +27,7 @@ export class AuthorizationService {
    */
   public authUser(user: User): User {
     this.user = user;
-    this.userEmail = user.email;
+    console.log(this.user)
     return this.user;
   }
   /**
@@ -44,14 +38,13 @@ export class AuthorizationService {
     return this.http.post<void>(this.loginApi, {
       email: data.email, // Data for successful auth :dan@mail.ru / test@mail.ru
       password: data.password, // Data for successful auth: 123456
-      returnSecureToken: false,
+      returnSecureToken: true
     });
   }
   /**
    * Method logout the user
    */
   public logout(): void {
-    this.userEmail = '';
     this.user = null;
   }
 }

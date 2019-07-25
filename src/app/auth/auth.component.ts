@@ -4,7 +4,6 @@ import { User } from '../core/models/user';
 import { AuthorizationService } from '../core/services/authorization.service';
 import { DialogService } from '../core/services/dialog.service';
 
-
 /**
  * Class AuthComponent for authentication
  */

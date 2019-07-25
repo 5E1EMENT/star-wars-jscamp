@@ -1,9 +1,9 @@
 <mat-toolbar-row class="app-wrapper">
     <h1 class="app-title">Angular Film App</h1>
-    <h2 *ngIf="authorizationService?.user">You're logged in as: {{ authorizationService.user.email }}</h2>
+    <h2 *ngIf="authorizationService.lastUserEmail">You're logged in as: {{ authorizationService.lastUserEmail }}</h2>
     <div class="app-auth__buttons">
-        <button mat-raised-button color="primary" *ngIf="!authorizationService.user" (click)="login()">Login</button>
-        <button mat-raised-button color="primary" *ngIf="authorizationService.user" (click)="logout()">Logout</button>
+        <button mat-raised-button color="primary" *ngIf="!authorizationService.lastUserEmail" (click)="login()">Login</button>
+        <button mat-raised-button color="primary" *ngIf="authorizationService.lastUserEmail" (click)="logout()">Logout</button>
         <button mat-raised-button color="accent" disabled (click)="register()">Register</button>
     </div>
     

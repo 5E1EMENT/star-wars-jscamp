@@ -1,25 +1,34 @@
+import { UserDTO } from '../services/dto/user-dto';
+
 /**
- * Interface for User data
+ * Class for User data
  */
-export interface User {
+export class User {
   /**
    * Field email - user email from response api
    */
-  email: string;
+  public email: string;
   /**
    * Field idToken - user token id from response api
    */
-  idToken: string;
+  public idToken: string;
   /**
    * Field kind - user kind id from response api
    */
-  kind: string;
+  public kind: string;
   /**
    * Field localId - user local from response api
    */
-  localId: string;
+  public localId: string;
   /**
    * Field registered - user registered from response api
    */
-  registered: boolean;
+  public registered: boolean;
+  /**
+   *
+   */
+  constructor(userResponse: UserDTO) {
+    this.idToken = userResponse.idToken;
+    this.email = userResponse.email;
+}
 }

@@ -4,6 +4,15 @@
 
 export const environment = {
   production: false,
+  firebase: {
+    apiKey: 'AIzaSyBggsqbMyphOxNDjpgko8FvQ6jabHr9Pm0',
+    authDomain: 'angular-film-app.firebaseapp.com',
+    databaseURL: 'https://angular-film-app.firebaseio.com',
+    projectId: 'angular-film-app',
+    storageBucket: '',
+    messagingSenderId: '503657173867',
+    appId: '1:503657173867:web:64241510e0be6672',
+  },
 };
 
 /*

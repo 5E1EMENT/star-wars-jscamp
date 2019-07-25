@@ -1,4 +1,4 @@
-<mat-table [dataSource]="dataSource$ | async" class="mat-elevation-z8" *ngIf="auhtorizationService.user">
+    <mat-table [dataSource]="dataSource$ | async" class="mat-elevation-z8" *ngIf="auhtorizationService.isLoggedIn()">
     <!-- Position Column -->
     <ng-container matColumnDef="title">
       <mat-header-cell *matHeaderCellDef>Film title</mat-header-cell>

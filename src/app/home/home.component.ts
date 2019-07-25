@@ -16,7 +16,7 @@ import { FilmsService } from '../core/services/films.service';
 export class HomeComponent implements OnInit {
   /**
    * .ctor
-   * @param userService - user service
+   * @param auhtorizationService - auth service
    * @param filmsService - films service
    */
   public constructor(

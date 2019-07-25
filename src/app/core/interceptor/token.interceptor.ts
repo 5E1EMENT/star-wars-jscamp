@@ -17,8 +17,12 @@ import {
     providedIn: 'root',
   })
   export class TokenInterceptor implements HttpInterceptor {
-
-  constructor(
+  /**
+   * 
+   * @param auth Authorization Service
+   * @param config Application config
+   */  
+  public constructor(
     private auth: AuthorizationService,
     private config: AppConfig,
     ) { }

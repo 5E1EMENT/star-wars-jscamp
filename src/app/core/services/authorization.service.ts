@@ -65,7 +65,7 @@ export class AuthorizationService {
   /**
    * Checks if the specified user is logged in.
    * @param email - user email.
-   * @returns if the local storage has token by email - true, else - false.
+   * @returns if the local storage has token by email - true,/false
    */
   public isLoggedIn(): boolean {
     return this.getToken(this.lastUserEmail) !== null;

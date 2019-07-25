@@ -14,13 +14,13 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppComponent } from './app.component';
-import { AuthComponent } from './auth/auth.component';
-import { LoginComponent } from './auth/login/login.component';
-import { RegistrationComponent } from './auth/registration/registration.component';
+import { AuthComponent } from 'src/app/client/auth/auth.component';
+import { LoginComponent } from 'src/app/client/auth/login/login.component';
+import { RegistrationComponent } from 'src/app/client/auth/registration/registration.component';
 import { CoreModule } from './core/core.module';
 import { TokenInterceptor } from './core/interceptor/token.interceptor';
 import { AuthorizationService } from './core/services/authorization.service';
-import { HomeComponent } from './home/home.component';
+import { HomeComponent } from './client/home/home.component';
 /**
  * class AppModule
  */

@@ -43,7 +43,6 @@ export class LoginComponent {
     this.error = '';
     this.authorizationService.login(this.authForm.value).subscribe(
       data => {
-        this.authorizationService.authUser(data);
         this.matDialogRef.close();
       },
       err => {

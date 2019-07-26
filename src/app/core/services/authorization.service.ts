@@ -14,9 +14,8 @@ import { User } from '../models/user';
 })
 export class AuthorizationService {
   private loginApiKey = 'AIzaSyBggsqbMyphOxNDjpgko8FvQ6jabHr9Pm0';
-  private loginApi = `${this.appConfig.API_URL}/verifyPassword?key=${
-    this.loginApiKey
-  }`;
+  private loginApi = `${this.appConfig.API_URL}/verifyPassword?key=${this.loginApiKey}`;
+
   /**
    * User - user variable
    */
@@ -24,20 +23,16 @@ export class AuthorizationService {
   /**
    * Email from last authorized user.
    */
-  public lastUserEmail = '';
+  public lastUserEmail: string = '';
   /**
    * .ctor
    * @param http - http package module
+   * @param appConfig - application config file with API URL, API KEY, TOKEN_KEY, EMAIL_KEY data
    */
-  constructor(private http: HttpClient, private appConfig: AppConfig) {}
-  /**
-   * Mehtod authorizes the user
-   */
-  public authUser(user: User): User {
-    this.user = user;
-    this.lastUserEmail = user.email;
-    return this.user;
+  constructor(private http: HttpClient, private appConfig: AppConfig) {
+    this.lastUserEmail = localStorage.getItem(this.appConfig.EMAIL_KEY)
   }
+  
   /**
    * Login method access to login in firebase
    * @param data data from form inputs: email and password
@@ -51,7 +46,9 @@ export class AuthorizationService {
     return this.http.post<User>(this.loginApi, body).pipe(
       map(response => new User(response)),
       tap((userModel: User) => {
-        localStorage.setItem(userModel.email, userModel.idToken);
+        localStorage.setItem(this.appConfig.TOKEN_KEY, userModel.idToken);
+        localStorage.setItem(this.appConfig.EMAIL_KEY, userModel.email);
+        this.lastUserEmail = userModel.email
       }),
     );
   }
@@ -59,23 +56,22 @@ export class AuthorizationService {
    * Method logout the user
    */
   public logout(): void {
-    localStorage.setItem(this.lastUserEmail, null);
+    localStorage.removeItem(this.appConfig.TOKEN_KEY);
+    localStorage.removeItem(this.appConfig.EMAIL_KEY);
     this.lastUserEmail = '';
   }
   /**
-   * Checks if the specified user is logged in.
-   * @param email - user email.
-   * @returns if the local storage has token by email - true,/false
+   * Checks user login status
+   * @returns if the local storage has token by email - true/false
    */
   public isLoggedIn(): boolean {
-    return this.getToken(this.lastUserEmail) !== null;
+    return this.getToken() !== null;
   }
   /**
    * Returns token by user email if he was(for now 'was', but later it will be 'is') logged in.
-   * @param email - user email.
    * @returns user token.
    */
-  public getToken(email: string = this.lastUserEmail): string {
-    return localStorage.getItem(email);
+  public getToken(): string {
+    return localStorage.getItem(this.appConfig.TOKEN_KEY);
   }
 }

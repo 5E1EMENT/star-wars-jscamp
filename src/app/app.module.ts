@@ -21,6 +21,9 @@ import { CoreModule } from './core/core.module';
 import { TokenInterceptor } from './core/interceptor/token.interceptor';
 import { AuthorizationService } from './core/services/authorization.service';
 import { HomeComponent } from './client/home/home.component';
+import { ErrorComponent } from './client/error/error.component';
+import { FilmComponent } from './client/film/film.component';
+import { AppRoutingModule } from './app-routing.module';
 /**
  * class AppModule
  */
@@ -32,6 +35,8 @@ import { HomeComponent } from './client/home/home.component';
     LoginComponent,
     RegistrationComponent,
     HomeComponent,
+    ErrorComponent,
+    FilmComponent,
   ],
   imports: [
     BrowserModule,
@@ -49,6 +54,8 @@ import { HomeComponent } from './client/home/home.component';
     MatTableModule,
     MatCardModule,
     CoreModule,
+    
+    AppRoutingModule,
   ],
   entryComponents: [LoginComponent, RegistrationComponent],
   providers: [

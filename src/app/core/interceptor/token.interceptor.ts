@@ -18,10 +18,10 @@ import {
   })
   export class TokenInterceptor implements HttpInterceptor {
   /**
-   * 
+   *
    * @param auth Authorization Service
    * @param config Application config
-   */  
+   */
   public constructor(
     private auth: AuthorizationService,
     private config: AppConfig,

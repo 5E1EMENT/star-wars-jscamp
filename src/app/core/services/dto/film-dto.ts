@@ -18,10 +18,38 @@ interface FilmRecordDto {
    * Film director - director
    */
   director: string;
+  /**
+   * Opening crawl
+   */
+  opening_crawl: string;
+  /**
+   * Producer
+   */
+  producer: string;
+  /**
+   * Characters
+   */
+  characters: number[];
+  /**
+   * Planets
+   */
+  planets: number[];
+  /**
+   * Species
+   */
+  species: number[];
+  /**
+   * Starships
+   */
+  starships: number[];
+  /**
+   * vehicles
+   */
+  vehicles: number[];
 }
 
 /**
- * FilmDto - extends DatabaseRecord because api needs fields field
+ * FilmDto - allows to match our film data with our layout data
  */
 export interface FilmDto extends DatabaseRecord<FilmRecordDto> {}
 /**

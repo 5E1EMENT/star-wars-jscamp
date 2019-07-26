@@ -1,1 +1,25 @@
-<p>film works!</p>
+<h1 class="film-title">{{ filmTitle }}</h1>
+<mat-table [dataSource]="film$ | async" class="mat-elevation-z8">
+    <ng-container matColumnDef="openingCrawl">
+        <mat-header-cell *matHeaderCellDef>Opening Crawl</mat-header-cell>
+        <mat-cell *matCellDef="let film"> {{film.openingCrawl}} </mat-cell>
+      </ng-container>
+    <ng-container matColumnDef="producer">
+        <mat-header-cell *matHeaderCellDef>Films producer</mat-header-cell>
+        <mat-cell *matCellDef="let film"> {{film.producer}} </mat-cell>
+      </ng-container>
+    <ng-container matColumnDef="episodeId">
+      <mat-header-cell *matHeaderCellDef>Episode number</mat-header-cell>
+      <mat-cell *matCellDef="let film"> {{film.episodeId}} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="releaseDate">
+      <mat-header-cell *matHeaderCellDef>Release date</mat-header-cell>
+      <mat-cell *matCellDef="let film"> {{film.releaseDate | date}} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="director">
+      <mat-header-cell *matHeaderCellDef>Films director</mat-header-cell>
+      <mat-cell *matCellDef="let film"> {{film.director}} </mat-cell>
+    </ng-container>
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+  </mat-table>

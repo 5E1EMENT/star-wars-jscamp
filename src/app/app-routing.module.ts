@@ -1,20 +1,24 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { HomeComponent } from './client/home/home.component';
+
 import { FilmComponent } from './client/film/film.component';
-import { ErrorComponent } from './client/error/error.component';
+import { HomeComponent } from './client/home/home.component';
+import { PageNotFoundComponent } from './client/page-not-found/page-not-found.component';
 
 const appRoutes: Routes = [
-  { path: "", pathMatch: 'full', redirectTo: '/home' },
-  { path: "home", component: HomeComponent },
-  { path: "film/:filmid", component: FilmComponent },
-  { path: '**', component: ErrorComponent }
-]
+  { path: '', pathMatch: 'full', redirectTo: '/home' },
+  { path: 'home', component: HomeComponent },
+  { path: 'film/:idfilm', component: FilmComponent },
+  { path: '**', component: PageNotFoundComponent },
+];
+/**
+ * Modulet allows to manage app routes
+ */
 @NgModule({
   declarations: [],
   imports: [
-    RouterModule.forRoot(appRoutes) 
+    RouterModule.forRoot(appRoutes),
   ],
-  exports: [ RouterModule ]
+  exports: [ RouterModule ],
 })
 export class AppRoutingModule { }

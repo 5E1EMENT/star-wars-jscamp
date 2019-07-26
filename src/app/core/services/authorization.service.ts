@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, OnInit } from '@angular/core';
+import { Router} from '@angular/router';
 import { Observable } from 'rxjs';
 import { map, tap } from 'rxjs/operators';
 
@@ -23,16 +24,16 @@ export class AuthorizationService {
   /**
    * Email from last authorized user.
    */
-  public lastUserEmail: string = '';
+  public lastUserEmail = '';
   /**
    * .ctor
    * @param http - http package module
    * @param appConfig - application config file with API URL, API KEY, TOKEN_KEY, EMAIL_KEY data
    */
-  constructor(private http: HttpClient, private appConfig: AppConfig) {
-    this.lastUserEmail = localStorage.getItem(this.appConfig.EMAIL_KEY)
+  constructor(private http: HttpClient, private appConfig: AppConfig, private router: Router) {
+    this.lastUserEmail = localStorage.getItem(this.appConfig.EMAIL_KEY);
   }
-  
+
   /**
    * Login method access to login in firebase
    * @param data data from form inputs: email and password
@@ -48,7 +49,7 @@ export class AuthorizationService {
       tap((userModel: User) => {
         localStorage.setItem(this.appConfig.TOKEN_KEY, userModel.idToken);
         localStorage.setItem(this.appConfig.EMAIL_KEY, userModel.email);
-        this.lastUserEmail = userModel.email
+        this.lastUserEmail = userModel.email;
       }),
     );
   }
@@ -59,6 +60,7 @@ export class AuthorizationService {
     localStorage.removeItem(this.appConfig.TOKEN_KEY);
     localStorage.removeItem(this.appConfig.EMAIL_KEY);
     this.lastUserEmail = '';
+    this.router.navigate(['']);
   }
   /**
    * Checks user login status

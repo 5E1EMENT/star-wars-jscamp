@@ -21,9 +21,9 @@ export class AppConfig {
   /**
    * TOKEN_KEY - is a key for token
    */
-  public TOKEN_KEY = 'token'
+  public TOKEN_KEY = 'token';
   /**
    * TOKEN_KEY - is a key for email
    */
-  public EMAIL_KEY = 'email'
+  public EMAIL_KEY = 'email';
 }

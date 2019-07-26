@@ -18,4 +18,5 @@ export interface Film {
    * Field director - episode director
    */
   director: string;
+
 }

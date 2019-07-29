@@ -78,10 +78,20 @@
       {{ filmDetail.skinColor }}
     </mat-cell>
   </ng-container>
+  <ng-container matColumnDef="loading">
+    <mat-cell *matFooterCellDef colspan="6">
+      Loading...
+    </mat-cell>
+  </ng-container>
   <mat-header-row
     *matHeaderRowDef="displayedFilmDetailColumns"
   ></mat-header-row>
+  <mat-footer-row
+  *matFooterRowDef="['loading']"
+  [ngClass]="{'hide': !loadingFilmsDetail}">
+  </mat-footer-row>
   <mat-row
     *matRowDef="let row; columns: displayedFilmDetailColumns"
   ></mat-row>
+
 </mat-table>

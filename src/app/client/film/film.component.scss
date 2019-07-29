@@ -9,3 +9,10 @@
     background-color: #f5f5f5;
     cursor: pointer;
 }
+.hide {
+    display: none;
+}
+mat-footer-row mat-cell {
+    justify-content: center;
+    font-style: italic;
+}

@@ -28,6 +28,10 @@ export class FilmComponent implements OnInit {
    */
   public filmsDetail = new DetailFilm();
   /**
+   * Films detail loading status
+   */
+  public loadingFilmsDetail = true;
+  /**
    * Film title
    */
   public filmTitle: string;
@@ -91,7 +95,7 @@ export class FilmComponent implements OnInit {
    */
   public getFilmCharactersDetails(): void {
     this.filmDetails$ = this.filmsService.getFilmCharactersDetails(
-      this.filmsDetail.characters);
+      this.filmsDetail.characters).pipe(tap(() => this.loadingFilmsDetail = false));
   }
 
 }

@@ -1,7 +1,7 @@
 /**
- * Detailed film interface
+ * Detailed film class
  */
-export interface DetailFilm {
+export class DetailFilm {
   /**
    * Field title - film name
    */

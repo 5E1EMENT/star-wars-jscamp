@@ -1,5 +1,5 @@
 /**
- * FilmDto - allows to match our film data with our layout data
+ * FilmRecordDto - allows to match our film data with our layout data
  */
 interface FilmRecordDto {
   /**

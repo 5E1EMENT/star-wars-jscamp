@@ -90,8 +90,7 @@ export class FilmsService {
   public getFilm(id: number | string): Observable<DetailFilm[]> {
     this.onFilm = true;
     return this.getDetailedFilm().pipe(
-      // (+) before `id` turns the string into a number
-      map((films: DetailFilm[]) => films.filter(film => {console.log(film) ; return film.episodeId === +id; })),
+      map((films: DetailFilm[]) => films.filter(film => film.episodeId === +id)),
     );
   }
 }

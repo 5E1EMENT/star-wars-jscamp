@@ -4,11 +4,12 @@ import { RouterModule, Routes } from '@angular/router';
 import { FilmComponent } from './client/film/film.component';
 import { HomeComponent } from './client/home/home.component';
 import { PageNotFoundComponent } from './client/page-not-found/page-not-found.component';
+import { AuthGuard } from './client/auth/guards/auth.guard';
 
 const appRoutes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: '/home' },
   { path: 'home', component: HomeComponent },
-  { path: 'film/:idfilm', component: FilmComponent },
+  { path: 'film/:idfilm', component: FilmComponent, canActivate: [AuthGuard], canLoad: [AuthGuard] },
   { path: '**', component: PageNotFoundComponent },
 ];
 /**

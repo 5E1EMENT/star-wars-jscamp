@@ -1,34 +1,37 @@
+/**
+ * Class for character detail info
+ */
 export class CharacterDetails {
     /**
      * Character birth year
      */
-    birthYear: string;
+    public birthYear: string;
     /**
      * Character eye color
      */
-    eyeColor: string;
+    public eyeColor: string;
     /**
      * Character gender
      */
-    gender: string
+    public gender: string;
     /**
      * Characters hair color
      */
-    hairColor: string
+    public hairColor: string;
     /**
      * Character heigth
      */
-    height: string
+    public height: string;
     /**
      * Character mass
      */
-    mass: string
+    public mass: string;
     /**s
      * Character name
      */
-    name: string
+    public name: string;
     /**
      * Character skin color
      */
-    skinColor: string
+    public skinColor: string;
   }

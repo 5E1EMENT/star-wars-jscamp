@@ -1,10 +1,11 @@
+import {animate, state, style, transition, trigger} from '@angular/animations';
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { Observable } from 'rxjs';
 import { switchMap, tap } from 'rxjs/operators';
+import { CharacterDetails } from 'src/app/core/models/characterDetails';
 import { DetailFilm } from 'src/app/core/models/detailFilm';
 import { FilmsService } from 'src/app/core/services/films.service';
-import {animate, state, style, transition, trigger} from '@angular/animations';
 /**
  * FilmComponent - film component
  */
@@ -15,9 +16,9 @@ import {animate, state, style, transition, trigger} from '@angular/animations';
 })
 export class FilmComponent implements OnInit {
   /**
-   * Film details asnyc data 
+   * Film details asnyc data
    */
-  public filmDetails$
+  public filmDetails$: Observable<CharacterDetails[]>;
   /**
    * Film data
    */
@@ -25,7 +26,7 @@ export class FilmComponent implements OnInit {
   /**
    * Class detail film
    */
-  public filmsDetail = new DetailFilm()
+  public filmsDetail = new DetailFilm();
   /**
    * Film title
    */
@@ -37,14 +38,14 @@ export class FilmComponent implements OnInit {
     private route: ActivatedRoute,
   ) {}
   /**
-   * Columns whitch will be displayed in the film table 
+   * Columns whitch will be displayed in the film table
    */
   public displayedFilmColumns: string[] = [
     'episodeId',
     'releaseDate',
     'director',
     'producer',
-    'openingCrawl'
+    'openingCrawl',
   ];
   /**
    * Columns whitch will be displayed in the film details table
@@ -57,9 +58,9 @@ export class FilmComponent implements OnInit {
     'hairColor',
     'height',
     'mass',
-    'skinColor'
+    'skinColor',
 
-  ]
+  ];
   /**
    * After initialization film component
    * method pulls current film data
@@ -72,20 +73,25 @@ export class FilmComponent implements OnInit {
         return this.filmsService.getFilm(this.selectedId);
       }),
       tap(film => {
-        this.filmTitle = film[0].title
-        this.filmsDetail.characters = film[0].characters
-        this.filmsDetail.planets = film[0].planets
-        this.filmsDetail.species = film[0].species
-        this.filmsDetail.starships = film[0].starships
-        this.filmsDetail.vehicles = film[0].vehicles      
-        
+        this.filmTitle = film[0].title;
+        this.filmsDetail.characters = film[0].characters;
+        this.filmsDetail.planets = film[0].planets;
+        this.filmsDetail.species = film[0].species;
+        this.filmsDetail.starships = film[0].starships;
+        this.filmsDetail.vehicles = film[0].vehicles;
+
       }),
     );
 
   }
-  public getFilmDetails() {
+  /**
+   * Method allows to get Characters
+   * details information and
+   * stores it into a filmDetails$
+   */
+  public getFilmCharactersDetails(): void {
     this.filmDetails$ = this.filmsService.getFilmCharactersDetails(
-      this.filmsDetail.characters)
+      this.filmsDetail.characters);
   }
- 
+
 }

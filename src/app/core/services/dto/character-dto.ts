@@ -15,29 +15,29 @@ interface CharacterRecordDto {
     /**
      * Character gender
      */
-    gender: string
+    gender: string;
     /**
      * Characters hair color
      */
-    hair_color: string
+    hair_color: string;
     /**
      * Character heigth
      */
-    height: string
+    height: string;
     /**
      * Character mass
      */
-    mass: string
+    mass: string;
     /**s
      * Character name
      */
-    name: string
+    name: string;
     /**
      * Character skin color
      */
-    skin_color: string
+    skin_color: string;
   }
-  
+
   /**
    * Character Dto
    */

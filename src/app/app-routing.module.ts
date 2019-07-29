@@ -1,10 +1,10 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
+import { AuthGuard } from './client/auth/guards/auth.guard';
 import { FilmComponent } from './client/film/film.component';
 import { HomeComponent } from './client/home/home.component';
 import { PageNotFoundComponent } from './client/page-not-found/page-not-found.component';
-import { AuthGuard } from './client/auth/guards/auth.guard';
 
 const appRoutes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: '/home' },

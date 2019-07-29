@@ -5,45 +5,45 @@ export class DetailFilm {
   /**
    * Field title - film name
    */
-  title: string;
+  public title: string;
   /**
    * Field releaseDate - release date
    */
-  releaseDate: Date;
+  public releaseDate: Date;
   /**
    * Field episodeId - episode number
    */
-  episodeId: number;
+  public episodeId: number;
   /**
    * Field director - episode director
    */
-  director: string;
+  public director: string;
   /**
    * Opening crawl
    */
-  openingCrawl: string;
+  public openingCrawl: string;
   /**
    * Producer
    */
-  producer: string;
+  public producer: string;
   /**
    * Characters
    */
-  characters: number[];
+  public characters: number[];
   /**
    * Planets
    */
-  planets: number[];
+  public planets: number[];
   /**
    * Species
    */
-  species: number[];
+  public species: number[];
   /**
    * Starships
    */
-  starships: number[];
+  public starships: number[];
   /**
    * vehicles
    */
-  vehicles: number[];
+  public vehicles: number[];
 }

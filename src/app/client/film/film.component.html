@@ -23,7 +23,7 @@
   <mat-header-row *matHeaderRowDef="displayedFilmColumns"></mat-header-row>
   <mat-row
     *matRowDef="let row; columns: displayedFilmColumns"
-    (click)="getFilmDetails()"
+    (click)="getFilmCharactersDetails()"
   ></mat-row>
 </mat-table>
 <h1 class="film-title" *ngIf="filmDetails$">Film Characters Details</h1>

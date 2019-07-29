@@ -3,12 +3,12 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
+import { CharacterDetails } from '../models/characterDetails';
 import { DetailFilm } from '../models/detailFilm';
 import { Film } from '../models/film';
 
-import { FilmDto } from './dto/film-dto';
-import { CharacterDetails } from '../models/characterDetails';
 import { CharacterDto } from './dto/character-dto';
+import { FilmDto } from './dto/film-dto';
 
 /**
  * FilmsService executes all operations about films
@@ -19,13 +19,8 @@ import { CharacterDto } from './dto/character-dto';
 export class FilmsService {
   private filmsUrl = 'https://angular-film-app.firebaseio.com/swapi/films.json';
   private charactersUrl = 'https://angular-film-app.firebaseio.com/swapi/people.json';
-  private planetsUrl = 'https://angular-film-app.firebaseio.com/swapi/planets.json';
-  private speciesUrl = 'https://angular-film-app.firebaseio.com/swapi/species.json';
-  private starshipsUrl = 'https://angular-film-app.firebaseio.com/swapi/starships.json';
-  private transportUrl = 'https://angular-film-app.firebaseio.com/swapi/transport.json';
-  private vehiclesUrl = 'https://angular-film-app.firebaseio.com/swapi/vehicles.json';
   /**
-   * Film page status
+   * Film page status for home btn
    */
   public onFilm = false;
   /**
@@ -55,18 +50,18 @@ export class FilmsService {
       }),
     );
   }
-  public getCharacterDetails(): Observable<CharacterDetails[]> {
+  private getCharacterDetails(): Observable<CharacterDetails[]> {
     return this.http.get<CharacterDto[]>(this.charactersUrl).pipe(
       map(charactersDto => {
         return charactersDto.map( characterDto => {
-          const birthYear: string = characterDto.fields.birth_year
-          const eyeColor: string = characterDto.fields.eye_color
-          const gender: string = characterDto.fields.gender
-          const hairColor:string = characterDto.fields.hair_color
-          const height: string = characterDto.fields.height
-          const mass: string = characterDto.fields.mass
-          const name: string = characterDto.fields.name
-          const skinColor: string = characterDto.fields.skin_color
+          const birthYear: string = characterDto.fields.birth_year;
+          const eyeColor: string = characterDto.fields.eye_color;
+          const gender: string = characterDto.fields.gender;
+          const hairColor: string = characterDto.fields.hair_color;
+          const height: string = characterDto.fields.height;
+          const mass: string = characterDto.fields.mass;
+          const name: string = characterDto.fields.name;
+          const skinColor: string = characterDto.fields.skin_color;
           const character: CharacterDetails = {
             birthYear,
             eyeColor,
@@ -75,12 +70,12 @@ export class FilmsService {
             height,
             mass,
             name,
-            skinColor
-          }
-          return character
-        })
-      })
-    )
+            skinColor,
+          };
+          return character;
+        });
+      }),
+    );
   }
   /**
    * Method getDetailedFilm allows to get detailed data about films
@@ -128,10 +123,17 @@ export class FilmsService {
       map((films: DetailFilm[]) => films.filter(film => film.episodeId === +id)),
     );
   }
-  public getFilmCharactersDetails(characters: number[]) {
+  /**
+   * Method gets all films
+   * characters info and returns
+   * character information about
+   * current film
+   * @param characters  characters from current film
+   */
+  public getFilmCharactersDetails(characters: number[]): Observable<CharacterDetails[]> {
 
     return this.getCharacterDetails().pipe(
-      map((charactersData) => charactersData.filter((character,i) => i in characters)
-    ))
+      map((charactersData) => charactersData.filter((character, i) => i in characters),
+    ));
   }
 }

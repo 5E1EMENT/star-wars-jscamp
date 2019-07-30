@@ -1,9 +1,7 @@
-import { DatabaseRecord } from './film-dto';
-
 /**
  * FilmDto - allows to match our film data with our layout data
  */
-interface CharacterRecordDto {
+export interface CharacterRecordDto {
     /**
      * Character birth year
      */
@@ -37,8 +35,3 @@ interface CharacterRecordDto {
      */
     skin_color: string;
   }
-
-  /**
-   * Character Dto
-   */
-  export interface CharacterDto extends DatabaseRecord<CharacterRecordDto> {}

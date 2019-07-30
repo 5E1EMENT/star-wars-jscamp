@@ -7,8 +7,8 @@ import { CharacterDetails } from '../models/characterDetails';
 import { DetailFilm } from '../models/detailFilm';
 import { Film } from '../models/film';
 
-import { CharacterDto } from './dto/character-dto';
-import { FilmDto } from './dto/film-dto';
+import { CharacterRecordDto } from './dto/character-dto';
+import { FilmDto, DatabaseRecord } from './dto/film-dto';
 
 /**
  * FilmsService executes all operations about films
@@ -51,17 +51,18 @@ export class FilmsService {
     );
   }
   private getCharacterDetails(): Observable<CharacterDetails[]> {
-    return this.http.get<CharacterDto[]>(this.charactersUrl).pipe(
+    return this.http.get<DatabaseRecord<CharacterRecordDto>[]>(this.charactersUrl).pipe(
       map(charactersDto => {
-        return charactersDto.map( characterDto => {
-          const birthYear: string = characterDto.fields.birth_year;
-          const eyeColor: string = characterDto.fields.eye_color;
-          const gender: string = characterDto.fields.gender;
-          const hairColor: string = characterDto.fields.hair_color;
-          const height: string = characterDto.fields.height;
-          const mass: string = characterDto.fields.mass;
-          const name: string = characterDto.fields.name;
-          const skinColor: string = characterDto.fields.skin_color;
+        return charactersDto.map( dataDto => {
+          const characterDto = dataDto.fields;
+          const birthYear: string = characterDto.birth_year;
+          const eyeColor: string = characterDto.eye_color;
+          const gender: string = characterDto.gender;
+          const hairColor: string = characterDto.hair_color;
+          const height: string = characterDto.height;
+          const mass: string = characterDto.mass;
+          const name: string = characterDto.name;
+          const skinColor: string = characterDto.skin_color;
           const character: CharacterDetails = {
             birthYear,
             eyeColor,

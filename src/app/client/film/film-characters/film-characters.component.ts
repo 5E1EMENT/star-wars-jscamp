@@ -1,14 +1,20 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { CharacterDetails } from '../../../core/models/characterDetails';
+import { Component, Input } from '@angular/core';
+import { Observable } from 'rxjs';
 
+import { CharacterDetails } from '../../../core/models/characterDetails';
+/**
+ * Component displays characters information
+ */
 @Component({
   selector: 'app-film-characters',
   templateUrl: './film-characters.component.html',
-  styleUrls: ['./film-characters.component.scss']
+  styleUrls: ['./film-characters.component.scss'],
 })
-export class FilmCharactersComponent implements OnInit {
-  
-  @Input() public characters: CharacterDetails[]
+export class FilmCharactersComponent {
+  /**
+   * Property whitch we get from film compnent filmCharacters$ variable
+   */
+  @Input() public characters: Observable<CharacterDetails[]>;
     /**
    * Films detail loading status
    */
@@ -26,9 +32,5 @@ export class FilmCharactersComponent implements OnInit {
     'mass',
     'skinColor',
   ];
-  public constructor() { }
-
-  ngOnInit() {
-  }
 
 }

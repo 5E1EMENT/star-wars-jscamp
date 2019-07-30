@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router} from '@angular/router';
 import { Observable } from 'rxjs';
-import { Film } from 'src/app/core/models/film';
-import { AuthorizationService } from 'src/app/core/services/authorization.service';
-import { FilmsService } from 'src/app/core/services/films.service';
+import { Film } from '../../core/models/film';
+import { AuthorizationService } from '../../core/services/authorization.service';
+import { FilmsService } from '../../core/services/films.service';
 
 /**
  * Home component for displaying film data when user will login
@@ -44,9 +44,8 @@ export class HomeComponent implements OnInit {
    * @param episodeId episode id
    */
   public openFilm(episodeId: number): void  {
-    this.router.navigate([`/film/${episodeId}`]);
+    this.router.navigate(['/film/', episodeId]);
   }
-
   /**
    * Initialize films data witch will be used to display to the user
    */

@@ -1,5 +1,3 @@
-import { UserDTO } from '../services/dto/user-dto';
-
 /**
  * Class for User data
  */
@@ -27,7 +25,7 @@ export class User {
   /**
    *
    */
-  constructor(userResponse: UserDTO) {
+  constructor(userResponse: Partial<User>) {
     this.idToken = userResponse.idToken;
     this.email = userResponse.email;
 }

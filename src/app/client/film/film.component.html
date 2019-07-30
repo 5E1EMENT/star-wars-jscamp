@@ -1,5 +1,5 @@
-<h1 class="film-title">{{ filmTitle }}</h1>
-<mat-table [dataSource]="film$ | async" class="mat-elevation-z12">
+<h1 class="film-title">{{ filmTitle$ | async }}</h1>
+<mat-table [dataSource]="filmTableDataSource$ | async" class="mat-elevation-z12">
   <ng-container matColumnDef="openingCrawl">
     <mat-header-cell *matHeaderCellDef>Opening Crawl</mat-header-cell>
     <mat-cell *matCellDef="let film"> {{ film.openingCrawl }} </mat-cell>
@@ -23,75 +23,7 @@
   <mat-header-row *matHeaderRowDef="displayedFilmColumns"></mat-header-row>
   <mat-row
     *matRowDef="let row; columns: displayedFilmColumns"
-    (click)="getFilmCharactersDetails()"
   ></mat-row>
 </mat-table>
-<h1 class="film-title" *ngIf="filmDetails$">Film Characters Details</h1>
-<mat-table
-  [dataSource]="filmDetails$ | async"
-  class="mat-elevation-z8"
-  *ngIf="filmDetails$"
->
-  <ng-container matColumnDef="name">
-    <mat-header-cell *matHeaderCellDef>Character Name</mat-header-cell>
-    <mat-cell *matCellDef="let filmDetail"> {{ filmDetail.name }} </mat-cell>
-  </ng-container>
-  <ng-container matColumnDef="birthYear">
-    <mat-header-cell *matHeaderCellDef>Character Name</mat-header-cell>
-    <mat-cell *matCellDef="let filmDetail">
-      {{ filmDetail.birthYear }}
-    </mat-cell>
-  </ng-container>
-  <ng-container matColumnDef="gender">
-    <mat-header-cell *matHeaderCellDef>Character gender</mat-header-cell>
-    <mat-cell *matCellDef="let filmDetail">
-      {{ filmDetail.gender }}
-    </mat-cell>
-  </ng-container>
-  <ng-container matColumnDef="eyeColor">
-    <mat-header-cell *matHeaderCellDef>Character eye color</mat-header-cell>
-    <mat-cell *matCellDef="let filmDetail">
-      {{ filmDetail.eyeColor }}
-    </mat-cell>
-  </ng-container>
-  <ng-container matColumnDef="hairColor">
-    <mat-header-cell *matHeaderCellDef>Character hair color</mat-header-cell>
-    <mat-cell *matCellDef="let filmDetail">
-      {{ filmDetail.hairColor }}
-    </mat-cell>
-  </ng-container>
-  <ng-container matColumnDef="height">
-    <mat-header-cell *matHeaderCellDef>Character height</mat-header-cell>
-    <mat-cell *matCellDef="let filmDetail">
-      {{ filmDetail.height }}
-    </mat-cell>
-  </ng-container>
-  <ng-container matColumnDef="mass">
-    <mat-header-cell *matHeaderCellDef>Character mass</mat-header-cell>
-    <mat-cell *matCellDef="let filmDetail">
-      {{ filmDetail.mass }}
-    </mat-cell>
-  </ng-container>
-  <ng-container matColumnDef="skinColor">
-    <mat-header-cell *matHeaderCellDef>Character skin color</mat-header-cell>
-    <mat-cell *matCellDef="let filmDetail">
-      {{ filmDetail.skinColor }}
-    </mat-cell>
-  </ng-container>
-  <ng-container matColumnDef="loading">
-    <mat-cell *matFooterCellDef colspan="6">
-      Loading...
-    </mat-cell>
-  </ng-container>
-  <mat-header-row
-    *matHeaderRowDef="displayedFilmDetailColumns"
-  ></mat-header-row>
-  <mat-footer-row
-  *matFooterRowDef="['loading']"
-  [ngClass]="{'hide': !loadingFilmsDetail}">
-  </mat-footer-row>
-  <mat-row
-    *matRowDef="let row; columns: displayedFilmDetailColumns"
-  ></mat-row>
 
-</mat-table>
+<app-film-characters [characters]="filmCharacters$ | async"></app-film-characters>

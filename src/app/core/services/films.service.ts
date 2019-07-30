@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { map, switchMap } from 'rxjs/operators';
 
 import { CharacterDetails } from '../models/characterDetails';
 import { DetailFilm } from '../models/detailFilm';
@@ -84,29 +84,18 @@ export class FilmsService {
     return this.http.get<FilmDto[]>(this.filmsUrl).pipe(
       map(filmsDto => {
         return filmsDto.map(filmDto => {
-          const title: string = filmDto.fields.title;
-          const episodeId: number = filmDto.fields.episode_id;
-          const releaseDate: Date = new Date(filmDto.fields.release_date);
-          const director: string = filmDto.fields.director;
-          const openingCrawl: string = filmDto.fields.opening_crawl;
-          const producer: string = filmDto.fields.producer;
-          const characters: number[] = filmDto.fields.characters;
-          const planets: number[] = filmDto.fields.planets;
-          const species: number[] = filmDto.fields.species;
-          const starships: number[] = filmDto.fields.starships;
-          const vehicles: number[] = filmDto.fields.vehicles;
           const film: DetailFilm = {
-            releaseDate,
-            title,
-            episodeId,
-            director,
-            openingCrawl,
-            producer,
-            characters,
-            planets,
-            species,
-            starships,
-            vehicles,
+            releaseDate: new Date(filmDto.fields.release_date),
+            title: filmDto.fields.title,
+            episodeId: filmDto.fields.episode_id,
+            director: filmDto.fields.director,
+            openingCrawl: filmDto.fields.opening_crawl,
+            producer: filmDto.fields.producer,
+            characters: filmDto.fields.characters,
+            planets: filmDto.fields.planets,
+            species: filmDto.fields.species,
+            starships: filmDto.fields.starships,
+            vehicles: filmDto.fields.vehicles,
           };
           return film;
         });
@@ -117,10 +106,10 @@ export class FilmsService {
    * Method allows to get current clicked film by id from query parameters
    * @param id film id
    */
-  public getFilm(id: number | string): Observable<DetailFilm[]> {
+  public getFilm(id: number): Observable<DetailFilm> {
     this.onFilm = true;
     return this.getDetailedFilm().pipe(
-      map((films: DetailFilm[]) => films.filter(film => film.episodeId === +id)),
+      map((films) => films.find(film => film.episodeId === +id)),
     );
   }
   /**
@@ -131,7 +120,6 @@ export class FilmsService {
    * @param characters  characters from current film
    */
   public getFilmCharactersDetails(characters: number[]): Observable<CharacterDetails[]> {
-
     return this.getCharacterDetails().pipe(
       map((charactersData) => charactersData.filter((character, i) => i in characters),
     ));

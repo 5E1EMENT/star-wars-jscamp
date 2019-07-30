@@ -1,49 +1,49 @@
 /**
  * Detailed film class
  */
-export class DetailFilm {
+export interface DetailFilm {
   /**
    * Field title - film name
    */
-  public title: string;
+  title: string;
   /**
    * Field releaseDate - release date
    */
-  public releaseDate: Date;
+  releaseDate: Date;
   /**
    * Field episodeId - episode number
    */
-  public episodeId: number;
+   episodeId: number;
   /**
    * Field director - episode director
    */
-  public director: string;
+   director: string;
   /**
    * Opening crawl
    */
-  public openingCrawl: string;
+   openingCrawl: string;
   /**
    * Producer
    */
-  public producer: string;
+   producer: string;
   /**
    * Characters
    */
-  public characters: number[];
+   characters: number[];
   /**
    * Planets
    */
-  public planets: number[];
+   planets: number[];
   /**
    * Species
    */
-  public species: number[];
+   species: number[];
   /**
    * Starships
    */
-  public starships: number[];
+   starships: number[];
   /**
    * vehicles
    */
-  public vehicles: number[];
+   vehicles: number[];
 }

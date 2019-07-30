@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { FilmsService } from 'src/app/core/services/films.service';
+import { FilmsService } from '../../core/services/films.service';
 
 import { User } from '../../core/models/user';
 import { AuthorizationService } from '../../core/services/authorization.service';

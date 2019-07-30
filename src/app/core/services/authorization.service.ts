@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable, OnInit } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { Router} from '@angular/router';
 import { Observable } from 'rxjs';
 import { map, tap } from 'rxjs/operators';
@@ -66,7 +66,7 @@ export class AuthorizationService {
    * Checks user login status
    * @returns if the local storage has token by email - true/false
    */
-  public isLoggedIn(): boolean {
+  public get isLoggedIn(): boolean {
     return this.getToken() !== null;
   }
   /**

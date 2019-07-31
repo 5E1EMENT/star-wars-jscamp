@@ -1,4 +1,4 @@
-<mat-table [dataSource]="dataSource$ | async" class="mat-elevation-z8" *ngIf="auhtorizationService.user">
+    <mat-table [dataSource]="dataSource$ | async" class="mat-elevation-z8" *ngIf="auhtorizationService.isLoggedIn">
     <!-- Position Column -->
     <ng-container matColumnDef="title">
       <mat-header-cell *matHeaderCellDef>Film title</mat-header-cell>
@@ -16,7 +16,11 @@
       <mat-header-cell *matHeaderCellDef>Director</mat-header-cell>
       <mat-cell *matCellDef="let film"> {{film.director}} </mat-cell>
     </ng-container>
-  
+    <ng-container matColumnDef="loading">
+      <mat-footer-cell *matFooterCellDef colspan="6">
+        Loading data...
+      </mat-footer-cell>
+    </ng-container>
     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;" (click)="openFilm(row.episodeId)"></mat-row>
   </mat-table>

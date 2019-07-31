@@ -1,7 +1,8 @@
 import { Component, Inject } from '@angular/core';
 import { FormControl, Validators, FormGroup } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { AuthorizationService } from 'src/app/core/services/authorization.service';
+
+import { AuthorizationService } from '../../../core/services/authorization.service';
 
 /**
  * LoginComponent class
@@ -29,7 +30,10 @@ export class LoginComponent {
   ) {
     this.authForm = new FormGroup({
       email: new FormControl(null, [Validators.required, Validators.email]),
-      password: new FormControl(null, [Validators.required, Validators.minLength(6)]),
+      password: new FormControl(null, [
+        Validators.required,
+        Validators.minLength(6),
+      ]),
     });
   }
   /**
@@ -40,7 +44,6 @@ export class LoginComponent {
     this.error = '';
     this.authorizationService.login(this.authForm.value).subscribe(
       data => {
-        this.authorizationService.authUser(data);
         this.matDialogRef.close();
       },
       err => {

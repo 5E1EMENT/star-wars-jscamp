@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { MatDialog } from '@angular/material';
-import { LoginComponent } from 'src/app/auth/login/login.component';
-import { RegistrationComponent } from 'src/app/auth/registration/registration.component';
+import { LoginComponent } from 'src/app/client/auth/login/login.component';
+import { RegistrationComponent } from 'src/app/client/auth/registration/registration.component';
 
 /**
  * Dialog service allows to open modals

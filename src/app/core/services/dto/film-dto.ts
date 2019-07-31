@@ -1,7 +1,7 @@
 /**
- * FilmDto - allows to match our film data with our layout data
+ * FilmRecordDto - allows to match our film data with our layout data
  */
-interface FilmRecordDto {
+export interface FilmRecordDto {
   /**
    * Film release date - frelease_date
    */
@@ -18,16 +18,38 @@ interface FilmRecordDto {
    * Film director - director
    */
   director: string;
+  /**
+   * Opening crawl
+   */
+  opening_crawl: string;
+  /**
+   * Producer
+   */
+  producer: string;
+  /**
+   * Characters
+   */
+  characters: number[];
+  /**
+   * Planets
+   */
+  planets: number[];
+  /**
+   * Species
+   */
+  species: number[];
+  /**
+   * Starships
+   */
+  starships: number[];
+  /**
+   * vehicles
+   */
+  vehicles: number[];
 }
-
 /**
- * FilmDto - extends DatabaseRecord because api needs fields field
+ * Interface allows to use field field in API database
  */
-export interface FilmDto extends DatabaseRecord<FilmRecordDto> {}
-/**
- * DatabaseRecord for fields wrapper
- */
-
 export interface DatabaseRecord<T> {
   /**
    * Films data - fields

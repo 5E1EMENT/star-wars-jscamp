@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
-import { User } from '../core/models/user';
-import { AuthorizationService } from '../core/services/authorization.service';
-import { DialogService } from '../core/services/dialog.service';
-
+import { User } from '../../core/models/user';
+import { AuthorizationService } from '../../core/services/authorization.service';
+import { DialogService } from '../../core/services/dialog.service';
+import { FilmsService } from '../../core/services/films.service';
 
 /**
  * Class AuthComponent for authentication
@@ -26,6 +27,8 @@ export class AuthComponent {
   public constructor(
     private authorizationService: AuthorizationService,
     private dialogService: DialogService,
+    private filmsService: FilmsService,
+    private router: Router,
   ) {}
 
   /**
@@ -46,5 +49,12 @@ export class AuthComponent {
    */
   public registration(): void {
     this.dialogService.openRegisterDialog();
+  }
+  /**
+   * Method allows to get back to the home page
+   */
+  public redirectHome(): void {
+    this.router.navigate(['home']);
+    this.filmsService.onFilm = false;
   }
 }

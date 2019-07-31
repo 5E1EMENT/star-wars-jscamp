@@ -1,21 +1,20 @@
-import {animate, state, style, transition, trigger} from '@angular/animations';
 import { Component, OnInit } from '@angular/core';
-import { Router, ActivatedRoute, ParamMap } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
-import { switchMap, tap, map } from 'rxjs/operators';
+import { switchMap, map } from 'rxjs/operators';
+import { CharacterDetails } from 'src/app/core/models/characterDetails';
+import { DetailFilm } from 'src/app/core/models/detailFilm';
+import { FilmsService } from 'src/app/core/services/films.service';
 
-import { CharacterDetails } from '../../core/models/characterDetails';
-import { DetailFilm } from '../../core/models/detailFilm';
-import { FilmsService } from '../../core/services/films.service';
 /**
- * FilmComponent - film component
+ * Admin edit film component
  */
 @Component({
-  selector: 'app-film',
-  templateUrl: './film.component.html',
-  styleUrls: ['./film.component.scss'],
+  selector: 'app-admin-edit-film',
+  templateUrl: './admin-edit-film.component.html',
+  styleUrls: ['./admin-edit-film.component.scss'],
 })
-export class FilmComponent implements OnInit {
+export class AdminEditFilmComponent implements OnInit {
   /**
    * Material table datasource provides
    * only array to handle
@@ -30,18 +29,11 @@ export class FilmComponent implements OnInit {
    */
   public film$: Observable<DetailFilm>;
   private selectedId: number;
-  /**
-   * Constructor for film component
-   * @param filmsService  films servuce
-   * @param router router module
-   * @param route route module
-   */
   public constructor(
     private filmsService: FilmsService,
-    private router: Router,
     private route: ActivatedRoute,
   ) {}
-  /**
+/**
    * Columns whitch will be displayed in the film table
    */
   public displayedFilmColumns: string[] = [
@@ -63,11 +55,11 @@ export class FilmComponent implements OnInit {
         return this.filmsService.getFilm(this.selectedId);
       }),
     );
-    this.filmTableDataSource$ = this.film$.pipe(
-      map(film => [film]),
-    );
+    this.filmTableDataSource$ = this.film$.pipe(map(film => [film]));
     this.filmCharacters$ = this.film$.pipe(
-      switchMap(film => this.filmsService.getFilmCharactersDetails(film.characters)),
+      switchMap(film =>
+        this.filmsService.getFilmCharactersDetails(film.characters),
+      ),
     );
   }
 }

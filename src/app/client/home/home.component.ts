@@ -52,6 +52,5 @@ export class HomeComponent implements OnInit {
    */
   public ngOnInit(): void {
     this.dataSource$ = this.filmsService.getFilms();
-
   }
 }

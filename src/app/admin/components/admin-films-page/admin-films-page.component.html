@@ -1,0 +1,27 @@
+<h1 *ngIf="authorizationService.isAdmin">Admin Films page redactor</h1>
+<mat-table [dataSource]="dataSource$ | async" class="mat-elevation-z8" *ngIf="authorizationService.isAdmin">
+    <!-- Position Column -->
+    <ng-container matColumnDef="title">
+      <mat-header-cell *matHeaderCellDef>Film title</mat-header-cell>
+      <mat-cell *matCellDef="let film"> {{film.title}} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="episodeId">
+      <mat-header-cell *matHeaderCellDef>Episode number</mat-header-cell>
+      <mat-cell *matCellDef="let film"> {{film.episodeId}} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="releaseDate">
+      <mat-header-cell *matHeaderCellDef>Release date</mat-header-cell>
+      <mat-cell *matCellDef="let film"> {{film.releaseDate | date}} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="director">
+      <mat-header-cell *matHeaderCellDef>Director</mat-header-cell>
+      <mat-cell *matCellDef="let film"> {{film.director}} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="loading">
+      <mat-footer-cell *matFooterCellDef colspan="6">
+        Loading data...
+      </mat-footer-cell>
+    </ng-container>
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;" (click)="openFilm(row.episodeId)"></mat-row>
+  </mat-table>

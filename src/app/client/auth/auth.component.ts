@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { AdminFilmService } from 'src/app/core/services/admin-film.service';
 
 import { User } from '../../core/models/user';
 import { AuthorizationService } from '../../core/services/authorization.service';
@@ -29,6 +30,7 @@ export class AuthComponent {
     private dialogService: DialogService,
     private filmsService: FilmsService,
     private router: Router,
+    private adminFilmService: AdminFilmService,
   ) {}
 
   /**
@@ -54,7 +56,13 @@ export class AuthComponent {
    * Method allows to get back to the home page
    */
   public redirectHome(): void {
-    this.router.navigate(['home']);
-    this.filmsService.onFilm = false;
+    if (this.authorizationService.isAdmin) {
+      this.router.navigate(['films']);
+      this.adminFilmService.onFilm = false;
+    } else {
+      this.router.navigate(['home']);
+      this.filmsService.onFilm = false;
+    }
+
   }
 }

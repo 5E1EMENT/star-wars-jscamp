@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Router} from '@angular/router';
 import { Observable } from 'rxjs';
 import { map, tap } from 'rxjs/operators';
+import { environment } from 'src/environments/environment';
 
 import { AppConfig } from '../app.config';
 import { LoginData } from '../models/login';
@@ -50,6 +51,10 @@ export class AuthorizationService {
         localStorage.setItem(this.appConfig.TOKEN_KEY, userModel.idToken);
         localStorage.setItem(this.appConfig.EMAIL_KEY, userModel.email);
         this.lastUserEmail = userModel.email;
+        // If this current user - admin, recirect him into a films page
+        if (userModel.email === environment.adminEmail) {
+          this.router.navigate(['films']);
+        }
       }),
     );
   }
@@ -68,6 +73,12 @@ export class AuthorizationService {
    */
   public get isLoggedIn(): boolean {
     return this.getToken() !== null;
+  }
+  /**
+   * Method check if this user actually is admin
+   */
+  public get isAdmin(): boolean {
+    return this.lastUserEmail === environment.adminEmail;
   }
   /**
    * Returns token by user email if he was(for now 'was', but later it will be 'is') logged in.

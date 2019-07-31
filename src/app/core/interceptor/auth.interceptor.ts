@@ -9,6 +9,7 @@ import {
 
   import { AppConfig } from '../app.config';
   import { AuthorizationService } from '../services/authorization.service';
+import { environment } from '../../../environments/environment';
 
   /**
    * Interceptor transforming http requests to simplify all other requests to the DB.
@@ -16,7 +17,7 @@ import {
   @Injectable({
     providedIn: 'root',
   })
-  export class TokenInterceptor implements HttpInterceptor {
+  export class AuthInterceptor implements HttpInterceptor {
   /**
    *
    * @param auth Authorization Service
@@ -34,10 +35,12 @@ import {
    */
   public intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
 
-    if (request.method === 'POST') {
+    if (request.url.includes(this.config.API_URL)) {
       return next.handle(request.clone({params: request.params.set('key', this.config.API_KEY)}));
     }
-
-    return next.handle(request.clone({params: request.params.set('auth', this.auth.getToken())}));
+    if(request.url.includes(environment.firebase.databaseURL)) {
+      return next.handle(request.clone({params: request.params.set('auth', this.auth.getToken())}));
+    }
+    
   }
   }

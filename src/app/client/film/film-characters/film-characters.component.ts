@@ -14,7 +14,7 @@ export class FilmCharactersComponent {
   /**
    * Property whitch we get from film compnent filmCharacters$ variable
    */
-  @Input() public characters: Observable<CharacterDetails[]>;
+  @Input() public characters$: Observable<CharacterDetails[]>;
     /**
    * Films detail loading status
    */

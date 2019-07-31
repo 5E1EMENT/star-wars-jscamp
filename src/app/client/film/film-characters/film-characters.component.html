@@ -1,6 +1,6 @@
-<h1 class="film-title" *ngIf="characters">Film Characters Details </h1>
+<h1 class="film-title" *ngIf="characters$">Film Characters Details </h1>
 <mat-table
-  [dataSource]="characters"
+  [dataSource]="characters$"
   class="mat-elevation-z8"
 >
   <ng-container matColumnDef="name">
@@ -59,7 +59,7 @@
   ></mat-header-row>
   <mat-footer-row
   *matFooterRowDef="['loading']"
-  [ngClass]="{'hide': !loadingFilmsDetail}">
+  [ngClass]="{'hide': characters$ != null}">
   </mat-footer-row>
   <mat-row
     *matRowDef="let row; columns: displayedFilmDetailColumns"

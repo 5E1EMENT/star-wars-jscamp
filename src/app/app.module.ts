@@ -9,7 +9,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ClientModule } from './client/client.module';
 import { CoreModule } from './core/core.module';
-import { TokenInterceptor } from './core/interceptor/token.interceptor';
+import { AuthInterceptor } from './core/interceptor/auth.interceptor';
 import { AuthorizationService } from './core/services/authorization.service';
 /**
  * class AppModule
@@ -33,7 +33,7 @@ import { AuthorizationService } from './core/services/authorization.service';
     AuthorizationService,
     {
       provide: HTTP_INTERCEPTORS,
-      useClass: TokenInterceptor,
+      useClass: AuthInterceptor,
       multi: true,
     },
   ],

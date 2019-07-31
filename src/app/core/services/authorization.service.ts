@@ -15,7 +15,7 @@ import { User } from '../models/user';
 })
 export class AuthorizationService {
   private loginApiKey = 'AIzaSyBggsqbMyphOxNDjpgko8FvQ6jabHr9Pm0';
-  private loginApi = `${this.appConfig.API_URL}/verifyPassword?key=${this.loginApiKey}`;
+  private loginApi = `${this.appConfig.API_URL}${this.loginApiKey}`;
 
   /**
    * User - user variable

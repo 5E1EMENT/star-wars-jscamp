@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { environment } from 'src/environments/environment';
+import { environment } from '../../environments/environment';
 
 /**
  * Application configurations.
@@ -12,7 +12,7 @@ export class AppConfig {
   /**
    * API URL.
    */
-  public API_URL = 'https://www.googleapis.com/identitytoolkit/v3/relyingparty';
+  public API_URL = 'https://www.googleapis.com/identitytoolkit/v3/relyingparty/verifyPassword?key=';
 
   /**
    * Web-API key from Firebase

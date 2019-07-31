@@ -34,11 +34,11 @@ import { AppConfig } from '../app.config';
    * @param next - command to transit modified http request to the next interceptor.
    */
   public intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    // Works when accessing database, adds auth idToken to a query
+    // Works when signing in, adds API Token (key) to a query
     if (request.url.includes(this.config.API_URL)) {
       return next.handle(request.clone({params: request.params.set('key', this.config.API_KEY)}));
     }
-    // Works when signing in, adds API Token (key) to a query
+    // Works when accessing database, adds auth idToken to a query
     if (request.url.includes(environment.firebase.databaseURL)) {
       return next.handle(request.clone({params: request.params.set('auth', this.auth.getToken())}));
     }

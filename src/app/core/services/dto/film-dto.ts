@@ -1,7 +1,7 @@
 /**
  * FilmRecordDto - allows to match our film data with our layout data
  */
-interface FilmRecordDto {
+export interface FilmRecordDto {
   /**
    * Film release date - frelease_date
    */
@@ -47,15 +47,9 @@ interface FilmRecordDto {
    */
   vehicles: number[];
 }
-
 /**
- * FilmDto - allows to match our film data with our layout data
+ * Interface allows to use field field in API database
  */
-export interface FilmDto extends DatabaseRecord<FilmRecordDto> {}
-/**
- * DatabaseRecord for fields wrapper
- */
-
 export interface DatabaseRecord<T> {
   /**
    * Films data - fields

@@ -8,7 +8,7 @@ import { DetailFilm } from '../models/detailFilm';
 import { Film } from '../models/film';
 
 import { CharacterRecordDto } from './dto/character-dto';
-import { FilmDto, DatabaseRecord } from './dto/film-dto';
+import { DatabaseRecord, FilmRecordDto } from './dto/film-dto';
 
 /**
  * FilmsService executes all operations about films
@@ -32,13 +32,14 @@ export class FilmsService {
    * Method getFilms allows to get data about films
    */
   public getFilms(): Observable<Film[]> {
-    return this.http.get<FilmDto[]>(this.filmsUrl).pipe(
+    return this.http.get<DatabaseRecord<FilmRecordDto>[]>(this.filmsUrl).pipe(
       map(filmsDto => {
-        return filmsDto.map(filmDto => {
-          const title: string = filmDto.fields.title;
-          const episodeId: number = filmDto.fields.episode_id;
-          const releaseDate: Date = new Date(filmDto.fields.release_date);
-          const director: string = filmDto.fields.director;
+        return filmsDto.map(dataDto => {
+          const filmDto = dataDto.fields;
+          const title: string = filmDto.title;
+          const episodeId: number = filmDto.episode_id;
+          const releaseDate: Date = new Date(filmDto.release_date);
+          const director: string = filmDto.director;
           const film: Film = {
             releaseDate: releaseDate,
             title: title,
@@ -82,7 +83,7 @@ export class FilmsService {
    * Method getDetailedFilm allows to get detailed data about films
    */
   public getDetailedFilm(): Observable<DetailFilm[]> {
-    return this.http.get<FilmDto[]>(this.filmsUrl).pipe(
+    return this.http.get<DatabaseRecord<FilmRecordDto>[]>(this.filmsUrl).pipe(
       map(filmsDto => {
         return filmsDto.map(filmDto => {
           const film: DetailFilm = {

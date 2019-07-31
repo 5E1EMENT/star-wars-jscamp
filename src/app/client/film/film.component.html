@@ -22,6 +22,7 @@
   </ng-container>
   <mat-header-row *matHeaderRowDef="displayedFilmColumns"></mat-header-row>
   <mat-row
+  (click)="openCharacters()"
     *matRowDef="let row; columns: displayedFilmColumns"
   ></mat-row>
 </mat-table>

@@ -1,5 +1,5 @@
 /**
- * Detailed film class
+ * Detailed film interface
  */
 export interface DetailFilm {
   /**

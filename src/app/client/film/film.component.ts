@@ -34,7 +34,13 @@ export class FilmComponent implements OnInit {
    */
   public filmTitle$: Observable<string>;
   private selectedId: number;
-  constructor(
+  /**
+   * Constructor for film component
+   * @param filmsService  films servuce
+   * @param router router module
+   * @param route route module
+   */
+  public constructor(
     private filmsService: FilmsService,
     private router: Router,
     private route: ActivatedRoute,

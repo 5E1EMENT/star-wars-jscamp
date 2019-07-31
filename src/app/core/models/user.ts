@@ -23,9 +23,10 @@ export class User {
    */
   public registered: boolean;
   /**
-   *
+   * .ctor
+   * @param userResponse uses the User class and set up idToken and email values
    */
-  constructor(userResponse: Partial<User>) {
+  public constructor(userResponse: Partial<User>) {
     this.idToken = userResponse.idToken;
     this.email = userResponse.email;
 }

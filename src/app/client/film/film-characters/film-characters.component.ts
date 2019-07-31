@@ -12,13 +12,9 @@ import { CharacterDetails } from '../../../core/models/characterDetails';
 })
 export class FilmCharactersComponent {
   /**
-   * Property whitch we get from film compnent filmCharacters$ variable
+   * Property whitch we get from film component filmCharacters$ variable
    */
   @Input() public characters$: Observable<CharacterDetails[]>;
-    /**
-   * Films detail loading status
-   */
-  public loadingFilmsDetail = true;
    /**
    * Columns whitch will be displayed in the film details table
    */

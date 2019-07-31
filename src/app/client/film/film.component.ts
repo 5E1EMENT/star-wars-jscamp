@@ -73,7 +73,7 @@ export class FilmComponent implements OnInit {
       switchMap(params => {
         this.selectedId = +params.get('idfilm');
         return this.filmsService.getFilm(this.selectedId);
-      })
+      }),
     );
     this.filmTableDataSource$ = this.film$.pipe(
       map(film => [film]),

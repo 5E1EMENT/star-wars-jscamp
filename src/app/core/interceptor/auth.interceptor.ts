@@ -7,9 +7,9 @@ import {
   import { Injectable } from '@angular/core';
   import { Observable } from 'rxjs';
 
-  import { AppConfig } from '../app.config';
+  import { environment } from '../../../environments/environment';
+import { AppConfig } from '../app.config';
   import { AuthorizationService } from '../services/authorization.service';
-import { environment } from '../../../environments/environment';
 
   /**
    * Interceptor transforming http requests to simplify all other requests to the DB.
@@ -34,13 +34,14 @@ import { environment } from '../../../environments/environment';
    * @param next - command to transit modified http request to the next interceptor.
    */
   public intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-
+    // Works when accessing database, adds auth idToken to a query
     if (request.url.includes(this.config.API_URL)) {
       return next.handle(request.clone({params: request.params.set('key', this.config.API_KEY)}));
     }
-    if(request.url.includes(environment.firebase.databaseURL)) {
+    // Works when signing in, adds API Token (key) to a query
+    if (request.url.includes(environment.firebase.databaseURL)) {
       return next.handle(request.clone({params: request.params.set('auth', this.auth.getToken())}));
     }
-    
+
   }
   }

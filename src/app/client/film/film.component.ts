@@ -29,10 +29,6 @@ export class FilmComponent implements OnInit {
    * Film data
    */
   public film$: Observable<DetailFilm>;
-  /**
-   * Film title
-   */
-  public filmTitle$: Observable<string>;
   private selectedId: number;
   /**
    * Constructor for film component
@@ -86,9 +82,6 @@ export class FilmComponent implements OnInit {
     );
     this.filmCharacters$ = this.film$.pipe(
       switchMap(film => this.filmsService.getFilmCharactersDetails(film.characters)),
-    );
-    this.filmTitle$ = this.film$.pipe(
-      map(film => film.title),
     );
   }
 }

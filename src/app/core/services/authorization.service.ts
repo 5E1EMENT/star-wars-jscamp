@@ -65,7 +65,7 @@ export class AuthorizationService {
     localStorage.removeItem(this.appConfig.TOKEN_KEY);
     localStorage.removeItem(this.appConfig.EMAIL_KEY);
     this.lastUserEmail = '';
-    this.router.navigate(['']);
+    this.router.navigate(['home']);
   }
   /**
    * Checks user login status

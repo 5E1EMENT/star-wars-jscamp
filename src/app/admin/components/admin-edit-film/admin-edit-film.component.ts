@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
-import { switchMap, map } from 'rxjs/operators';
+import { switchMap, map, shareReplay, tap } from 'rxjs/operators';
 import { CharacterDetails } from 'src/app/core/models/characterDetails';
 import { DetailFilm } from 'src/app/core/models/detailFilm';
 import { FilmsService } from 'src/app/core/services/films.service';
@@ -20,10 +20,6 @@ export class AdminEditFilmComponent implements OnInit {
    * only array to handle
    */
   public filmTableDataSource$: Observable<DetailFilm[]>;
-  /**
-   * Film characters array
-   */
-  public filmCharacters$: Observable<CharacterDetails[]>;
   /**:
    * Film data
    */
@@ -54,12 +50,9 @@ export class AdminEditFilmComponent implements OnInit {
         this.selectedId = +params.get('idfilm');
         return this.filmsService.getFilm(this.selectedId);
       }),
+      tap(data => console.log(data)),
+      shareReplay(1),
     );
     this.filmTableDataSource$ = this.film$.pipe(map(film => [film]));
-    this.filmCharacters$ = this.film$.pipe(
-      switchMap(film =>
-        this.filmsService.getFilmCharactersDetails(film.characters),
-      ),
-    );
   }
 }

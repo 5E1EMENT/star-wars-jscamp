@@ -14,7 +14,10 @@ export class AppConfig {
    * API URL.
    */
   public API_URL = 'https://www.googleapis.com/identitytoolkit/v3/relyingparty/verifyPassword?key=';
-
+  /**
+   * Database url
+   */
+  public API_DATABASE_URL = 'https://angular-film-app.firebaseio.com/swapi';
   /**
    * Web-API key from Firebase
    */

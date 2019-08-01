@@ -7,43 +7,47 @@ export interface DetailFilm {
    */
   title: string;
   /**
+   * Film index in database array
+   */
+  databaseId: number;
+  /**
    * Field releaseDate - release date
    */
   releaseDate: Date;
   /**
    * Field episodeId - episode number
    */
-   episodeId: number;
+  episodeId: number;
   /**
    * Field director - episode director
    */
-   director: string;
+  director: string;
   /**
    * Opening crawl
    */
-   openingCrawl: string;
+  openingCrawl: string;
   /**
    * Producer
    */
-   producer: string;
+  producer: string;
   /**
    * Characters
    */
-   characters: number[];
+  characters: number[];
   /**
    * Planets
    */
-   planets: number[];
+  planets: number[];
   /**
    * Species
    */
-   species: number[];
+  species: number[];
   /**
    * Starships
    */
-   starships: number[];
+  starships: number[];
   /**
    * vehicles
    */
-   vehicles: number[];
+  vehicles: number[];
 }

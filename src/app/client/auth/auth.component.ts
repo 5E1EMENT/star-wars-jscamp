@@ -58,7 +58,7 @@ export class AuthComponent {
   public redirectHome(): void {
     if (this.authorizationService.isAdmin) {
       this.router.navigate(['films']);
-      this.adminFilmService.onFilm = false;
+      this.adminFilmService.onFilm = true;
     } else {
       this.router.navigate(['home']);
       this.filmsService.onFilm = false;

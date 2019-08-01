@@ -5,7 +5,7 @@
     <mat-cell *matCellDef="let film"> {{ film.openingCrawl }} </mat-cell>
   </ng-container>
   <ng-container matColumnDef="producer">
-    <mat-header-cell *matHeaderCellDef>Films producer</mat-header-cell>
+    <mat-header-cell *matHeaderCellDef>Film producer</mat-header-cell>
     <mat-cell *matCellDef="let film"> {{ film.producer }} </mat-cell>
   </ng-container>
   <ng-container matColumnDef="episodeId">
@@ -17,7 +17,7 @@
     <mat-cell *matCellDef="let film"> {{ film.releaseDate | date }} </mat-cell>
   </ng-container>
   <ng-container matColumnDef="director">
-    <mat-header-cell *matHeaderCellDef>Films director</mat-header-cell>
+    <mat-header-cell *matHeaderCellDef>Film director</mat-header-cell>
     <mat-cell *matCellDef="let film"> {{ film.director }} </mat-cell>
   </ng-container>
   <mat-header-row *matHeaderRowDef="displayedFilmColumns"></mat-header-row>
@@ -25,3 +25,4 @@
     *matRowDef="let row; columns: displayedFilmColumns"
   ></mat-row>
 </mat-table>
+<app-admin-film-editor [filmData$]="film$ | async"></app-admin-film-editor>

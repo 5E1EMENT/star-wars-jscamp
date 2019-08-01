@@ -23,5 +23,5 @@
       </mat-footer-cell>
     </ng-container>
     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-    <mat-row *matRowDef="let row; columns: displayedColumns;" (click)="openFilm(row.episodeId)"></mat-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;" (click)="openFilm(row.databaseId)"></mat-row>
   </mat-table>

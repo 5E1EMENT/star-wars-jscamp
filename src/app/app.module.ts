@@ -5,6 +5,7 @@ import { MatCardModule } from '@angular/material/card';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
+import { AdminModule } from './admin/admin.module';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ClientModule } from './client/client.module';
@@ -25,6 +26,7 @@ import { AuthorizationService } from './core/services/authorization.service';
     LayoutModule,
     HttpClientModule,
     CoreModule,
+    AdminModule,
     ClientModule,
     AppRoutingModule,
     MatCardModule,

@@ -52,20 +52,6 @@ export class FilmComponent implements OnInit {
     'openingCrawl',
   ];
   /**
-   * Columns whitch will be displayed in the film details table
-   */
-  public displayedFilmDetailColumns: string[] = [
-    'name',
-    'birthYear',
-    'gender',
-    'eyeColor',
-    'hairColor',
-    'height',
-    'mass',
-    'skinColor',
-
-  ];
-  /**
    * After initialization film component
    * method pulls current film data
    * and setups film details class variables

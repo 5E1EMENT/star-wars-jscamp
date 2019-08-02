@@ -1,0 +1,69 @@
+<h1>Admin film editor</h1>
+<mat-toolbar>
+  <form [formGroup]="filmEditGroup" *ngIf="filmData$ as film">
+    <mat-form-field class="example-full-width">
+      <input
+        matInput
+        formControlName="title"
+        type="text"
+        #title
+        placeholder="Episode title"
+        [ngModel]="film.title"
+      />
+    </mat-form-field>
+    <mat-form-field class="example-full-width">
+      <input
+        matInput
+        formControlName="episodeId"
+        type="text"
+        #episodeId
+        placeholder="Episode id"
+        [ngModel]="film.episodeId"
+      />
+    </mat-form-field>
+    <mat-form-field class="example-full-width">
+      <input
+        matInput
+        formControlName="releaseDate"
+        type="date"
+        #releaseDates
+        placeholder="Release date"
+        [ngModel]="film.releaseDate"
+      />
+    </mat-form-field>
+    <mat-form-field class="example-full-width">
+      <input
+        matInput
+        formControlName="director"
+        type="text"
+        #director
+        placeholder="Film Director"
+        [ngModel]="film.director"
+      />
+    </mat-form-field>
+    <mat-form-field class="example-full-width">
+      <input
+        matInput
+        formControlName="producer"
+        type="text"
+        #producer
+        placeholder="Film Producer"
+        [ngModel]="film.producer"
+      />
+    </mat-form-field>
+    <mat-form-field class="example-full-width">
+      <textarea matInput
+      formControlName="openingCrawl"
+      type="text"
+      #openingCrawl
+      placeholder="Opening crawl"
+      [ngModel]="film.openingCrawl"
+      rows="10"
+      wrap="off"
+      ></textarea>
+    </mat-form-field>
+    <button type="button" (click)="filmEdit()"  mat-raised-button color="primary">
+      Change film data
+    </button>
+  </form>
+</mat-toolbar>

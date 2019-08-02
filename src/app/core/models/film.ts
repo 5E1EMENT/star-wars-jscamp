@@ -6,6 +6,10 @@ export interface Film {
    * Field title - film name
    */
   title: string;
+    /**
+   * Film index in database array
+   */
+  databaseId: number;
   /**
    * Field releaseDate - release date
    */

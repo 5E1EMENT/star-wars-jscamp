@@ -1,11 +1,12 @@
 import { Component, Inject } from '@angular/core';
 import { FormControl, Validators, FormGroup } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { Router } from '@angular/router';
 
 import { AuthorizationService } from '../../../core/services/authorization.service';
 
 /**
- * LoginComponent class
+ * Login component
  */
 @Component({
   selector: 'app-login',
@@ -27,6 +28,7 @@ export class LoginComponent {
     @Inject(MAT_DIALOG_DATA)
     private data: string,
     private authorizationService: AuthorizationService,
+    private router: Router,
   ) {
     this.authForm = new FormGroup({
       email: new FormControl(null, [Validators.required, Validators.email]),
@@ -39,16 +41,18 @@ export class LoginComponent {
   /**
    * login method allows to login exists user
    */
-
   public login(): void {
     this.error = '';
-    this.authorizationService.login(this.authForm.value).subscribe(
-      data => {
-        this.matDialogRef.close();
-      },
-      err => {
-        this.error = err.error.error.message;
-      },
-    );
+    if (this.authForm.status === 'VALID') {
+      this.authorizationService.login(this.authForm.value).subscribe(
+        data => {
+          this.matDialogRef.close();
+        },
+        err => {
+          this.error = err.error.error.message;
+        },
+      );
+    }
+
   }
 }

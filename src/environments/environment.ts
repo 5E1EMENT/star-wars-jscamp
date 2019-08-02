@@ -13,6 +13,7 @@ export const environment = {
     messagingSenderId: '503657173867',
     appId: '1:503657173867:web:64241510e0be6672',
   },
+  adminEmail: 'admin@gmail.ru',
 };
 
 /*

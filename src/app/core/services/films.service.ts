@@ -34,17 +34,19 @@ export class FilmsService {
   public getFilms(): Observable<Film[]> {
     return this.http.get<DatabaseRecord<FilmRecordDto>[]>(this.filmsUrl).pipe(
       map(filmsDto => {
-        return filmsDto.map(dataDto => {
+        return filmsDto.map((dataDto, index) => {
           const filmDto = dataDto.fields;
+          const databaseId: number = index;
           const title: string = filmDto.title;
           const episodeId: number = filmDto.episode_id;
           const releaseDate: Date = new Date(filmDto.release_date);
           const director: string = filmDto.director;
           const film: Film = {
-            releaseDate: releaseDate,
-            title: title,
-            episodeId: episodeId,
-            director: director,
+            releaseDate,
+            databaseId,
+            title,
+            episodeId,
+            director,
           };
           return film;
         });
@@ -85,8 +87,9 @@ export class FilmsService {
   public getDetailedFilm(): Observable<DetailFilm[]> {
     return this.http.get<DatabaseRecord<FilmRecordDto>[]>(this.filmsUrl).pipe(
       map(filmsDto => {
-        return filmsDto.map(filmDto => {
+        return filmsDto.map((filmDto, index) => {
           const film: DetailFilm = {
+            databaseId: index,
             releaseDate: new Date(filmDto.fields.release_date),
             title: filmDto.fields.title,
             episodeId: filmDto.fields.episode_id,
@@ -111,7 +114,7 @@ export class FilmsService {
   public getFilm(id: number): Observable<DetailFilm> {
     this.onFilm = true;
     return this.getDetailedFilm().pipe(
-      map((films) => films.find(film => film.episodeId === +id)),
+      map((films) => films.find(film => film.databaseId === +id)),
     );
   }
   /**

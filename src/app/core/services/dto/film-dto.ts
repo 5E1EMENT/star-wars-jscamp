@@ -3,9 +3,9 @@
  */
 export interface FilmRecordDto {
   /**
-   * Film release date - frelease_date
+   * Film release date
    */
-  release_date: Date;
+  release_date: string;
   /**
    * Film index in database array
    */

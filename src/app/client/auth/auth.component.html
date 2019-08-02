@@ -3,7 +3,8 @@
     <h4 *ngIf="authorizationService.lastUserEmail">You're logged in as: {{ authorizationService.lastUserEmail }}</h4>
     <div class="app-auth__buttons">
         
-        <button mat-raised-button color="accent"  *ngIf="authorizationService.lastUserEmail" [disabled]="!filmsService.onFilm || adminFilmService.onFilm " (click)="redirectHome()"><mat-icon>home</mat-icon></button>
+        <button mat-raised-button color="accent"  *ngIf="!authorizationService.isAdmin" [disabled]="!filmsService.onFilm" (click)="redirectHome()"><mat-icon>home</mat-icon></button>
+        <button mat-raised-button color="accent"  *ngIf="authorizationService.isAdmin" [disabled]="!adminFilmService.onFilm " (click)="redirectHome()"><mat-icon>home</mat-icon></button>
         <button mat-raised-button color="primary" *ngIf="!authorizationService.lastUserEmail" (click)="login()">Login</button>
         <button mat-raised-button color="primary" *ngIf="authorizationService.lastUserEmail" (click)="logout()">Logout</button>
         <button mat-raised-button color="accent" disabled (click)="register()">Register</button>

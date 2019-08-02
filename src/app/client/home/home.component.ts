@@ -46,6 +46,7 @@ export class HomeComponent implements OnInit {
    */
   public openFilm(episodeId: number): void  {
     this.router.navigate(['/film/', episodeId]);
+    this.filmsService.onFilm = true;
   }
   /**
    * Initialize films data witch will be used to display to the user

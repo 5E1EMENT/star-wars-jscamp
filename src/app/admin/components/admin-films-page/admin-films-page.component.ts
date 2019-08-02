@@ -36,7 +36,7 @@ export class AdminFilmsPageComponent implements OnInit {
     'director',
   ];
   /**
-   * Stream of films data data array connected to template
+   * Stream of films data array connected to template
    */
   public dataSource$: Observable<Film[]>;
   /**
@@ -46,13 +46,13 @@ export class AdminFilmsPageComponent implements OnInit {
    */
   public openFilm(databaseId: number): void  {
     this.router.navigate(['/films/', databaseId]);
-    this.adminFilmService.onFilm = false;
+    this.adminFilmService.onFilm = true;
   }
   /**
    * Initialize films data witch will be used to display to the user
    */
   public ngOnInit(): void {
-    this.dataSource$ = this.filmsService.getFilms().pipe(tap(data => console.log(data)));
+    this.dataSource$ = this.filmsService.getFilms();
   }
 
 }

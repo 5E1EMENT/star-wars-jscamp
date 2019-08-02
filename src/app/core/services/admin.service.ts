@@ -3,9 +3,10 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
-import { AppConfig } from '../core/app.config';
-import { DetailFilm } from '../core/models/detailFilm';
-import { FilmRecordDto } from '../core/services/dto/film-dto';
+import { AppConfig } from '../app.config';
+import { DetailFilm } from '../models/detailFilm';
+
+import { FilmRecordDto } from './dto/film-dto';
 
 /**
  * Admin service
@@ -15,7 +16,6 @@ import { FilmRecordDto } from '../core/services/dto/film-dto';
 })
 export class AdminService {
   /**
-   *
    * @param http http module
    * @param config app config module
    */
@@ -28,17 +28,18 @@ export class AdminService {
    * @param filmData data with new updated film
    */
   public updateFilm(dbId: number, filmData: DetailFilm): Observable<DetailFilm> {
-    console.log(filmData);
     return this.http.patch<DetailFilm>(
       `${this.config.API_DATABASE_URL}/films/${dbId}/fields.json`,
       this.mapFilmToFilmDto(filmData, dbId),
-    ).pipe(map(res => {
-      console.log(res);
-      return res;
-    }));
+    );
   }
+  /**
+   * Method transforms Detail Film data into
+   * database film data by using film record dto
+   * @param film Detail Film data
+   * @param index Film index in database films array
+   */
   private mapFilmToFilmDto(film: DetailFilm, index: number): FilmRecordDto {
-    console.log(film);
     return {
       databaseId: index,
       title: film.title,
@@ -48,7 +49,7 @@ export class AdminService {
       starships: film.starships,
       vehicles: film.vehicles,
       episode_id: film.episodeId,
-      release_date: film.releaseDate,
+      release_date: film.releaseDate.toString(),
       director: film.director,
       opening_crawl: film.openingCrawl,
       producer: film.producer,

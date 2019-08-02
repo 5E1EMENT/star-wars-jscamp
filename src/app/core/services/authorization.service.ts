@@ -31,7 +31,7 @@ export class AuthorizationService {
    * @param http - http package module
    * @param appConfig - application config file with API URL, API KEY, TOKEN_KEY, EMAIL_KEY data
    */
-  constructor(private http: HttpClient, private appConfig: AppConfig, private router: Router) {
+  public constructor(private http: HttpClient, private appConfig: AppConfig, private router: Router) {
     this.lastUserEmail = localStorage.getItem(this.appConfig.EMAIL_KEY);
   }
 

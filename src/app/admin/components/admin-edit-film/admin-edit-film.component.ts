@@ -25,11 +25,16 @@ export class AdminEditFilmComponent implements OnInit {
    */
   public film$: Observable<DetailFilm>;
   private selectedId: number;
+  /**
+   *
+   * @param filmsService Films service
+   * @param route activeted route module
+   */
   public constructor(
     private filmsService: FilmsService,
     private route: ActivatedRoute,
   ) {}
-/**
+  /**
    * Columns whitch will be displayed in the film table
    */
   public displayedFilmColumns: string[] = [
@@ -42,7 +47,7 @@ export class AdminEditFilmComponent implements OnInit {
   /**
    * After initialization film component
    * method pulls current film data
-   * and setups film details class variables
+   * and setups data into film$ variable
    */
   public ngOnInit(): void {
     this.film$ = this.route.paramMap.pipe(
@@ -50,7 +55,6 @@ export class AdminEditFilmComponent implements OnInit {
         this.selectedId = +params.get('idfilm');
         return this.filmsService.getFilm(this.selectedId);
       }),
-      tap(data => console.log(data)),
       shareReplay(1),
     );
     this.filmTableDataSource$ = this.film$.pipe(map(film => [film]));

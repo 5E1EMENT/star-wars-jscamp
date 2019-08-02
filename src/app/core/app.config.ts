@@ -30,4 +30,12 @@ export class AppConfig {
    * TOKEN_KEY - is a key for email
    */
   public EMAIL_KEY = 'email';
+  /**
+   * User email: dan@mail.ru / test@mail.ru
+   * Password: 123456
+   */
+  /**
+   * Admin email: admin@gmail.ru
+   * password: mainadmin
+   */
 }

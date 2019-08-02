@@ -2,8 +2,9 @@ import { Component, Input } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Observable } from 'rxjs';
-import { AdminService } from 'src/app/admin/admin.service';
 import { DetailFilm } from 'src/app/core/models/detailFilm';
+import { AdminFilmService } from 'src/app/core/services/admin-film.service';
+import { AdminService } from 'src/app/core/services/admin.service';
 
 /**
  * Component allows to edit current film data
@@ -20,9 +21,10 @@ export class AdminFilmEditorComponent {
   @Input() public filmData$: Observable<DetailFilm>;
   private filmId: number;
   private filmEditGroup: FormGroup;
-  constructor(
+  public constructor(
     private activatedRoute: ActivatedRoute,
     private adminService: AdminService,
+    public adminFilmService: AdminFilmService,
     private router: Router,
   ) {
     this.filmId = +this.activatedRoute.snapshot.paramMap.get('idfilm');
@@ -38,10 +40,15 @@ export class AdminFilmEditorComponent {
   /**
    * Film edit function
    */
-  public edit(): void {
-    this.adminService.updateFilm(this.filmId, this.filmEditGroup.value)
-    .subscribe(() => {
-      this.router.navigate(['']);
-    });
+  public filmEdit(): void {
+    if (this.filmEditGroup.status === 'VALID') {
+      this.adminService.updateFilm(this.filmId, this.filmEditGroup.value)
+      .subscribe(() => {
+        console.log(this.filmEditGroup);
+        this.adminFilmService.onFilm = false;
+        this.router.navigate(['']);
+      });
+    }
+
   }
 }

@@ -1,6 +1,6 @@
 <h1>Admin film editor</h1>
 <mat-toolbar>
-  <form [formGroup]="filmEditGroup" (submit)="edit()" *ngIf="filmData$ as film">
+  <form [formGroup]="filmEditGroup" *ngIf="filmData$ as film">
     <mat-form-field class="example-full-width">
       <input
         matInput
@@ -25,7 +25,7 @@
       <input
         matInput
         formControlName="releaseDate"
-        type="text"
+        type="date"
         #releaseDates
         placeholder="Release date"
         [ngModel]="film.releaseDate"
@@ -62,7 +62,7 @@
       wrap="off"
       ></textarea>
     </mat-form-field>
-    <button mat-raised-button color="primary">
+    <button type="button" (click)="filmEdit()"  mat-raised-button color="primary">
       Change film data
     </button>
   </form>

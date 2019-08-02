@@ -1,5 +1,4 @@
     <mat-table [dataSource]="dataSource$ | async" class="mat-elevation-z8" *ngIf="auhtorizationService.isLoggedIn">
-    <!-- Position Column -->
     <ng-container matColumnDef="title">
       <mat-header-cell *matHeaderCellDef>Film title</mat-header-cell>
       <mat-cell *matCellDef="let film"> {{film.title}} </mat-cell>
@@ -22,5 +21,5 @@
       </mat-footer-cell>
     </ng-container>
     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-    <mat-row *matRowDef="let row; columns: displayedColumns;" (click)="openFilm(row.episodeId)"></mat-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;" (click)="openFilm(row.databaseId)"></mat-row>
   </mat-table>

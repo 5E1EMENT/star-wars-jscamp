@@ -1,12 +1,12 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { AdminFilmService } from 'src/app/core/services/admin-film.service';
+import { environment } from 'src/environments/environment';
 
 import { User } from '../../core/models/user';
 import { AuthorizationService } from '../../core/services/authorization.service';
 import { DialogService } from '../../core/services/dialog.service';
 import { FilmsService } from '../../core/services/films.service';
-
 /**
  * Class AuthComponent for authentication
  */
@@ -58,7 +58,7 @@ export class AuthComponent {
   public redirectHome(): void {
     if (this.authorizationService.isAdmin) {
       this.router.navigate(['films']);
-      this.adminFilmService.onFilm = true;
+      this.adminFilmService.onFilm = false;
     } else {
       this.router.navigate(['home']);
       this.filmsService.onFilm = false;

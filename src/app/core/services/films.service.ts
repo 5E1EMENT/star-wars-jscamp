@@ -39,7 +39,7 @@ export class FilmsService {
           const databaseId: number = index;
           const title: string = filmDto.title;
           const episodeId: number = filmDto.episode_id;
-          const releaseDate: Date = filmDto.release_date;
+          const releaseDate: Date = new Date(filmDto.release_date);
           const director: string = filmDto.director;
           const film: Film = {
             releaseDate,
@@ -90,7 +90,7 @@ export class FilmsService {
         return filmsDto.map((filmDto, index) => {
           const film: DetailFilm = {
             databaseId: index,
-            releaseDate: filmDto.fields.release_date,
+            releaseDate: new Date(filmDto.fields.release_date),
             title: filmDto.fields.title,
             episodeId: filmDto.fields.episode_id,
             director: filmDto.fields.director,

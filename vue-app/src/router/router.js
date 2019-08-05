@@ -1,11 +1,12 @@
-import Vue from 'vue'
+import Vue from 'vue';
 import Router from 'vue-router'
-import Home from '@/app/films/components/home/Home.vue'
-import Login from '@/app/auth/Login.vue'
-import Register from '@/app/auth/Register.vue'
+import firebase from 'firebase/app'
+import Home from '@/app/films/components/home/Home.vue';
+import Login from '@/app/auth/Login.vue';
+import Register from '@/app/auth/Register.vue';
 Vue.use(Router);
 
-export default new Router({
+const router =  new Router({
   mode: "history",
   routes: [
     {
@@ -15,6 +16,7 @@ export default new Router({
     {
       path: "/home",
       name: "Home",
+      meta: {auth: true},
       component: Home
     },
     {
@@ -29,3 +31,18 @@ export default new Router({
     }
   ]
 });
+
+router.beforeEach((to, from, next) => {
+  const currentUser = firebase.auth().currentUser
+  const requireAuth = to.matched.some(record => record.meta.auth)
+
+  if (requireAuth && !currentUser) {
+    next('/login')
+  } else if (!requireAuth && currentUser) {
+    next('/home')
+  } else {
+    next()
+  }
+})
+
+export default router;

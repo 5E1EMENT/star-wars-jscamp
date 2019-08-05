@@ -13,21 +13,12 @@
             <v-list-item-title>Home</v-list-item-title>
           </v-list-item-content>
         </v-list-item>
-        <v-list-item @click="login">
+        <v-list-item @click="logout">
           <v-list-item-action>
             <v-icon>mdi-account</v-icon>
           </v-list-item-action>
           <v-list-item-content>
-            <v-list-item-title>Login</v-list-item-title>
-          </v-list-item-content>
-        </v-list-item>
-
-        <v-list-item @click="register">
-          <v-list-item-action>
-            <v-icon>mdi-account-plus</v-icon>
-          </v-list-item-action>
-          <v-list-item-content>
-            <v-list-item-title>Register</v-list-item-title>
+            <v-list-item-title>Logout</v-list-item-title>
           </v-list-item-content>
         </v-list-item>
       </v-list>
@@ -46,12 +37,10 @@ export default {
     home() {
       this.$router.push("/home");
     },
-    login() {
+    async logout() {
+      await this.$store.dispatch('logout')
       this.$router.push("/login");
     },
-    register() {
-      this.$router.push("/register");
-    }
   },
 }
 </script>

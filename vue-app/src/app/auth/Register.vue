@@ -22,14 +22,17 @@
               >
                 <v-toolbar-title>Registration form</v-toolbar-title>
                 <v-spacer />
-                <router-link to="/home">
-                  <v-icon>
-                    mdi-home
-                  </v-icon>
-                </router-link>
               </v-toolbar>
               <v-card-text>
                 <v-form>
+                  <v-text-field
+                    v-model="name"
+                    :error-messages="nameErrors"
+                    label="Name"
+                    required
+                    @input="$v.name.$touch()"
+                    @blur="$v.name.$touch()"
+                  />
                   <v-text-field
                     v-model.trim="email"
                     :error-messages="emailErrors"
@@ -79,14 +82,22 @@ import {email, required, minLength} from 'vuelidate/lib/validators'
 export default {
   name: 'Login',
   data: () => ({
+    name:'',
     email: '',
     password: ''
   }),
   validations: {
+    name: {required},
     email: { required, email },
     password: {required, minLength: minLength(6)}
   },
   computed: {
+    nameErrors () {
+        const errors = []
+        if (!this.$v.name.$dirty) return errors
+        !this.$v.name.required && errors.push('Name is required.')
+        return errors
+      },
     passwordErrors () {
       const errors = []
       if (!this.$v.password.$dirty) return errors
@@ -103,12 +114,22 @@ export default {
     },
   },
   methods: {
-    submitHandler() {
+    async submitHandler() {
     if(this.$v.$invalid) {
       this.$v.$touch()
       return
     }
-    console.log(this.$v.password.$params)
+    const formData = {
+      email: this.email,
+      password: this.password,
+      name: this.name
+    }
+   try {
+      await this.$store.dispatch('register', formData)
+      this.$router.push('/home')
+    } catch(err) {
+      console.log(err)
+    }
   }
   }
 }

@@ -22,11 +22,6 @@
               >
                 <v-toolbar-title>Login form</v-toolbar-title>
                 <v-spacer />
-                <router-link to="/home">
-                  <v-icon>
-                    mdi-home
-                  </v-icon>
-                </router-link>
               </v-toolbar>
               <v-card-text>
                 <v-form>
@@ -65,6 +60,9 @@
                   Login
                 </v-btn>
               </v-card-actions>
+              <v-card-text>
+                <b>{{ error }}</b>
+              </v-card-text>
             </v-card>
           </v-flex>
         </v-layout>
@@ -80,7 +78,8 @@ export default {
   name: 'Login',
   data: () => ({
     email: '',
-    password: ''
+    password: '',
+    error: ''
   }),
   validations: {
     email: { required, email },
@@ -103,12 +102,22 @@ export default {
     },
   },
   methods: {
-    submitHandler() {
+    async submitHandler() {
     if(this.$v.$invalid) {
       this.$v.$touch()
       return
     }
-    console.log(this.$v.password.$params)
+    const formData = {
+      email: this.email,
+      password: this.password
+    }
+    try {
+      await this.$store.dispatch('login', formData)
+      this.$router.push('/home')
+    } catch(err) {
+      this.error = err.code
+    }
+    
   }
   }
 }

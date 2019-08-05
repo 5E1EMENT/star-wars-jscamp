@@ -71,21 +71,34 @@
   </v-app>
 </template>
 <script>
-import { validationMixin } from 'vuelidate'
+/**
+ * Mehtods allows to
+ * validate form fields
+ */
 import {email, required, minLength} from 'vuelidate/lib/validators'
 
 export default {
   name: 'Login',
+  /**
+   * Login data
+   */
   data: () => ({
     email: '',
     password: '',
     error: ''
   }),
+  /**
+   * Spectial object field 
+   * to validate form fields
+   */
   validations: {
     email: { required, email },
     password: {required, minLength: minLength(6)}
   },
   computed: {
+    /**
+     * Password error handler
+     */
     passwordErrors () {
       const errors = []
       if (!this.$v.password.$dirty) return errors
@@ -93,6 +106,9 @@ export default {
       !this.$v.password.required && errors.push('Password is required.')
       return errors
     },
+    /**
+     * Email error handler
+     */
     emailErrors () {
       const errors = []
       if (!this.$v.email.$dirty) return errors
@@ -102,22 +118,36 @@ export default {
     },
   },
   methods: {
+    /**
+     * Submit form handler
+     */
     async submitHandler() {
     if(this.$v.$invalid) {
       this.$v.$touch()
       return
     }
+    /*
+     * Object whitch will be 
+     * sent into firebase
+     */
     const formData = {
       email: this.email,
       password: this.password
     }
     try {
+      /**
+       * Emit's login action in auth store
+       * and if no errors redirect to the 
+       * home page
+       */
       await this.$store.dispatch('login', formData)
       this.$router.push('/home')
     } catch(err) {
+      /**
+       * Simple error handler
+       */
       this.error = err.code
     }
-    
   }
   }
 }

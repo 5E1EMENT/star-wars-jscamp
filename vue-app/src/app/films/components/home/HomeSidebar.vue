@@ -30,17 +30,31 @@
 <script>
 import { mapGetters } from "vuex";
 export default {
-    computed: {
+  computed: {
+    /**
+     * Method allows to get current sidebar state
+     */
     ...mapGetters(["getSidebarState"])
   },
   methods: {
+    /**
+     * Method redirects user to the home page
+     */
     home() {
       this.$router.push("/home");
     },
+    /**
+     * Method logout user
+     */
     async logout() {
-      await this.$store.dispatch('logout')
+      /**
+       * Emits logout action from vuex
+       * and logut current user
+       * Redirect to the login page
+       */
+      await this.$store.dispatch("logout");
       this.$router.push("/login");
-    },
-  },
-}
+    }
+  }
+};
 </script>

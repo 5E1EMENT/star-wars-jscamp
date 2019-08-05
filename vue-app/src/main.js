@@ -10,8 +10,8 @@ import 'firebase/auth'
 import 'firebase/database'
 
 Vue.config.productionTip = false
-
 Vue.use(Vuelidate)
+
 /**
  * Firebase init configuration
  */
@@ -25,6 +25,9 @@ firebase.initializeApp({
   appId: "1:339337547545:web:ee902236417440d2"
 })
 
+/**
+ * Current application
+ */
 let app;
 
 /**
@@ -40,6 +43,4 @@ firebase.auth().onAuthStateChanged(()=> {
       render: h => h(App)
     }).$mount('#app')
   }
- 
 })
-

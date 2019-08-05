@@ -68,6 +68,9 @@
                   Register
                 </v-btn>
               </v-card-actions>
+              <v-card-text>
+                <b>{{ error }}</b>
+              </v-card-text>
             </v-card>
           </v-flex>
         </v-layout>
@@ -76,28 +79,45 @@
   </v-app>
 </template>
 <script>
-import { validationMixin } from 'vuelidate'
+/**
+ * Mehtods allows to
+ * validate form fields
+ */
 import {email, required, minLength} from 'vuelidate/lib/validators'
 
 export default {
-  name: 'Login',
+  name: 'Register',
+  /**
+   * Register data
+   */
   data: () => ({
     name:'',
     email: '',
-    password: ''
+    password: '',
+    error: ''
   }),
+  /**
+   * Spectial object field 
+   * to validate form fields
+   */
   validations: {
     name: {required},
     email: { required, email },
     password: {required, minLength: minLength(6)}
   },
   computed: {
+    /**
+     * Name errors handler
+     */
     nameErrors () {
         const errors = []
         if (!this.$v.name.$dirty) return errors
         !this.$v.name.required && errors.push('Name is required.')
         return errors
       },
+    /**
+     *  Password errors handler
+     */  
     passwordErrors () {
       const errors = []
       if (!this.$v.password.$dirty) return errors
@@ -105,6 +125,9 @@ export default {
       !this.$v.password.required && errors.push('Password is required.')
       return errors
     },
+    /**
+     *  Email errors handler
+     */  
     emailErrors () {
       const errors = []
       if (!this.$v.email.$dirty) return errors
@@ -114,21 +137,36 @@ export default {
     },
   },
   methods: {
+    /**
+     * Submit form handler
+     */
     async submitHandler() {
     if(this.$v.$invalid) {
       this.$v.$touch()
       return
     }
+    /*
+     * Object whitch will be 
+     * sent into firebase
+     */
     const formData = {
       email: this.email,
       password: this.password,
       name: this.name
     }
    try {
+     /**
+       * Emit's register action in auth store
+       * and if no errors redirect to the 
+       * home page
+       */
       await this.$store.dispatch('register', formData)
       this.$router.push('/home')
     } catch(err) {
-      console.log(err)
+      /**
+       * Simple error handler
+       */
+      this.error = err.code
     }
   }
   }

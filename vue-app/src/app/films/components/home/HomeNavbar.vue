@@ -11,10 +11,13 @@
   </div>
 </template>
 <script>
-import {mapMutations} from 'vuex'
+import { mapMutations } from "vuex";
 export default {
-    methods: {
-            ...mapMutations(["invertSidebarState"]),
-    }
-}
+  methods: {
+    /**
+     * @param invertSidebarState allows to invert(!) sidebar state from vuex
+     */
+    ...mapMutations(["invertSidebarState"])
+  }
+};
 </script>

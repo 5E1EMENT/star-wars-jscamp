@@ -1,15 +1,19 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Home from './components/home/Home'
-import Login from './../auth/Login'
-import Register from './../auth/Register'
+import Home from '@/app/films/components/home/Home.vue'
+import Login from '@/app/auth/Login.vue'
+import Register from '@/app/auth/Register.vue'
 Vue.use(Router);
 
 export default new Router({
   mode: "history",
   routes: [
     {
-      path: "",
+      path: "*",
+      redirect: "/login"
+    },
+    {
+      path: "/home",
       name: "Home",
       component: Home
     },

@@ -22,28 +22,46 @@
               >
                 <v-toolbar-title>Login form</v-toolbar-title>
                 <v-spacer />
+                <router-link to="/home">
+                  <v-icon>
+                    mdi-home
+                  </v-icon>
+                </router-link>
               </v-toolbar>
               <v-card-text>
                 <v-form>
                   <v-text-field
-                    label="Login"
-                    name="login"
-                    prepend-icon="mdi-account"
-                    type="text"
+                    v-model.trim="email"
+                    :error-messages="emailErrors"
+                    label="E-mail"
+                    required
+                    @input="$v.email.$touch()"
+                    @blur="$v.email.$touch()"
                   />
-
                   <v-text-field
-                    id="password"
+                    v-model.trim="password"
+                    :error-messages="passwordErrors"
                     label="Password"
-                    name="password"
-                    prepend-icon="mdi-lock"
-                    type="password"
+                    required
+                    @input="$v.password.$touch()"
+                    @blur="$v.password.$touch()"
                   />
                 </v-form>
               </v-card-text>
               <v-card-actions>
+                <p>
+                  Don't have any account?
+                  <router-link to="/register">
+                    Register
+                  </router-link>
+                </p>
                 <v-spacer />
-                <v-btn color="primary">
+                <v-btn
+                  color="indigo"
+                  dark
+                  type="submit"
+                  @click="submitHandler"
+                >
                   Login
                 </v-btn>
               </v-card-actions>
@@ -54,3 +72,49 @@
     </v-content>
   </v-app>
 </template>
+<script>
+import { validationMixin } from 'vuelidate'
+import {email, required, minLength} from 'vuelidate/lib/validators'
+
+export default {
+  name: 'Login',
+  data: () => ({
+    email: '',
+    password: ''
+  }),
+  validations: {
+    email: { required, email },
+    password: {required, minLength: minLength(6)}
+  },
+  computed: {
+    passwordErrors () {
+      const errors = []
+      if (!this.$v.password.$dirty) return errors
+      !this.$v.password.minLength && errors.push(`Password should be at least ${this.$v.password.$params.minLength.min} symbols. Now: ${this.password.length} `)
+      !this.$v.password.required && errors.push('Password is required.')
+      return errors
+    },
+    emailErrors () {
+      const errors = []
+      if (!this.$v.email.$dirty) return errors
+      !this.$v.email.email && errors.push('Must be valid e-mail')
+      !this.$v.email.required && errors.push('E-mail is required')
+      return errors
+    },
+  },
+  methods: {
+    submitHandler() {
+    if(this.$v.$invalid) {
+      this.$v.$touch()
+      return
+    }
+    console.log(this.$v.password.$params)
+  }
+  }
+}
+</script>
+<style scoped lang="scss">
+  a {
+    text-decoration: none;
+  }
+</style>

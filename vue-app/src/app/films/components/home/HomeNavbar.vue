@@ -5,19 +5,19 @@
       color="indigo"
       dark
     >
-      <v-app-bar-nav-icon @click.stop="invertSidebarState" />
+      <v-app-bar-nav-icon @click.stop="changeSidebarState" />
       <v-toolbar-title>My vue film application</v-toolbar-title>
     </v-app-bar>
   </div>
 </template>
 <script>
-import { mapMutations } from "vuex";
+import { mapActions } from "vuex";
 export default {
   methods: {
     /**
-     * @param invertSidebarState allows to invert(!) sidebar state from vuex
+     * @param changeSidebarState allows to invert(!) sidebar state from vuex
      */
-    ...mapMutations(["invertSidebarState"])
+    ...mapActions(["changeSidebarState"])
   }
 };
 </script>

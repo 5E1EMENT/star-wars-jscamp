@@ -1,5 +1,5 @@
 <template>
-  <v-app id="inspire">
+  <v-app>
     <v-content>
       <v-container
         fluid
@@ -75,85 +75,88 @@
  * Mehtods allows to
  * validate form fields
  */
-import {email, required, minLength} from 'vuelidate/lib/validators'
+import { email, required, minLength } from "vuelidate/lib/validators";
 
 export default {
-  name: 'Login',
+  name: "Login",
   /**
    * Login data
    */
   data: () => ({
-    email: '',
-    password: '',
-    error: ''
+    email: "",
+    password: "",
+    error: ""
   }),
   /**
-   * Spectial object field 
+   * Spectial object field
    * to validate form fields
    */
   validations: {
     email: { required, email },
-    password: {required, minLength: minLength(6)}
+    password: { required, minLength: minLength(6) }
   },
   computed: {
     /**
      * Password error handler
      */
-    passwordErrors () {
-      const errors = []
-      if (!this.$v.password.$dirty) return errors
-      !this.$v.password.minLength && errors.push(`Password should be at least ${this.$v.password.$params.minLength.min} symbols. Now: ${this.password.length} `)
-      !this.$v.password.required && errors.push('Password is required.')
-      return errors
+    passwordErrors() {
+      const errors = [];
+      if (!this.$v.password.$dirty) return errors;
+      !this.$v.password.minLength &&
+        errors.push(
+          `Password should be at least ${this.$v.password.$params.minLength.min} symbols. Now: ${this.password.length} `
+        );
+      !this.$v.password.required && errors.push("Password is required.");
+      return errors;
     },
     /**
      * Email error handler
      */
-    emailErrors () {
-      const errors = []
-      if (!this.$v.email.$dirty) return errors
-      !this.$v.email.email && errors.push('Must be valid e-mail')
-      !this.$v.email.required && errors.push('E-mail is required')
-      return errors
-    },
+    emailErrors() {
+      const errors = [];
+      if (!this.$v.email.$dirty) return errors;
+      !this.$v.email.email && errors.push("Must be valid e-mail");
+      !this.$v.email.required && errors.push("E-mail is required");
+      return errors;
+    }
   },
   methods: {
     /**
      * Submit form handler
      */
     async submitHandler() {
-    if(this.$v.$invalid) {
-      this.$v.$touch()
-      return
-    }
-    /*
-     * Object whitch will be 
-     * sent into firebase
-     */
-    const formData = {
-      email: this.email,
-      password: this.password
-    }
-    try {
-      /**
-       * Emit's login action in auth store
-       * and if no errors redirect to the 
-       * home page
+      if (this.$v.$invalid) {
+        this.$v.$touch();
+        return;
+      }
+      /*
+       * Object whitch will be
+       * sent into firebase
        */
-      await this.$store.dispatch('login', formData)
-      this.$router.push('/home')
-    } catch(err) {
-      /**
-       * Simple error handler
-       */
-      this.error = err.code
+      const formData = {
+        email: this.email,
+        password: this.password
+      };
+      try {
+        /**
+         * Emit's login action in auth store
+         * and if no errors redirect to the
+         * home page
+         */
+        await this.$store.dispatch("login", formData);
+        this.$router.push("/home");
+      } catch (err) {
+        /**
+         * Simple error handler
+         */
+        this.error = err.code;
+      }
     }
   }
-  }
-}
+};
 </script>
-<style scoped lang="scss">
-  a {
-    text-decoration: none;
-  }
+<style module lang="scss">
+a {
+  text-decoration: none;
+}
 </style>

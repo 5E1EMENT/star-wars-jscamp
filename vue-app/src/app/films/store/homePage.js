@@ -16,13 +16,22 @@ export default {
     }
   },
   mutations: {
-      /**
-       * Mutation allows to invert 
-       * sidebar state by click
-       * @param {*} state state
-       */
+    /**
+     * Mutation allows to invert
+     * sidebar state by click
+     * @param {*} state state
+     */
     invertSidebarState(state) {
       state.sidebarState = !state.sidebarState;
+    }
+  },
+  actions: {
+    /**
+     * Action emits mutation invertSidebarState
+     * @param {*} param0 state
+     */
+    changeSidebarState({ commit }) {
+      commit("invertSidebarState");
     }
   }
 };

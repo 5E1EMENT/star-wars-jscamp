@@ -12,9 +12,10 @@
 </template>
 
 <script>
-import HomeSidebar from './HomeSidebar'
-import HomeNavbar from './HomeNavbar'
+import HomeSidebar from "./HomeSidebar";
+import HomeNavbar from "./HomeNavbar";
 export default {
+  name: "HomePage",
   components: {
     HomeSidebar,
     HomeNavbar

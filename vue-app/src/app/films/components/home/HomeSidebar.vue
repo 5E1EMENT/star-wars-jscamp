@@ -30,6 +30,7 @@
 <script>
 import { mapGetters } from "vuex";
 export default {
+  name: "HomePageSidebar",
   computed: {
     /**
      * Method allows to get current sidebar state

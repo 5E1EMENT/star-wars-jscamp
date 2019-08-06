@@ -1,9 +1,11 @@
 import Vue from 'vue';
 import Router from 'vue-router'
 import firebase from 'firebase/app'
-import Home from '@/app/films/components/home/Home.vue';
-import Login from '@/app/auth/Login.vue';
-import Register from '@/app/auth/Register.vue';
+
+import {default as auth} from '@/app/auth/routes.js'
+import {default as home} from '@/app/films/routes.js'
+const PageNotFound = () => import('@/pages/PageNotFound')
+
 Vue.use(Router);
 
 /**
@@ -14,24 +16,10 @@ const router =  new Router({
   routes: [
     {
       path: "*",
-      redirect: "/login"
+      component: PageNotFound
     },
-    {
-      path: "/home",
-      name: "Home",
-      meta: {auth: true},
-      component: Home
-    },
-    {
-      path: "/login",
-      name: "Login",
-      component: Login
-    },
-    {
-      path: "/register",
-      name: "Register",
-      component: Register
-    }
+    ...auth,
+    ...home
   ]
 });
 
@@ -44,9 +32,7 @@ router.beforeEach((to, from, next) => {
 
   if (requireAuth && !currentUser) {
     next('/login')
-  } else if (!requireAuth && currentUser) {
-    next('/home')
-  } else {
+  }else {
     next()
   }
 })

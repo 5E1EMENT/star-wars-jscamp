@@ -2,7 +2,7 @@ import Vue from 'vue'
 import App from './App.vue'
 import vuetify from './plugins/vuetify';
 import router from "@/router/router.js";
-import store from "./app/films/store/store"
+import store from "@/store/store.js"
 import Vuelidate from 'vuelidate'
 
 import firebase from 'firebase/app'

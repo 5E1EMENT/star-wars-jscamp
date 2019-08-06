@@ -20,19 +20,11 @@
                 dark
                 flat
               >
-                <v-toolbar-title>Registration form</v-toolbar-title>
+                <v-toolbar-title>Login form</v-toolbar-title>
                 <v-spacer />
               </v-toolbar>
               <v-card-text>
                 <v-form>
-                  <v-text-field
-                    v-model="name"
-                    :error-messages="nameErrors"
-                    label="Name"
-                    required
-                    @input="$v.name.$touch()"
-                    @blur="$v.name.$touch()"
-                  />
                   <v-text-field
                     v-model.trim="email"
                     :error-messages="emailErrors"
@@ -53,9 +45,9 @@
               </v-card-text>
               <v-card-actions>
                 <p>
-                  Already have an account?
-                  <router-link to="/login">
-                    Login
+                  Don't have any account?
+                  <router-link to="/register">
+                    Register
                   </router-link>
                 </p>
                 <v-spacer />
@@ -65,7 +57,7 @@
                   type="submit"
                   @click="submitHandler"
                 >
-                  Register
+                  Login
                 </v-btn>
               </v-card-actions>
               <v-card-text>
@@ -79,19 +71,15 @@
   </v-app>
 </template>
 <script>
-/**
- * Mehtods allows to
- * validate form fields
- */
+/** Mehtods allows to validate form fields */
 import { email, required, minLength } from "vuelidate/lib/validators";
 
 export default {
-  name: "Register",
+  name: "Login",
   /**
-   * Register data
+   * Login data
    */
   data: () => ({
-    name: "",
     email: "",
     password: "",
     error: ""
@@ -101,24 +89,13 @@ export default {
    * to validate form fields
    */
   validations: {
-    name: { required },
     email: { required, email },
     password: { required, minLength: minLength(6) }
   },
   computed: {
     /**
-     * Name errors handler
+     * Password error handler
      */
-    nameErrors() {
-      const errors = [];
-      if (!this.$v.name.$dirty) return errors;
-      !this.$v.name.required && errors.push("Name is required.");
-      return errors;
-    },
-    /**
-     *  Password errors handler
-     */
-
     passwordErrors() {
       const errors = [];
       if (!this.$v.password.$dirty) return errors;
@@ -130,9 +107,8 @@ export default {
       return errors;
     },
     /**
-     *  Email errors handler
+     * Email error handler
      */
-
     emailErrors() {
       const errors = [];
       if (!this.$v.email.$dirty) return errors;
@@ -144,40 +120,32 @@ export default {
   methods: {
     /**
      * Submit form handler
+     * Emit's login action in auth store
+     * and if no errors redirect to the
+     * home page
      */
     async submitHandler() {
       if (this.$v.$invalid) {
         this.$v.$touch();
         return;
       }
-      /*
-       * Object whitch will be
-       * sent into firebase
-       */
+      /* Object whitch will besent into firebase */
       const formData = {
         email: this.email,
-        password: this.password,
-        name: this.name
+        password: this.password
       };
       try {
-        /**
-         * Emit's register action in auth store
-         * and if no errors redirect to the
-         * home page
-         */
-        await this.$store.dispatch("register", formData);
+        await this.$store.dispatch("login", formData);
         this.$router.push("/home");
       } catch (err) {
-        /**
-         * Simple error handler
-         */
+        /** Simple error handler */
         this.error = err.code;
       }
     }
   }
 };
 </script>
-<style module lang="scss">
+<style lang="scss" module>
 a {
   text-decoration: none;
 }

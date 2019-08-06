@@ -1,24 +1,24 @@
 <template>
   <v-app id="inspire">
-    <HomeSidebar />
+    <TheSidebar />
     <v-content>
       <v-container
         fluid
         fill-height
       />
     </v-content>
-    <HomeNavbar />
+    <TheNavbar />
   </v-app>
 </template>
 
 <script>
-import HomeSidebar from "./HomeSidebar";
-import HomeNavbar from "./HomeNavbar";
+import TheSidebar from "./TheSidebar";
+import TheNavbar from "./TheNavbar";
 export default {
   name: "HomePage",
   components: {
-    HomeSidebar,
-    HomeNavbar
+    TheSidebar,
+    TheNavbar
   }
 };
 </script>

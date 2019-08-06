@@ -3,10 +3,14 @@ import firebase from "firebase/app";
 export default {
   actions: {
     /**
-     * Login action allows to
-     * login user with email and password
-     * @param {dispatch, commit} param0 context
-     * @param {*} param1 user login form data
+     * Login action allows to login user with email and password.
+     *
+     * @param {Object} context vuex context.
+     * @param {Function} context.dispatch action dispatcher.
+     * @param {Function} context.commit mutation initiation.
+     * @param {Object} payload action payload.
+     * @param {string} payload.email user email.
+     * @param {string} payload.password user password.
      */
     async login({ dispatch, commit }, { email, password }) {
       try {
@@ -16,10 +20,14 @@ export default {
       }
     },
     /**
-     * Register action allows to
-     * register new user with payload data
-     * @param {*} param0 context
-     * @param {*} param1 user registration form data
+     * Register action allows to register user with name, email and password.
+     *
+     * @param {Object} context vuex context.
+     * @param {Function} context.dispatch action dispatcher.
+     * @param {Object} payload action payload.
+     * @param {string} payload.email user email.
+     * @param {string} payload.password user password.
+     * @param {string} payload.name user name.
      */
     async register({ dispatch }, { email, password, name }) {
       try {

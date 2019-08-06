@@ -46,13 +46,11 @@ export default {
     },
     /**
      * Method logout user
+     * Emits logout action from vuex
+     * and logut current user
+     * Redirect to the login page
      */
     async logout() {
-      /**
-       * Emits logout action from vuex
-       * and logut current user
-       * Redirect to the login page
-       */
       await this.$store.dispatch("logout");
       this.$router.push("/login");
     }

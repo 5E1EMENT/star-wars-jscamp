@@ -2,7 +2,7 @@
   <div>
     <v-app-bar
       app
-      color="indigo"
+      color="blue-grey"
       dark
     >
       <v-app-bar-nav-icon @click.stop="changeSidebarState" />
@@ -21,3 +21,5 @@ export default {
   }
 };
 </script>
+<style lang="scss" module>
+</style>

@@ -45,8 +45,8 @@ export default {
      * Action allows to
      * get current user uid
      */
-    getUid() {
-      const user = firebase.auth().currentUser;
+    async getUid() {
+      const user = await firebase.auth().currentUser;
       return user ? user.uid : null;
     },
     /**

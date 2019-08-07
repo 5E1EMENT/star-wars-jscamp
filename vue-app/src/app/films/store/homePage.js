@@ -3,7 +3,7 @@ export default {
    * Sidebar state
    */
   state: {
-    sidebarState: true
+    sidebarState: false
   },
   getters: {
     /**

@@ -40,7 +40,6 @@ export default {
      * Fetching films data from firebase database
      */
     async loadFilms() {
-      
       return (await firebase
         .database()
         .ref("swapi/films")

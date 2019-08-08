@@ -1,6 +1,8 @@
 <template>
   <div>
-    <h1>{{ filmTitle }}</h1>
+    <h1 v-if="film">
+      {{ film.title }}
+    </h1>
     <Loader v-if="loading" />
     <v-simple-table v-else>
       <thead>
@@ -34,7 +36,7 @@
             class="text-center"
             :class="$style['td-align']"
           >
-            {{ filmReleaseDate }}
+            {{ new Date(film.release_date).toDateString() }}
           </td>
           <td
             class="text-center"
@@ -66,7 +68,6 @@ import { mapActions } from "vuex";
 export default {
   data: () => ({
     loading: true,
-    filmTitle: "",
     film: null
   }),
   /**
@@ -75,21 +76,15 @@ export default {
   async mounted() {
     const filmID = this.$route.params.filmDbId;
     this.film = await this.loadFilm(filmID);
-    this.filmTitle = await this.film.title;
+    this.filmTitle = this.film.title;
     this.loading = false;
   },
-  /**
-   * @param loadFilm load current film from db
-   */
+
   methods: {
-    ...mapActions(["loadFilm"]),
     /**
-     * Transform's date from firebase db
-     * into normal date
+     * @param loadFilm load current film from db
      */
-    async filmReleaseDate() {
-      return await new Date(film.release_date).toDateString();
-    }
+    ...mapActions(["loadFilm"])
   }
 };
 </script>

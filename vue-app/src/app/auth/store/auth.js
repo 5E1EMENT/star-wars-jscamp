@@ -4,6 +4,12 @@ export default {
   state: {
     uid: null
   },
+  getters: {
+    getUid: state => state.uid
+  },
+  mutations: {
+    setUid: (state, uid) => (state.uid = uid)
+  },
   actions: {
     /**
      * Login action allows to login user with email and password.
@@ -15,9 +21,10 @@ export default {
      * @param {string} payload.email user email.
      * @param {string} payload.password user password.
      */
-    async login(state, { email, password }) {
+    async login({ commit }, { email, password }) {
       try {
-        
+        const user = await firebase.auth().currentUser;
+        await commit("setUid", user);
         await firebase.auth().signInWithEmailAndPassword(email, password);
       } catch (err) {
         throw err;
@@ -33,10 +40,10 @@ export default {
      * @param {string} payload.password user password.
      * @param {string} payload.name user name.
      */
-    async register({ dispatch }, { email, password, name }) {
+    async register(store, { email, password, name }) {
       try {
         await firebase.auth().createUserWithEmailAndPassword(email, password);
-        const uid = await dispatch("getUid");
+        const uid = await store.getters.getUid;
         await firebase
           .database()
           .ref(`/users/${uid}/info`)

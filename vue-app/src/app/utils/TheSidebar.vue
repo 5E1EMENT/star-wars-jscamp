@@ -16,7 +16,7 @@
             <v-list-item-title>Home</v-list-item-title>
           </v-list-item-content>
         </v-list-item>
-        <v-list-item @click="logout">
+        <v-list-item @click="logoutUser">
           <v-list-item-action>
             <v-icon>mdi-account</v-icon>
           </v-list-item-action>
@@ -52,7 +52,7 @@
 
   
 <script>
-import { mapGetters } from "vuex";
+import { mapGetters, mapActions } from "vuex";
 export default {
   name: "HomePageSidebar",
   data: () => ({
@@ -75,11 +75,12 @@ export default {
   },
   async updated() {},
   methods: {
+    ...mapActions(["getUid", "logout"]),
     /**
      * Method allows to get uid from vuex
      */
     async startComponent() {
-      const uid = await this.$store.dispatch("getUid");
+      const uid = await this.getUid();
       this.uid = uid;
     },
     /**
@@ -94,8 +95,8 @@ export default {
      * and logut current user
      * Redirect to the login page
      */
-    async logout() {
-      await this.$store.dispatch("logout");
+    async logoutUser() {
+      await this.logout();
       this.uid = null;
       this.$router.push("/login");
     },

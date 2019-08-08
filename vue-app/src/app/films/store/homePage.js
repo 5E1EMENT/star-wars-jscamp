@@ -1,9 +1,12 @@
+import firebase from "firebase/app";
+
 export default {
   /**
    * Sidebar state
    */
   state: {
-    sidebarState: false
+    sidebarState: false,
+    filmsData: null
   },
   getters: {
     /**
@@ -32,6 +35,22 @@ export default {
      */
     changeSidebarState({ commit }) {
       commit("invertSidebarState");
+    },
+    /**
+     * Fetching films data from firebase database
+     */
+    async loadFilms() {
+      
+      return (await firebase
+        .database()
+        .ref("swapi/films")
+        .once("value")).val();
+    },
+    async loadFilm(state, filmId) {
+      return (await firebase
+        .database()
+        .ref(`swapi/films/${filmId}/fields`)
+        .once("value")).val();
     }
   }
 };

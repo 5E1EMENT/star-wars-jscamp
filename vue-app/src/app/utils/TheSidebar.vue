@@ -1,7 +1,7 @@
 <template>
   <div>
     <v-navigation-drawer
-      v-model="getSidebarState"
+      :value="getSidebarState"
       app
     >
       <v-list

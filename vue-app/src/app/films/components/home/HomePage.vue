@@ -1,7 +1,5 @@
 <template>
-  <Loader
-    v-if="loading"
-  />
+  <Loader v-if="loading" />
   <v-simple-table v-else>
     <thead>
       <tr>
@@ -31,13 +29,26 @@
         :key="film.pk"
         tag="tr"
         :to="{ name: 'Film', params: { filmDbId: film.pk - 1 }}"
+        :class="$style['tr-active']"
       >
-        <td>{{ film.fields.title }}</td>
-        <td>{{ film.fields.episode_id }}</td>
-        <td>{{ new Date(film.fields.release_date).toDateString() }}</td>
-        <td>{{ film.fields.director }}</td>
-        <td>{{ film.fields.producer }}</td>
-        <td>{{ film.fields.opening_crawl }}</td>
+        <td :class="$style['td-align']">
+          {{ film.fields.title }}
+        </td>
+        <td :class="$style['td-align']">
+          {{ film.fields.episode_id }}
+        </td>
+        <td :class="$style['td-align']">
+          {{ new Date(film.fields.release_date).toDateString() }}
+        </td>
+        <td :class="$style['td-align']">
+          {{ film.fields.director }}
+        </td>
+        <td :class="$style['td-align']">
+          {{ film.fields.producer }}
+        </td>
+        <td :class="$style['td-align']">
+          {{ film.fields.opening_crawl }}
+        </td>
       </router-link>
     </tbody>
   </v-simple-table>
@@ -45,6 +56,7 @@
 
 <script>
 import axios from "axios";
+import { mapActions } from "vuex";
 
 export default {
   name: "HomePage",
@@ -52,20 +64,28 @@ export default {
     loading: true,
     films: null
   }),
+  /**
+   * Getting films data from vuex
+   */
   async mounted() {
-    const filmsDatabase = "https://vue-film-app.firebaseio.com/swapi.json";
-    const filmsData = await axios.get(filmsDatabase);
-    const responseFilms = await filmsData.data.films;
-    this.films = responseFilms;
+    this.films = await this.loadFilms()
     this.loading = false;
+  },
+  methods: {
+    /**
+     * @param loadFilms load films from db
+     */
+    ...mapActions(["loadFilms"])
   }
 };
 </script>
 <style lang="scss" module>
-tr:hover {
+
+.tr-active:hover {
   cursor: pointer;
 }
-td {
+
+.td-align {
   padding: 10px !important;
   text-align: center;
 }

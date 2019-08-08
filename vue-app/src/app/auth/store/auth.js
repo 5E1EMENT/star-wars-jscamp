@@ -1,6 +1,9 @@
 import firebase from "firebase/app";
 
 export default {
+  state: {
+    uid: null
+  },
   actions: {
     /**
      * Login action allows to login user with email and password.
@@ -12,8 +15,9 @@ export default {
      * @param {string} payload.email user email.
      * @param {string} payload.password user password.
      */
-    async login({ dispatch, commit }, { email, password }) {
+    async login(state, { email, password }) {
       try {
+        
         await firebase.auth().signInWithEmailAndPassword(email, password);
       } catch (err) {
         throw err;

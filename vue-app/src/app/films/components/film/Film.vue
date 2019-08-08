@@ -23,21 +23,36 @@
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <td class="text-center">
-            {{ filmData.episode_id }}
+        <tr :class="$style['tr-active']">
+          <td
+            class="text-center"
+            :class="$style['td-align']"
+          >
+            {{ film.episode_id }}
           </td>
-          <td class="text-center">
-            {{ new Date(filmData.release_date).toDateString() }}
+          <td
+            class="text-center"
+            :class="$style['td-align']"
+          >
+            {{ filmReleaseDate }}
           </td>
-          <td class="text-center">
-            {{ filmData.director }}
+          <td
+            class="text-center"
+            :class="$style['td-align']"
+          >
+            {{ film.director }}
           </td>
-          <td class="text-center">
-            {{ filmData.producer }}
+          <td
+            class="text-center"
+            :class="$style['td-align']"
+          >
+            {{ film.producer }}
           </td>
-          <td class="text-center">
-            {{ filmData.opening_crawl }}
+          <td
+            class="text-center"
+            :class="$style['td-align']"
+          >
+            {{ film.opening_crawl }}
           </td>
         </tr>
       </tbody>
@@ -46,36 +61,48 @@
 </template>
 <script>
 import axios from "axios";
+import { mapActions } from "vuex";
 
 export default {
   data: () => ({
     loading: true,
-    filmData: null,
-    filmTitle: ""
+    filmTitle: "",
+    film: null
   }),
+  /**
+   * Getting film data from vuex
+   */
   async mounted() {
-    const filmsDatabase = "https://vue-film-app.firebaseio.com/swapi.json";
-    const filmsData = await axios.get(filmsDatabase);
-    const responseFilm = await filmsData.data.films[this.$route.params.filmDbId]
-      .fields;
-    this.filmData = responseFilm;
-    this.filmTitle = responseFilm.title;
+    const filmID = this.$route.params.filmDbId;
+    this.film = await this.loadFilm(filmID);
+    this.filmTitle = await this.film.title;
     this.loading = false;
+  },
+  /**
+   * @param loadFilm load current film from db
+   */
+  methods: {
+    ...mapActions(["loadFilm"]),
+    /**
+     * Transform's date from firebase db
+     * into normal date
+     */
+    async filmReleaseDate() {
+      return await new Date(film.release_date).toDateString();
+    }
   }
 };
 </script>
 <style lang="scss" module>
-tr:hover {
+.tr-active:hover {
   cursor: pointer;
 }
-td {
+.td-align {
   padding: 10px !important;
+  text-align: center;
 }
 h1 {
   text-align: center;
   margin: 2rem 0;
-}
-td {
-  text-align: center;
 }
 </style>

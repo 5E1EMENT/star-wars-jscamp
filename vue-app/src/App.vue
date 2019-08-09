@@ -1,10 +1,12 @@
 <template>
   <div id="app">
-    <TheSidebar />
-    <v-content>
-      <router-view />
-    </v-content>
-    <TheNavbar />
+    <v-app>
+      <TheSidebar />
+      <v-content>
+        <router-view />
+      </v-content>
+      <TheNavbar />
+    </v-app>
   </div>
 </template>
 

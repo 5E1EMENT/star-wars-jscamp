@@ -2,22 +2,41 @@
   <div>
     <v-app-bar
       app
-      color="blue-grey"
+      color="indigo"
       dark
     >
       <v-app-bar-nav-icon @click.stop="changeSidebarState" />
       <v-toolbar-title>My vue film application</v-toolbar-title>
+      <v-spacer />
+      <v-toolbar-title v-if="user">
+        You logged in as: {{ user }}
+      </v-toolbar-title>
     </v-app-bar>
   </div>
 </template>
 <script>
 import { mapActions } from "vuex";
 export default {
+  data: () => ({
+    user: ""
+  }),
+  watch: {
+    /**
+     * When route changes,
+     * our component will be rerendered
+     */
+    $route() {
+      this.startComponent();
+    }
+  },
   methods: {
     /**
      * @param changeSidebarState allows to invert(!) sidebar state from vuex
      */
-    ...mapActions(["changeSidebarState"])
+    ...mapActions(["changeSidebarState", "getUserEmail"]),
+    async startComponent() {
+      this.user = await this.getUserEmail();
+    }
   }
 };
 </script>

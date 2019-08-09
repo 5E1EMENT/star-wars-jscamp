@@ -62,7 +62,7 @@ export default {
     /**
      * Method allows to get current sidebar state
      */
-    ...mapGetters(["getSidebarState", "getUserid"])
+    ...mapGetters(["getSidebarState"])
   },
   watch: {
     /**
@@ -79,8 +79,7 @@ export default {
      * Method allows to get uid from vuex
      */
     async startComponent() {
-      const uid = await this.getUid();
-      this.uid = uid;
+      this.uid = await this.getUid();
     },
     /**
      * Method redirects user to the home page

@@ -5,7 +5,7 @@ export default {
     uid: null
   },
   getters: {
-    getUserid: state => state.uid
+    getUserId: state => state.uid
   },
   mutations: {
     setUid: (state, uid) => (state.uid = uid)
@@ -33,8 +33,7 @@ export default {
     /**
      * Register action allows to register user with name, email and password.
      *
-     * @param {Object} context vuex context.
-     * @param {Function} context.dispatch action dispatcher.
+     * @param {Object} store vuex context.
      * @param {Object} payload action payload.
      * @param {string} payload.email user email.
      * @param {string} payload.password user password.
@@ -59,6 +58,14 @@ export default {
     async getUid() {
       const user = await firebase.auth().currentUser;
       return user ? user.uid : null;
+    },
+    /**
+     * Action allows to
+     * get current user email
+     */
+    async getUserEmail() {
+      const user = await firebase.auth().currentUser;
+      return user ? user.email : null;
     },
     /**
      * Acton allows to logout current user

@@ -63,14 +63,13 @@ export default {
   data: () => ({
     loading: true,
     films: null,
-    filmsData: null
   }),
   /**
    * Getting films data from vuex
    */
   async mounted() {
-    this.filmsData = await this.loadFilms();
-    this.films = this.filmsData.map(item => item.fields);
+    const filmsData = await this.loadFilms();
+    this.films = filmsData.map(item => item.fields);
     this.loading = false;
   },
   methods: {

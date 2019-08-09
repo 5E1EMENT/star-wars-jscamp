@@ -29,24 +29,24 @@
         :key="index + film.title"
         tag="tr"
         :to="{ name: 'Film', params: { filmDbId: index }}"
-        :class="$style['tr-active']"
+        :class="$style['trActive']"
       >
-        <td :class="$style['td-align']">
+        <td :class="$style['tdAlign']">
           {{ film.title }}
         </td>
-        <td :class="$style['td-align']">
+        <td :class="$style['tdAlign']">
           {{ film.episode_id }}
         </td>
-        <td :class="$style['td-align']">
+        <td :class="$style['tdAlign']">
           {{ formatDate(film.release_date) }}
         </td>
-        <td :class="$style['td-align']">
+        <td :class="$style['tdAlign']">
           {{ film.director }}
         </td>
-        <td :class="$style['td-align']">
+        <td :class="$style['tdAlign']">
           {{ film.producer }}
         </td>
-        <td :class="$style['td-align']">
+        <td :class="$style['tdAlign']">
           {{ film.opening_crawl }}
         </td>
       </router-link>
@@ -84,11 +84,11 @@ export default {
 };
 </script>
 <style lang="scss" module>
-.tr-active:hover {
+.trActive:hover {
   cursor: pointer;
 }
 
-.td-align {
+.tdAlign {
   padding: 10px !important;
   text-align: center;
 }

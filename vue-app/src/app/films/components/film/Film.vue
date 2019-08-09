@@ -36,7 +36,7 @@
             class="text-center"
             :class="$style['td-align']"
           >
-            {{ new Date(film.release_date).toDateString() }}
+            {{ formatDate(film.release_date) }}
           </td>
           <td
             class="text-center"
@@ -84,7 +84,10 @@ export default {
     /**
      * @param loadFilm load current film from db
      */
-    ...mapActions(["loadFilm"])
+    ...mapActions(["loadFilm"]),
+    formatDate(date) {
+      return new Date(date).toDateString();
+    }
   }
 };
 </script>

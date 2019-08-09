@@ -5,7 +5,7 @@ export default {
     uid: null
   },
   getters: {
-    getUid: state => state.uid
+    getUserid: state => state.uid
   },
   mutations: {
     setUid: (state, uid) => (state.uid = uid)

@@ -62,7 +62,7 @@ export default {
     /**
      * Method allows to get current sidebar state
      */
-    ...mapGetters(["getSidebarState"])
+    ...mapGetters(["getSidebarState", "getUserid"])
   },
   watch: {
     /**
@@ -73,7 +73,6 @@ export default {
       this.startComponent();
     }
   },
-  async updated() {},
   methods: {
     ...mapActions(["getUid", "logout"]),
     /**
@@ -97,7 +96,6 @@ export default {
      */
     async logoutUser() {
       await this.logout();
-      this.uid = null;
       this.$router.push("/login");
     },
     /**

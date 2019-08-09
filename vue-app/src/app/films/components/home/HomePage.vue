@@ -25,29 +25,29 @@
     </thead>
     <tbody>
       <router-link
-        v-for="film in films"
-        :key="film.pk"
+        v-for="(film, index) in films"
+        :key="index"
         tag="tr"
-        :to="{ name: 'Film', params: { filmDbId: film.pk - 1 }}"
+        :to="{ name: 'Film', params: { filmDbId: index }}"
         :class="$style['tr-active']"
       >
         <td :class="$style['td-align']">
-          {{ film.fields.title }}
+          {{ film.title }}
         </td>
         <td :class="$style['td-align']">
-          {{ film.fields.episode_id }}
+          {{ film.episode_id }}
         </td>
         <td :class="$style['td-align']">
-          {{ new Date(film.fields.release_date).toDateString() }}
+          {{ formatDate(film.release_date) }}
         </td>
         <td :class="$style['td-align']">
-          {{ film.fields.director }}
+          {{ film.director }}
         </td>
         <td :class="$style['td-align']">
-          {{ film.fields.producer }}
+          {{ film.producer }}
         </td>
         <td :class="$style['td-align']">
-          {{ film.fields.opening_crawl }}
+          {{ film.opening_crawl }}
         </td>
       </router-link>
     </tbody>
@@ -62,25 +62,30 @@ export default {
   name: "HomePage",
   data: () => ({
     loading: true,
-    films: null
+    films: null,
+    filmsData: null,
+    a: []
   }),
   /**
    * Getting films data from vuex
    */
   async mounted() {
-    this.films = await this.loadFilms()
+    this.filmsData = await this.loadFilms();
+    this.films = this.filmsData.map(item => item.fields);
     this.loading = false;
   },
   methods: {
     /**
      * @param loadFilms load films from db
      */
-    ...mapActions(["loadFilms"])
+    ...mapActions(["loadFilms"]),
+    formatDate(date) {
+      return new Date(date).toDateString();
+    }
   }
 };
 </script>
 <style lang="scss" module>
-
 .tr-active:hover {
   cursor: pointer;
 }

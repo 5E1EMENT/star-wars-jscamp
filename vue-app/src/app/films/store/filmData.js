@@ -35,6 +35,22 @@ export default {
         .filter((planet, i) => i in planetsIdArr)
         .map(planet => planet.fields);
       return planets;
+    },
+    async loadSpecies(satate, filmId) {
+      const speciesIdArr = (await firebase
+        .database()
+        .ref(`swapi/films/${filmId}/fields/planets`)
+        .once("value")).val();
+
+      const speciesData = (await firebase
+        .database()
+        .ref(`swapi/species`)
+        .once("value")).val();
+
+      const species = speciesData
+        .filter((kind, i) => i in speciesIdArr)
+        .map(kind => kind.fields);
+      return species;
     }
   }
 };

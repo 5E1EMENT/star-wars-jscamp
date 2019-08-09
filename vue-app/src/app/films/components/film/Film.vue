@@ -27,7 +27,6 @@
       <tbody>
         <tr
           :class="$style['trActive']"
-          @click="showFilmCharacters"
         >
           <td
             :class="$style['tdAlign']"
@@ -57,18 +56,17 @@
         </tr>
       </tbody>
     </v-simple-table>
-
-    <FilmCharacters ref="filmCharacters" />
+    <FilmAccordeon v-if="!loading" />
   </div>
 </template>
 <script>
 import { mapActions } from "vuex";
-import FilmCharacters from './FilmCharacters.vue'
+import FilmAccordeon from './FilmAccordeon'
 
 
 export default {
   components: {
-    FilmCharacters
+    FilmAccordeon
   },
   data: () => ({
     loading: true,
@@ -95,9 +93,6 @@ export default {
     formatDate(date) {
       return new Date(date).toDateString();
     },
-    showFilmCharacters() {
-      this.$refs.filmCharacters.loadFilmCharacters()
-    }
   },
 };
 </script>

@@ -5,60 +5,60 @@
       <thead>
         <tr>
           <th class="text-center">
+            Climate
+          </th>
+          <th class="text-center">
+            Diameter
+          </th>
+          <th class="text-center">
+            Gravity
+          </th>
+          <th class="text-center">
             Name
           </th>
           <th class="text-center">
-            Birth year
+            Orbital period
           </th>
           <th class="text-center">
-            Height
+            Population
           </th>
           <th class="text-center">
-            Mass
+            Rotation period
           </th>
           <th class="text-center">
-            Hair color
-          </th>
-          <th class="text-center">
-            Eye color
-          </th>
-          <th class="text-center">
-            Skin color
-          </th>
-          <th class="text-center">
-            Gender
+            Terrain 
           </th>
         </tr>
       </thead>
       <tbody>
         <tr
-          v-for="(character, index) in characters"
-          :key="index + character.birth_year"
+          v-for="(planet, index) in planets"
+          :key="index + planet.diameter"
           :class="$style['trActive']"
         >
           <td :class="$style['tdAlign']">
-            {{ character.name }}
+            {{ planet.climate }}
           </td>
           <td :class="$style['tdAlign']">
-            {{ character.birth_year }}
+            {{ planet.diameter }}
           </td>
           <td :class="$style['tdAlign']">
-            {{ character.height }}
+            {{ planet.gravity }}
           </td>
           <td :class="$style['tdAlign']">
-            {{ character.mass }}
+            {{ planet.name }}
           </td>
           <td :class="$style['tdAlign']">
-            {{ character.hair_color }}
+            {{ planet.orbital_period }}
           </td>
           <td :class="$style['tdAlign']">
-            {{ character.eye_color }}
+            {{ planet.population }}
           </td>
           <td :class="$style['tdAlign']">
-            {{ character.skin_color }}
+            {{ planet.rotation_period }}
           </td>
           <td :class="$style['tdAlign']">
-            {{ character.gender }}
+            {{ planet.terrain }}
           </td>
         </tr>
       </tbody>
@@ -72,22 +72,22 @@ export default {
   data: () => ({
     loadingSpinner: false,
     loadingTable: false,
-    characters: null
+    planets: null
   }),
   async mounted() {
     // const filmID = this.$route.params.filmDbId;
     // this.characters = await this.loadCharacters(filmID)
   },
   methods: {
-    ...mapActions(["loadCharactersId", "loadCharacters"]),
+    ...mapActions(["loadPlanets"]),
     /**
      * Method allows to get film characters
      * from vuex
      */
-    async loadFilmCharacters() {
+    async loadFilmPlanets() {
       this.loadingSpinner = true
       const filmID = this.$route.params.filmDbId;
-      this.characters = await this.loadCharacters(filmID);
+      this.planets = await this.loadPlanets(filmID);
       this.loadingSpinner = false
       this.loadingTable = true
     }

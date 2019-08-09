@@ -1,17 +1,24 @@
-import Vue from 'vue'
-import App from './App.vue'
-import vuetify from './plugins/vuetify';
+import Vue from "vue";
+import App from "./App.vue";
+import vuetify from "./plugins/vuetify";
 import router from "@/router/router.js";
-import store from "@/store/store.js"
-import Vuelidate from 'vuelidate'
+import store from "@/store/store.js";
+import Vuelidate from "vuelidate";
+import axios from "axios";
+import VueAxios from "vue-axios";
 
-import firebase from 'firebase/app'
-import 'firebase/auth'
-import 'firebase/database'
+import Loader from "./app/utils/TheLoader";
 
-Vue.config.productionTip = false
-Vue.use(Vuelidate)
+import firebase from "firebase/app";
+import "firebase/auth";
+import "firebase/database";
 
+Vue.config.productionTip = false;
+
+Vue.use(Vuelidate);
+Vue.use(VueAxios, axios);
+
+Vue.component("Loader", Loader);
 /**
  * Firebase init configuration
  */
@@ -23,7 +30,7 @@ firebase.initializeApp({
   storageBucket: "",
   messagingSenderId: "339337547545",
   appId: "1:339337547545:web:ee902236417440d2"
-})
+});
 
 /**
  * Current application
@@ -33,14 +40,14 @@ let app;
 /**
  * Allows to display app
  */
-firebase.auth().onAuthStateChanged(()=> {
-  if(!app) {
+firebase.auth().onAuthStateChanged(() => {
+  if (!app) {
     app = new Vue({
       vuetify,
       router,
       store,
       firebase,
       render: h => h(App)
-    }).$mount('#app')
+    }).$mount("#app");
   }
-})
+});

@@ -11,7 +11,7 @@ Vue.use(Router);
 /**
  * Router - application routes functional
  */
-const router =  new Router({
+global.router =  new Router({
   mode: "history",
   routes: [
     {

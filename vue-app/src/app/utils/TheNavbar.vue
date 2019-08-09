@@ -32,8 +32,12 @@ export default {
   methods: {
     /**
      * @param changeSidebarState allows to invert(!) sidebar state from vuex
+     * @param getUserEmail allows to get user email
      */
     ...mapActions(["changeSidebarState", "getUserEmail"]),
+    /**
+     * Method allows to get user email from vuex
+     */
     async startComponent() {
       this.user = await this.getUserEmail();
     }

@@ -26,7 +26,7 @@
     <tbody>
       <router-link
         v-for="(film, index) in films"
-        :key="index"
+        :key="index + film.title"
         tag="tr"
         :to="{ name: 'Film', params: { filmDbId: index }}"
         :class="$style['tr-active']"
@@ -63,8 +63,7 @@ export default {
   data: () => ({
     loading: true,
     films: null,
-    filmsData: null,
-    a: []
+    filmsData: null
   }),
   /**
    * Getting films data from vuex

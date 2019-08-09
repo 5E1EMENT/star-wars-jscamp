@@ -12,7 +12,7 @@
           <v-flex
             xs12
             sm8
-            md6
+            md4
           >
             <v-card class="elevation-12">
               <v-toolbar

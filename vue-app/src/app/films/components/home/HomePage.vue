@@ -55,7 +55,6 @@
 </template>
 
 <script>
-import axios from "axios";
 import { mapActions } from "vuex";
 
 export default {
@@ -68,8 +67,7 @@ export default {
    * Getting films data from vuex
    */
   async mounted() {
-    const filmsData = await this.loadFilms();
-    this.films = filmsData.map(item => item.fields);
+    this.films = await this.loadFilms();
     this.loading = false;
   },
   methods: {

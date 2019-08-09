@@ -43,7 +43,7 @@ export default {
       return (await firebase
         .database()
         .ref("swapi/films")
-        .once("value")).val();
+        .once("value")).val().map(item => item.fields);
     },
     async loadFilm(state, filmId) {
       return (await firebase

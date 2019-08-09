@@ -25,7 +25,10 @@
         </tr>
       </thead>
       <tbody>
-        <tr :class="$style['trActive']">
+        <tr
+          :class="$style['trActive']"
+          @click="showFilmCharacters"
+        >
           <td
             :class="$style['tdAlign']"
           >
@@ -54,13 +57,19 @@
         </tr>
       </tbody>
     </v-simple-table>
+
+    <FilmCharacters ref="filmCharacters" />
   </div>
 </template>
 <script>
-import axios from "axios";
 import { mapActions } from "vuex";
+import FilmCharacters from './FilmCharacters.vue'
+
 
 export default {
+  components: {
+    FilmCharacters
+  },
   data: () => ({
     loading: true,
     film: null
@@ -80,10 +89,16 @@ export default {
      * @param loadFilm load current film from db
      */
     ...mapActions(["loadFilm"]),
+    /**
+     * Method formats date into normal view
+     */
     formatDate(date) {
       return new Date(date).toDateString();
+    },
+    showFilmCharacters() {
+      this.$refs.filmCharacters.loadFilmCharacters()
     }
-  }
+  },
 };
 </script>
 <style lang="scss" module>

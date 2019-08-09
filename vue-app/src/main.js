@@ -4,8 +4,6 @@ import vuetify from "./plugins/vuetify";
 import router from "@/router/router.js";
 import store from "@/store/store.js";
 import Vuelidate from "vuelidate";
-import axios from "axios";
-import VueAxios from "vue-axios";
 
 import Loader from "./app/utils/TheLoader";
 
@@ -16,7 +14,6 @@ import "firebase/database";
 Vue.config.productionTip = false;
 
 Vue.use(Vuelidate);
-Vue.use(VueAxios, axios);
 
 Vue.component("Loader", Loader);
 /**

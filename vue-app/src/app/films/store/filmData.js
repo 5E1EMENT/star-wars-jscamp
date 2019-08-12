@@ -5,6 +5,12 @@ export default {
   getters: {},
   mutations: {},
   actions: {
+    /**
+     * Method allows to get characters
+     * on this film from firebase db
+     * @param {Object} state vuex state
+     * @param {Number} filmId film id payload
+     */
     async loadCharacters(state, filmId) {
       const charactersIdArr = (await firebase
         .database()
@@ -20,6 +26,12 @@ export default {
         .map(character => character.fields);
       return characters;
     },
+    /**
+     * Method allows to get planets
+     * on this film from firebase db
+     * @param {Object} state vuex state
+     * @param {Number} filmId film id payload
+     */
     async loadPlanets(satate, filmId) {
       const planetsIdArr = (await firebase
         .database()
@@ -36,6 +48,12 @@ export default {
         .map(planet => planet.fields);
       return planets;
     },
+    /**
+     * Method allows to get species
+     * on this film from firebase db
+     * @param {Object} state vuex state
+     * @param {Number} filmId film id payload
+     */
     async loadSpecies(satate, filmId) {
       const speciesIdArr = (await firebase
         .database()

@@ -26,10 +26,10 @@
             Language
           </th>
           <th class="text-center">
-            Name 
+            Name
           </th>
           <th class="text-center">
-            Skin colors 
+            Skin colors
           </th>
         </tr>
       </thead>
@@ -80,22 +80,21 @@ export default {
     loadingTable: false,
     species: null
   }),
-  async mounted() {
-    // const filmID = this.$route.params.filmDbId;
-    // this.characters = await this.loadCharacters(filmID)
-  },
   methods: {
+    /**
+     * @param loadSpecies load current film species from db
+     */
     ...mapActions(["loadSpecies"]),
     /**
-     * Method allows to get film characters
+     * Method allows to get film species
      * from vuex
      */
     async loadFilmSpecies() {
-      this.loadingSpinner = true
+      this.loadingSpinner = true;
       const filmID = this.$route.params.filmDbId;
       this.species = await this.loadSpecies(filmID);
-      this.loadingSpinner = false
-      this.loadingTable = true
+      this.loadingSpinner = false;
+      this.loadingTable = true;
     }
   }
 };

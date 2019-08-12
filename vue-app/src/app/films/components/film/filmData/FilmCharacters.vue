@@ -74,22 +74,21 @@ export default {
     loadingTable: false,
     characters: null
   }),
-  async mounted() {
-    // const filmID = this.$route.params.filmDbId;
-    // this.characters = await this.loadCharacters(filmID)
-  },
   methods: {
+    /**
+     * @param loadCharacters load current film characters from db
+     */
     ...mapActions(["loadCharacters"]),
     /**
      * Method allows to get film characters
      * from vuex
      */
     async loadFilmCharacters() {
-      this.loadingSpinner = true
+      this.loadingSpinner = true;
       const filmID = this.$route.params.filmDbId;
       this.characters = await this.loadCharacters(filmID);
-      this.loadingSpinner = false
-      this.loadingTable = true
+      this.loadingSpinner = false;
+      this.loadingTable = true;
     }
   }
 };

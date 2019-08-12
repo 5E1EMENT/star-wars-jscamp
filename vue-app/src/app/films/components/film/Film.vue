@@ -25,32 +25,20 @@
         </tr>
       </thead>
       <tbody>
-        <tr
-          :class="$style['trActive']"
-        >
-          <td
-            :class="$style['tdAlign']"
-          >
+        <tr :class="$style['trActive']">
+          <td :class="$style['tdAlign']">
             {{ film.episode_id }}
           </td>
-          <td
-            :class="$style['tdAlign']"
-          >
+          <td :class="$style['tdAlign']">
             {{ formatDate(film.release_date) }}
           </td>
-          <td
-            :class="$style['tdAlign']"
-          >
+          <td :class="$style['tdAlign']">
             {{ film.director }}
           </td>
-          <td
-            :class="$style['tdAlign']"
-          >
+          <td :class="$style['tdAlign']">
             {{ film.producer }}
           </td>
-          <td
-            :class="$style['tdAlign']"
-          >
+          <td :class="$style['tdAlign']">
             {{ film.opening_crawl }}
           </td>
         </tr>
@@ -61,8 +49,7 @@
 </template>
 <script>
 import { mapActions } from "vuex";
-import FilmAccordeon from './FilmAccordeon'
-
+import FilmAccordeon from "./FilmAccordeon";
 
 export default {
   components: {
@@ -89,11 +76,12 @@ export default {
     ...mapActions(["loadFilm"]),
     /**
      * Method formats date into normal view
+     * @param date film release date from db
      */
     formatDate(date) {
       return new Date(date).toDateString();
-    },
-  },
+    }
+  }
 };
 </script>
 <style lang="scss" module>

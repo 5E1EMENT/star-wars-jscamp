@@ -26,7 +26,7 @@
             Rotation period
           </th>
           <th class="text-center">
-            Terrain 
+            Terrain
           </th>
         </tr>
       </thead>
@@ -74,22 +74,21 @@ export default {
     loadingTable: false,
     planets: null
   }),
-  async mounted() {
-    // const filmID = this.$route.params.filmDbId;
-    // this.characters = await this.loadCharacters(filmID)
-  },
   methods: {
+    /**
+     * @param loadPlanets load current film planets from db
+     */
     ...mapActions(["loadPlanets"]),
     /**
-     * Method allows to get film characters
+     * Method allows to get film planets
      * from vuex
      */
     async loadFilmPlanets() {
-      this.loadingSpinner = true
+      this.loadingSpinner = true;
       const filmID = this.$route.params.filmDbId;
       this.planets = await this.loadPlanets(filmID);
-      this.loadingSpinner = false
-      this.loadingTable = true
+      this.loadingSpinner = false;
+      this.loadingTable = true;
     }
   }
 };

@@ -12,7 +12,7 @@ export default {
     /**
      * Getter allows to get current
      * sidebar state
-     * @param {*} state state
+     * @param {Object} state vuex state
      */
     getSidebarState(state) {
       return state.sidebarState;
@@ -22,7 +22,7 @@ export default {
     /**
      * Mutation allows to invert
      * sidebar state by click
-     * @param {*} state state
+     * @param {Object} state vuex state
      */
     invertSidebarState(state) {
       state.sidebarState = !state.sidebarState;
@@ -31,7 +31,8 @@ export default {
   actions: {
     /**
      * Action emits mutation invertSidebarState
-     * @param {*} param0 state
+     * @param {Object} context vuex context
+     * @param {Function} context.commit mutation initiation.
      */
     changeSidebarState({ commit }) {
       commit("invertSidebarState");
@@ -45,6 +46,11 @@ export default {
         .ref("swapi/films")
         .once("value")).val().map(item => item.fields);
     },
+    /**
+     * 
+     * @param {Object} state vuex state
+     * @param {Number} filmId current film id
+     */
     async loadFilm(state, filmId) {
       return (await firebase
         .database()

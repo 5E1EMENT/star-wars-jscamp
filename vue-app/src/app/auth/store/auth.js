@@ -15,7 +15,6 @@ export default {
      * Login action allows to login user with email and password.
      *
      * @param {Object} context vuex context.
-     * @param {Function} context.dispatch action dispatcher.
      * @param {Function} context.commit mutation initiation.
      * @param {Object} payload action payload.
      * @param {string} payload.email user email.
@@ -33,16 +32,17 @@ export default {
     /**
      * Register action allows to register user with name, email and password.
      *
-     * @param {Object} store vuex context.
+     * @param {Object} context vuex context.
+     * @param {Function} context.dispatch action initiation
      * @param {Object} payload action payload.
      * @param {string} payload.email user email.
      * @param {string} payload.password user password.
      * @param {string} payload.name user name.
      */
-    async register(store, { email, password, name }) {
+    async register({dispatch}, { email, password, name }) {
       try {
         await firebase.auth().createUserWithEmailAndPassword(email, password);
-        const uid = await store.getters.getUid;
+        const uid = await dispatch('getUid')
         await firebase
           .database()
           .ref(`/users/${uid}/info`)

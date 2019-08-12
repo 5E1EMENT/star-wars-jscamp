@@ -31,6 +31,7 @@
                   required
                   @input="$v.name.$touch()"
                   @blur="$v.name.$touch()"
+                  @keyup.enter="submitHandler"
                 />
                 <v-text-field
                   v-model.trim="email"
@@ -39,6 +40,7 @@
                   required
                   @input="$v.email.$touch()"
                   @blur="$v.email.$touch()"
+                  @keyup.enter="submitHandler"
                 />
                 <v-text-field
                   v-model.trim="password"
@@ -47,6 +49,7 @@
                   required
                   @input="$v.password.$touch()"
                   @blur="$v.password.$touch()"
+                  @keyup.enter="submitHandler"
                 />
               </v-form>
             </v-card-text>

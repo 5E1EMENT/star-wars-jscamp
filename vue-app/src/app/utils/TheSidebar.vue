@@ -3,6 +3,7 @@
     <v-navigation-drawer
       :value="getSidebarState"
       app
+      clipped
     >
       <v-list
         v-if="uid !== null"

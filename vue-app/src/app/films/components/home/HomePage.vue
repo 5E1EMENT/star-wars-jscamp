@@ -75,6 +75,10 @@ export default {
      * @param loadFilms load films from db
      */
     ...mapActions(["loadFilms"]),
+    /**
+     * Method formats date into normal view
+     * @param date film release date from db
+     */
     formatDate(date) {
       return new Date(date).toDateString();
     }

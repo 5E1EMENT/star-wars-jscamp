@@ -5,7 +5,7 @@ import router from "@/router/router.js";
 import store from "@/store/store.js";
 import Vuelidate from "vuelidate";
 
-import Loader from "./app/utils/TheLoader";
+import Loader from "./app/utils/BaseLoader";
 
 import firebase from "firebase/app";
 import "firebase/auth";

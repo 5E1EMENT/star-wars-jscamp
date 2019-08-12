@@ -4,6 +4,7 @@
       app
       color="indigo"
       dark
+      clipped-left
     >
       <v-app-bar-nav-icon @click.stop="changeSidebarState" />
       <v-toolbar-title>My vue film application</v-toolbar-title>
@@ -25,8 +26,9 @@ export default {
      * When route changes,
      * our component will be rerendered
      */
-    $route() {
-      this.startComponent();
+    $route: {
+      handler: 'startComponent',
+      immediate: true
     }
   },
   methods: {

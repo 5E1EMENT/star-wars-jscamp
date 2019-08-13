@@ -1,13 +1,12 @@
-import Vue from 'vue';
-import Router from 'vue-router'
-import firebase from 'firebase/app'
+import Vue from "vue";
+import Router from "vue-router";
+import firebase from "firebase/app";
 
-import {default as auth} from '@/app/auth/routes.js'
-import {default as home} from '@/app/films/routes.js'
-import {default as admin} from '@/app/admin/routes.js'
+import { default as auth } from "@/app/auth/routes.js";
+import { default as admin } from "@/app/admin/routes.js";
+import { default as home } from "@/app/films/routes.js";
 
-
-const PageNotFound = () => import('@/pages/PageNotFound')
+const PageNotFound = () => import("@/pages/PageNotFound");
 
 Vue.use(Router);
 
@@ -31,14 +30,14 @@ global.router = new Router({
  * Router guard
  */
 router.beforeEach((to, from, next) => {
-  const currentUser = firebase.auth().currentUser
-  const requireAuth = to.matched.some(record => record.meta.auth)
+  const currentUser = firebase.auth().currentUser;
+  const requireAuth = to.matched.some(record => record.meta.auth);
 
   if (requireAuth && !currentUser) {
-    next('/login')
-  }else {
-    next()
+    next("/login");
+  } else {
+    next();
   }
-})
+});
 
 export default router;

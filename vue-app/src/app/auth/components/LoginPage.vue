@@ -71,7 +71,7 @@
 <script>
 /** Mehtods allows to validate form fields */
 import { email, required, minLength } from "vuelidate/lib/validators";
-import checkIsAdmin from '@/app/core/helpers/checkIsAdmin.js'
+import checkIsAdmin from "@/app/core/helpers/checkIsAdmin.js";
 
 export default {
   name: "Login",
@@ -94,6 +94,7 @@ export default {
   computed: {
     /**
      * Password error handler
+     * @returns {Array} passwrod errors
      */
     passwordErrors() {
       const errors = [];
@@ -107,6 +108,7 @@ export default {
     },
     /**
      * Email error handler
+     * @returns {Array} email errors
      */
     emailErrors() {
       const errors = [];
@@ -135,13 +137,11 @@ export default {
       };
       try {
         await this.$store.dispatch("login", formData);
-        console.log(checkIsAdmin())
-        if(checkIsAdmin()) {
+        if (checkIsAdmin()) {
           this.$router.push("/films");
         } else {
           this.$router.push("/home");
-        } 
-        
+        }
       } catch (err) {
         /** Simple error handler */
         this.error = err.code;

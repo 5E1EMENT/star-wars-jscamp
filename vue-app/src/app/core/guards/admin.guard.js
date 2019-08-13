@@ -1,5 +1,4 @@
-
-import checkIsAdmin from '@/app/core/helpers/checkIsAdmin.js'
+import checkIsAdmin from "@/app/core/helpers/checkIsAdmin.js";
 
 /**
  * Checks if the user is admin
@@ -12,6 +11,6 @@ export function isUserAdmin(to, from, next) {
   if (checkIsAdmin()) {
     next();
   } else {
-    next('/login');
+    next("/login");
   }
 }

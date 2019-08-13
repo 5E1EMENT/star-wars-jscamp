@@ -1,4 +1,4 @@
-import firebase from 'firebase/app'
+import firebase from "firebase/app";
 /**
  * Checks if the user is logged in and if he has access to the page.
  * Redirects to the requested page or another one depending on conditions
@@ -7,11 +7,11 @@ import firebase from 'firebase/app'
  * @param {Function} next - Must be called to resolve the hook
  */
 export function userLoggedIn(to, from, next) {
-    const currentUser = firebase.auth().currentUser
+  const currentUser = firebase.auth().currentUser;
   if (currentUser != null) {
     next();
   } else {
-    next('login');
+    next("login");
   }
 }
 
@@ -22,9 +22,9 @@ export function userLoggedIn(to, from, next) {
  * @param {Function} next - Must be called to resolve the hook
  */
 export function authPageGuard(to, from, next) {
-  const currentUser = firebase.auth().currentUser
+  const currentUser = firebase.auth().currentUser;
   if (currentUser) {
-    next('home');
+    next("home");
   } else {
     next();
   }

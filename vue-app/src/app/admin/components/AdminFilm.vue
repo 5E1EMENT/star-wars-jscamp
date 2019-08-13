@@ -44,13 +44,16 @@
         </tr>
       </tbody>
     </v-simple-table>
+    <AdminFilmEditor />
   </div>
 </template>
 <script>
 import { mapActions } from "vuex";
+import AdminFilmEditor from './AdminFilmEditor'
 
 export default {
   components: {
+    AdminFilmEditor
   },
   data: () => ({
     loading: true,
@@ -62,7 +65,6 @@ export default {
   async mounted() {
     const filmID = this.$route.params.filmDbId;
     this.film = await this.loadFilm(filmID);
-    this.filmTitle = this.film.title;
     this.loading = false;
   },
 
@@ -74,6 +76,7 @@ export default {
     /**
      * Method formats date into normal view
      * @param date film release date from db
+     * @return {Date} new date format
      */
     formatDate(date) {
       return new Date(date).toDateString();

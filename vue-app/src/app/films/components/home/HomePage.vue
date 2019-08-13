@@ -78,6 +78,7 @@ export default {
     /**
      * Method formats date into normal view
      * @param date film release date from db
+     * @returns {Date} new date format
      */
     formatDate(date) {
       return new Date(date).toDateString();

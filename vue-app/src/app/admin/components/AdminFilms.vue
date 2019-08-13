@@ -1,6 +1,8 @@
 <template>
   <div>
-    <h1>Admin films editor</h1>
+    <h1 :class="$style.center">
+      Admin films editor
+    </h1>
     <Loader v-if="loading" />
     <v-simple-table v-else>
       <thead>
@@ -81,6 +83,7 @@ export default {
     /**
      * Method formats date into normal view
      * @param date film release date from db
+     * @returns {Date} new date format
      */
     formatDate(date) {
       return new Date(date).toDateString();
@@ -89,6 +92,9 @@ export default {
 };
 </script>
 <style lang="scss" module>
+.center {
+  text-align: center;
+}
 .trActive:hover {
   cursor: pointer;
 }

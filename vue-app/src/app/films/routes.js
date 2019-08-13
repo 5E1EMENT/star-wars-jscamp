@@ -11,6 +11,7 @@ export default [
   {
     path: "/film/:filmDbId",
     name: "Film",
+    meta: { auth: true },
     component: () => import("@/app/films/components/film/Film.vue"),
     beforeEnter: userLoggedIn,
   }

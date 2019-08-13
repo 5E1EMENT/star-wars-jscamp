@@ -55,6 +55,7 @@
   
 <script>
 import { mapGetters, mapActions } from "vuex";
+import checkIsAdmin from "@/app/core/helpers/checkIsAdmin.js";
 export default {
   name: "HomePageSidebar",
   data: () => ({
@@ -87,7 +88,11 @@ export default {
      * Method redirects user to the home page
      */
     home() {
-      this.$router.push("/home");
+      if (checkIsAdmin()) {
+        this.$router.push("/films");
+      } else {
+        this.$router.push("/home");
+      }
     },
     /**
      * Method logout the user

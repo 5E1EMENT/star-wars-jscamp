@@ -4,6 +4,7 @@ import firebase from 'firebase/app'
 
 import {default as auth} from '@/app/auth/routes.js'
 import {default as home} from '@/app/films/routes.js'
+import {default as admin} from '@/app/admin/routes.js'
 
 
 const PageNotFound = () => import('@/pages/PageNotFound')
@@ -21,7 +22,8 @@ global.router = new Router({
       component: PageNotFound
     },
     ...auth,
-    ...home
+    ...home,
+    ...admin
   ]
 });
 

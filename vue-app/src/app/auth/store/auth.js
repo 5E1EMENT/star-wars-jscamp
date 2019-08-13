@@ -5,7 +5,8 @@ export default {
     uid: null
   },
   getters: {
-    getUserId: state => state.uid
+    getUserId: state => state.uid,
+    checkIsAdmin: (state,email) => process.env.VUE_APP_ADMIN_EMAIL === email
   },
   mutations: {
     setUid: (state, uid) => (state.uid = uid)
@@ -72,6 +73,10 @@ export default {
      */
     async logout() {
       await firebase.auth().signOut();
+    },
+    async isAdmin() {
+      const user = await firebase.auth().currentUser.email
+      return getters.checkIsAdmin(user)
     }
   }
 };

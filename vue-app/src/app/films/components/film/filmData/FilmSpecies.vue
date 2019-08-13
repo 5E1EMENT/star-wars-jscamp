@@ -1,7 +1,7 @@
 <template>
   <div>
     <Loader v-if="loadingSpinner" />
-    <v-simple-table>
+    <v-simple-table v-if="!loadingSpinner">
       <thead>
         <tr>
           <th :class="$style.trAlign">

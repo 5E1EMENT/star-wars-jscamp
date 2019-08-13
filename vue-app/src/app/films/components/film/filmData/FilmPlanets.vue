@@ -1,7 +1,7 @@
 <template>
   <div>
     <Loader v-if="loadingSpinner" />
-    <v-simple-table v-if="loadingTable">
+    <v-simple-table>
       <thead>
         <tr>
           <th class="text-center">
@@ -34,30 +34,30 @@
         <tr
           v-for="(planet, index) in planets"
           :key="index + planet.diameter"
-          :class="$style['trActive']"
+          :class="$style.trActive"
         >
-          <td :class="$style['tdAlign']">
+          <td :class="$style.tdAlign">
             {{ planet.climate }}
           </td>
-          <td :class="$style['tdAlign']">
+          <td :class="$style.tdAlign">
             {{ planet.diameter }}
           </td>
-          <td :class="$style['tdAlign']">
+          <td :class="$style.tdAlign">
             {{ planet.gravity }}
           </td>
-          <td :class="$style['tdAlign']">
+          <td :class="$style.tdAlign">
             {{ planet.name }}
           </td>
-          <td :class="$style['tdAlign']">
+          <td :class="$style.tdAlign">
             {{ planet.orbital_period }}
           </td>
-          <td :class="$style['tdAlign']">
+          <td :class="$style.tdAlign">
             {{ planet.population }}
           </td>
-          <td :class="$style['tdAlign']">
+          <td :class="$style.tdAlign">
             {{ planet.rotation_period }}
           </td>
-          <td :class="$style['tdAlign']">
+          <td :class="$style.tdAlign">
             {{ planet.terrain }}
           </td>
         </tr>
@@ -71,7 +71,6 @@ import { mapActions } from "vuex";
 export default {
   data: () => ({
     loadingSpinner: false,
-    loadingTable: false,
     planets: null
   }),
   methods: {
@@ -88,7 +87,6 @@ export default {
       const filmID = this.$route.params.filmDbId;
       this.planets = await this.loadPlanets(filmID);
       this.loadingSpinner = false;
-      this.loadingTable = true;
     }
   }
 };

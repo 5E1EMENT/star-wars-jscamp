@@ -25,20 +25,20 @@
         </tr>
       </thead>
       <tbody>
-        <tr :class="$style['trActive']">
-          <td :class="$style['tdAlign']">
+        <tr :class="$style.trActive">
+          <td :class="$style.tdAlign">
             {{ film.episode_id }}
           </td>
-          <td :class="$style['tdAlign']">
+          <td :class="$style.tdAlign">
             {{ formatDate(film.release_date) }}
           </td>
-          <td :class="$style['tdAlign']">
+          <td :class="$style.tdAlign">
             {{ film.director }}
           </td>
-          <td :class="$style['tdAlign']">
+          <td :class="$style.tdAlign">
             {{ film.producer }}
           </td>
-          <td :class="$style['tdAlign']">
+          <td :class="$style.tdAlign">
             {{ film.opening_crawl }}
           </td>
         </tr>

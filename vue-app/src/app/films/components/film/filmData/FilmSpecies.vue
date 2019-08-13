@@ -1,7 +1,7 @@
 <template>
   <div>
     <Loader v-if="loadingSpinner" />
-    <v-simple-table v-if="loadingTable">
+    <v-simple-table>
       <thead>
         <tr>
           <th class="text-center">
@@ -37,33 +37,33 @@
         <tr
           v-for="(type, index) in species"
           :key="index + type.name"
-          :class="$style['trActive']"
+          :class="$style.trActive"
         >
-          <td :class="$style['tdAlign']">
+          <td :class="$style.tdAlign">
             {{ type.average_height }}
           </td>
-          <td :class="$style['tdAlign']">
+          <td :class="$style.tdAlign">
             {{ type.average_lifespan }}
           </td>
-          <td :class="$style['tdAlign']">
+          <td :class="$style.tdAlign">
             {{ type.classification }}
           </td>
-          <td :class="$style['tdAlign']">
+          <td :class="$style.tdAlign">
             {{ type.designation }}
           </td>
-          <td :class="$style['tdAlign']">
+          <td :class="$style.tdAlign">
             {{ type.eye_colors }}
           </td>
-          <td :class="$style['tdAlign']">
+          <td :class="$style.tdAlign">
             {{ type.hair_colors }}
           </td>
-          <td :class="$style['tdAlign']">
+          <td :class="$style.tdAlign">
             {{ type.language }}
           </td>
-          <td :class="$style['tdAlign']">
+          <td :class="$style.tdAlign">
             {{ type.name }}
           </td>
-          <td :class="$style['tdAlign']">
+          <td :class="$style.tdAlign">
             {{ type.skin_colors }}
           </td>
         </tr>
@@ -77,7 +77,6 @@ import { mapActions } from "vuex";
 export default {
   data: () => ({
     loadingSpinner: false,
-    loadingTable: false,
     species: null
   }),
   methods: {
@@ -94,7 +93,6 @@ export default {
       const filmID = this.$route.params.filmDbId;
       this.species = await this.loadSpecies(filmID);
       this.loadingSpinner = false;
-      this.loadingTable = true;
     }
   }
 };

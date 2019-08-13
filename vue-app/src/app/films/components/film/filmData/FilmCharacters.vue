@@ -1,7 +1,7 @@
 <template>
   <div>
     <Loader v-if="loadingSpinner" />
-    <v-simple-table v-if="loadingTable">
+    <v-simple-table>
       <thead>
         <tr>
           <th class="text-center">
@@ -33,31 +33,31 @@
       <tbody>
         <tr
           v-for="(character, index) in characters"
-          :key="index + character.birth_year"
-          :class="$style['trActive']"
+          :key="index"
+          :class="$style.trActive"
         >
-          <td :class="$style['tdAlign']">
+          <td :class="$style.tdAlign">
             {{ character.name }}
           </td>
-          <td :class="$style['tdAlign']">
+          <td :class="$style.tdAlign">
             {{ character.birth_year }}
           </td>
-          <td :class="$style['tdAlign']">
+          <td :class="$style.tdAlign">
             {{ character.height }}
           </td>
-          <td :class="$style['tdAlign']">
+          <td :class="$style.tdAlign">
             {{ character.mass }}
           </td>
-          <td :class="$style['tdAlign']">
+          <td :class="$style.tdAlign">
             {{ character.hair_color }}
           </td>
-          <td :class="$style['tdAlign']">
+          <td :class="$style.tdAlign">
             {{ character.eye_color }}
           </td>
-          <td :class="$style['tdAlign']">
+          <td :class="$style.tdAlign">
             {{ character.skin_color }}
           </td>
-          <td :class="$style['tdAlign']">
+          <td :class="$style.tdAlign">
             {{ character.gender }}
           </td>
         </tr>
@@ -71,7 +71,6 @@ import { mapActions } from "vuex";
 export default {
   data: () => ({
     loadingSpinner: false,
-    loadingTable: false,
     characters: null
   }),
   methods: {
@@ -88,7 +87,6 @@ export default {
       const filmID = this.$route.params.filmDbId;
       this.characters = await this.loadCharacters(filmID);
       this.loadingSpinner = false;
-      this.loadingTable = true;
     }
   }
 };

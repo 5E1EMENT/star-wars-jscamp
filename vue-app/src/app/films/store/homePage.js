@@ -41,13 +41,15 @@ export default {
      * Fetching films data from firebase database
      */
     async loadFilms() {
-      return (await firebase
+      const filmsDbSnapshot = await firebase
         .database()
         .ref("swapi/films")
-        .once("value")).val().map(item => item.fields);
+        .once("value");
+
+      return filmsDbSnapshot.val().map(item => item.fields);
     },
     /**
-     * 
+     *
      * @param {Object} state vuex state
      * @param {Number} filmId current film id
      */

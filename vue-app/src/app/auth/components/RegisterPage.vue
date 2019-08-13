@@ -25,29 +25,26 @@
             <v-card-text>
               <v-form>
                 <v-text-field
-                  v-model="name"
+                  v-model="$v.name.$model"
                   :error-messages="nameErrors"
                   label="Name"
                   required
-                  @input="$v.name.$touch()"
                   @blur="$v.name.$touch()"
                   @keyup.enter="submitHandler"
                 />
                 <v-text-field
-                  v-model.trim="email"
+                  v-model.trim="$v.email.$model"
                   :error-messages="emailErrors"
                   label="E-mail"
                   required
-                  @input="$v.email.$touch()"
                   @blur="$v.email.$touch()"
                   @keyup.enter="submitHandler"
                 />
                 <v-text-field
-                  v-model.trim="password"
+                  v-model.trim="$v.password.$model"
                   :error-messages="passwordErrors"
                   label="Password"
                   required
-                  @input="$v.password.$touch()"
                   @blur="$v.password.$touch()"
                   @keyup.enter="submitHandler"
                 />

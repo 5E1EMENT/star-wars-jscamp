@@ -16,6 +16,7 @@ export default {
         .database()
         .ref(`swapi/films/${filmId}/fields/characters`)
         .once("value")).val();
+        
       const charactersData = (await firebase
         .database()
         .ref(`swapi/people`)

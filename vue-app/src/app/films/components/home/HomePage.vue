@@ -55,7 +55,6 @@
 </template>
 
 <script>
-import axios from "axios";
 import { mapActions } from "vuex";
 
 export default {
@@ -68,8 +67,7 @@ export default {
    * Getting films data from vuex
    */
   async mounted() {
-    const filmsData = await this.loadFilms();
-    this.films = filmsData.map(item => item.fields);
+    this.films = await this.loadFilms();
     this.loading = false;
   },
   methods: {
@@ -77,6 +75,10 @@ export default {
      * @param loadFilms load films from db
      */
     ...mapActions(["loadFilms"]),
+    /**
+     * Method formats date into normal view
+     * @param date film release date from db
+     */
     formatDate(date) {
       return new Date(date).toDateString();
     }

@@ -2,7 +2,7 @@ import Vue from "vue";
 import Vuex from "vuex";
 import auth from "@/app/auth/store/auth.js";
 import homePage from "@/app/films/store/homePage.js";
-
+import filmData from "@/app/films/store/filmData.js"
 Vue.use(Vuex);
 
 /**
@@ -13,6 +13,7 @@ Vue.use(Vuex);
 export default new Vuex.Store({
   modules: {
     auth,
-    homePage
+    homePage,
+    filmData
   }
 });

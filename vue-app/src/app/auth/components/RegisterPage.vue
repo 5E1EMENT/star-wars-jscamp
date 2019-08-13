@@ -1,82 +1,80 @@
 <template>
-  <v-app>
-    <v-content>
-      <v-container
-        fluid
-        fill-height
+  <v-content>
+    <v-container
+      fluid
+      fill-height
+    >
+      <v-layout
+        align-center
+        justify-center
       >
-        <v-layout
-          align-center
-          justify-center
+        <v-flex
+          xs12
+          sm8
+          md4
         >
-          <v-flex
-            xs12
-            sm8
-            md6
-          >
-            <v-card class="elevation-12">
-              <v-toolbar
+          <v-card class="elevation-12">
+            <v-toolbar
+              color="indigo"
+              dark
+              flat
+            >
+              <v-toolbar-title>Registration form</v-toolbar-title>
+              <v-spacer />
+            </v-toolbar>
+            <v-card-text>
+              <v-form>
+                <v-text-field
+                  v-model="$v.name.$model"
+                  :error-messages="nameErrors"
+                  label="Name"
+                  required
+                  @blur="$v.name.$touch()"
+                  @keyup.enter="submitHandler"
+                />
+                <v-text-field
+                  v-model.trim="$v.email.$model"
+                  :error-messages="emailErrors"
+                  label="E-mail"
+                  required
+                  @blur="$v.email.$touch()"
+                  @keyup.enter="submitHandler"
+                />
+                <v-text-field
+                  v-model.trim="$v.password.$model"
+                  :error-messages="passwordErrors"
+                  label="Password"
+                  required
+                  @blur="$v.password.$touch()"
+                  @keyup.enter="submitHandler"
+                />
+              </v-form>
+            </v-card-text>
+            <v-card-actions>
+              <p>
+                Already have an account?
+                <router-link to="/login">
+                  Login
+                </router-link>
+              </p>
+              <v-spacer />
+              <v-btn
                 color="indigo"
                 dark
-                flat
+                type="submit"
+                @click="submitHandler"
               >
-                <v-toolbar-title>Registration form</v-toolbar-title>
-                <v-spacer />
-              </v-toolbar>
-              <v-card-text>
-                <v-form>
-                  <v-text-field
-                    v-model="name"
-                    :error-messages="nameErrors"
-                    label="Name"
-                    required
-                    @input="$v.name.$touch()"
-                    @blur="$v.name.$touch()"
-                  />
-                  <v-text-field
-                    v-model.trim="email"
-                    :error-messages="emailErrors"
-                    label="E-mail"
-                    required
-                    @input="$v.email.$touch()"
-                    @blur="$v.email.$touch()"
-                  />
-                  <v-text-field
-                    v-model.trim="password"
-                    :error-messages="passwordErrors"
-                    label="Password"
-                    required
-                    @input="$v.password.$touch()"
-                    @blur="$v.password.$touch()"
-                  />
-                </v-form>
-              </v-card-text>
-              <v-card-actions>
-                <p>
-                  Already have an account?
-                  <router-link to="/login">
-                    Login
-                  </router-link>
-                </p>
-                <v-spacer />
-                <v-btn
-                  color="indigo"
-                  dark
-                  type="submit"
-                  @click="submitHandler"
-                >
-                  Register
-                </v-btn>
-              </v-card-actions>
-              <v-card-text>
-                <b>{{ error }}</b>
-              </v-card-text>
-            </v-card>
-          </v-flex>
-        </v-layout>
-      </v-container>
-    </v-content>
-  </v-app>
+                Register
+              </v-btn>
+            </v-card-actions>
+            <v-card-text>
+              <b>{{ error }}</b>
+            </v-card-text>
+          </v-card>
+        </v-flex>
+      </v-layout>
+    </v-container>
+  </v-content>
 </template>
 <script>
 /** Mehtods allows to validate form fields */

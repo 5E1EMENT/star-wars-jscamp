@@ -7,60 +7,54 @@
     <v-simple-table v-else>
       <thead>
         <tr>
-          <th class="text-center">
+          <th :class="$style.trAlign">
             Episode Id
           </th>
-          <th class="text-center">
+          <th :class="$style.trAlign">
             Release Date
           </th>
-          <th class="text-center">
+          <th :class="$style.trAlign">
             Director
           </th>
-          <th class="text-center">
+          <th :class="$style.trAlign">
             Producer
           </th>
-          <th class="text-center">
+          <th :class="$style.trAlign">
             Opening crawl
           </th>
         </tr>
       </thead>
       <tbody>
-        <tr :class="$style['trActive']">
-          <td
-            :class="$style['tdAlign']"
-          >
+        <tr :class="$style.trActive">
+          <td :class="$style.tdAlign">
             {{ film.episode_id }}
           </td>
-          <td
-            :class="$style['tdAlign']"
-          >
+          <td :class="$style.tdAlign">
             {{ formatDate(film.release_date) }}
           </td>
-          <td
-            :class="$style['tdAlign']"
-          >
+          <td :class="$style.tdAlign">
             {{ film.director }}
           </td>
-          <td
-            :class="$style['tdAlign']"
-          >
+          <td :class="$style.tdAlign">
             {{ film.producer }}
           </td>
-          <td
-            :class="$style['tdAlign']"
-          >
+          <td :class="$style.tdAlign">
             {{ film.opening_crawl }}
           </td>
         </tr>
       </tbody>
     </v-simple-table>
+    <FilmAccordeon v-if="!loading" />
   </div>
 </template>
 <script>
-import axios from "axios";
 import { mapActions } from "vuex";
+import FilmAccordeon from "./FilmAccordeon";
 
 export default {
+  components: {
+    FilmAccordeon
+  },
   data: () => ({
     loading: true,
     film: null
@@ -80,6 +74,10 @@ export default {
      * @param loadFilm load current film from db
      */
     ...mapActions(["loadFilm"]),
+    /**
+     * Method formats date into normal view
+     * @param date film release date from db
+     */
     formatDate(date) {
       return new Date(date).toDateString();
     }
@@ -87,6 +85,9 @@ export default {
 };
 </script>
 <style lang="scss" module>
+.trAlign {
+    text-align: center !important;
+}
 .trActive:hover {
   cursor: pointer;
 }

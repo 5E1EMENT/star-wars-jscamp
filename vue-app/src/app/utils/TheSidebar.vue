@@ -3,6 +3,8 @@
     <v-navigation-drawer
       :value="getSidebarState"
       app
+      clipped
+      disable-resize-watcher
     >
       <v-list
         v-if="uid !== null"

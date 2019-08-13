@@ -4,6 +4,8 @@ import firebase from 'firebase/app'
 
 import {default as auth} from '@/app/auth/routes.js'
 import {default as home} from '@/app/films/routes.js'
+
+
 const PageNotFound = () => import('@/pages/PageNotFound')
 
 Vue.use(Router);
@@ -11,7 +13,7 @@ Vue.use(Router);
 /**
  * Router - application routes functional
  */
-global.router =  new Router({
+global.router = new Router({
   mode: "history",
   routes: [
     {

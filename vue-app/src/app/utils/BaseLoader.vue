@@ -1,5 +1,5 @@
 <template>
-  <div :class="$style['app-loader']">
+  <div>
     <div :class="$style.loader">
       Loading...
     </div>

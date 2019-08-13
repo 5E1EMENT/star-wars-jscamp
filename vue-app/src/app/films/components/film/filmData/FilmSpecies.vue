@@ -4,31 +4,31 @@
     <v-simple-table>
       <thead>
         <tr>
-          <th class="text-center">
+          <th :class="$style.trAlign">
             Average heigth
           </th>
-          <th class="text-center">
+          <th :class="$style.trAlign">
             Average lifespan
           </th>
-          <th class="text-center">
+          <th :class="$style.trAlign">
             Classification
           </th>
-          <th class="text-center">
+          <th :class="$style.trAlign">
             Designation
           </th>
-          <th class="text-center">
+          <th :class="$style.trAlign">
             Eye colors
           </th>
-          <th class="text-center">
+          <th :class="$style.trAlign">
             Hair colors
           </th>
-          <th class="text-center">
+          <th :class="$style.trAlign">
             Language
           </th>
-          <th class="text-center">
+          <th :class="$style.trAlign">
             Name
           </th>
-          <th class="text-center">
+          <th :class="$style.trAlign">
             Skin colors
           </th>
         </tr>
@@ -98,6 +98,9 @@ export default {
 };
 </script>
 <style lang="scss" module>
+.trAlign {
+  text-align: center !important;
+}
 .trActive:hover {
   cursor: pointer;
 }

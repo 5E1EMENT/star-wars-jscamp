@@ -24,18 +24,38 @@
         <FilmSpecies ref="filmSpecies" />
       </v-expansion-panel-content>
     </v-expansion-panel>
+    <v-expansion-panel>
+      <v-expansion-panel-header @click.once="showFilmStarships">
+        Film Starships
+      </v-expansion-panel-header>
+      <v-expansion-panel-content eager>
+        <FilmStarships ref="filmStarships" />
+      </v-expansion-panel-content>
+    </v-expansion-panel>
+    <v-expansion-panel>
+      <v-expansion-panel-header @click.once="showFilmVehicles">
+        Film Vehicles
+      </v-expansion-panel-header>
+      <v-expansion-panel-content eager>
+        <FilmVehicles ref="filmVehicles" />
+      </v-expansion-panel-content>
+    </v-expansion-panel>
   </v-expansion-panels>
 </template>
 <script>
 import FilmCharacters from "./filmData/FilmCharacters.vue";
 import FilmPlanets from "./filmData/FilmPlanets.vue";
 import FilmSpecies from "./filmData/FilmSpecies.vue";
+import FilmStarships from "./filmData/FilmStarships.vue";
+import FilmVehicles from "./filmData/FilmVehicles.vue";
 
 export default {
   components: {
     FilmCharacters,
     FilmPlanets,
-    FilmSpecies
+    FilmSpecies,
+    FilmStarships,
+    FilmVehicles
   },
   methods: {
     /**
@@ -55,6 +75,18 @@ export default {
      */
     showFilmSpecies() {
       this.$refs.filmSpecies.loadFilmSpecies();
+    },
+    /**
+     * Method allows to get film starships data
+     */
+    showFilmStarships() {
+      this.$refs.filmStarships.loadFilmStarships();
+    },
+    /**
+     * Method allows to get film vehicles data
+     */
+    showFilmVehicles() {
+      this.$refs.filmVehicles.loadFilmVehicles();
     },
   }
 };

@@ -4,28 +4,28 @@
     <v-simple-table>
       <thead>
         <tr>
-          <th class="text-center">
+          <th :class="$style.trAlign">
             Climate
           </th>
-          <th class="text-center">
+          <th :class="$style.trAlign">
             Diameter
           </th>
-          <th class="text-center">
+          <th :class="$style.trAlign">
             Gravity
           </th>
-          <th class="text-center">
+          <th :class="$style.trAlign">
             Name
           </th>
-          <th class="text-center">
+          <th :class="$style.trAlign">
             Orbital period
           </th>
-          <th class="text-center">
+          <th :class="$style.trAlign">
             Population
           </th>
-          <th class="text-center">
+          <th :class="$style.trAlign">
             Rotation period
           </th>
-          <th class="text-center">
+          <th :class="$style.trAlign">
             Terrain
           </th>
         </tr>
@@ -92,6 +92,9 @@ export default {
 };
 </script>
 <style lang="scss" module>
+.trAlign {
+  text-align: center !important;
+}
 .trActive:hover {
   cursor: pointer;
 }

@@ -7,19 +7,19 @@
     <v-simple-table v-else>
       <thead>
         <tr>
-          <th class="text-center">
+          <th :class="$style.trAlign">
             Episode Id
           </th>
-          <th class="text-center">
+          <th :class="$style.trAlign">
             Release Date
           </th>
-          <th class="text-center">
+          <th :class="$style.trAlign">
             Director
           </th>
-          <th class="text-center">
+          <th :class="$style.trAlign">
             Producer
           </th>
-          <th class="text-center">
+          <th :class="$style.trAlign">
             Opening crawl
           </th>
         </tr>
@@ -85,6 +85,9 @@ export default {
 };
 </script>
 <style lang="scss" module>
+.trAlign {
+    text-align: center !important;
+}
 .trActive:hover {
   cursor: pointer;
 }

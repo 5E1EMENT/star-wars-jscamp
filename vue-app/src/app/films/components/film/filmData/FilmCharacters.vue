@@ -4,28 +4,28 @@
     <v-simple-table>
       <thead>
         <tr>
-          <th class="text-center">
+          <th :class="$style.trAlign">
             Name
           </th>
-          <th class="text-center">
+          <th :class="$style.trAlign">
             Birth year
           </th>
-          <th class="text-center">
+          <th :class="$style.trAlign">
             Height
           </th>
-          <th class="text-center">
+          <th :class="$style.trAlign">
             Mass
           </th>
-          <th class="text-center">
+          <th :class="$style.trAlign">
             Hair color
           </th>
-          <th class="text-center">
+          <th :class="$style.trAlign">
             Eye color
           </th>
-          <th class="text-center">
+          <th :class="$style.trAlign">
             Skin color
           </th>
-          <th class="text-center">
+          <th :class="$style.trAlign">
             Gender
           </th>
         </tr>
@@ -92,6 +92,9 @@ export default {
 };
 </script>
 <style lang="scss" module>
+.trAlign {
+  text-align: center !important;
+}
 .trActive:hover {
   cursor: pointer;
 }

@@ -16,7 +16,7 @@ export default {
         .database()
         .ref(`swapi/films/${filmId}/fields/characters`)
         .once("value")).val();
-        
+
       const charactersData = (await firebase
         .database()
         .ref(`swapi/people`)
@@ -70,6 +70,41 @@ export default {
         .filter((kind, i) => i in speciesIdArr)
         .map(kind => kind.fields);
       return species;
+    },
+    async loadStarships(state, filmId) {
+
+      const starshipsIdArr = (await firebase
+        .database()
+        .ref(`swapi/films/${filmId}/fields/starships`)
+        .once("value")).val();
+
+      const starshipsData = (await firebase
+        .database()
+        .ref(`swapi/starships`)
+        .once("value")).val();
+
+      const starships = starshipsData
+        .filter((starship, i) => i in starshipsIdArr)
+        .map(starship => starship.fields);
+      return starships;
+    },
+    async loadVehicles(state, filmId) {
+
+      const vehiclesIdArr = (await firebase
+        .database()
+        .ref(`swapi/films/${filmId}/fields/vehicles`)
+        .once("value")).val();
+
+      const vehiclesData = (await firebase
+        .database()
+        .ref(`swapi/vehicles`)
+        .once("value")).val();
+
+      const vehicles = vehiclesData
+        .filter((vehicle, i) => i in vehiclesIdArr)
+        .map(vehicle => vehicle.fields);
+      return vehicles;
     }
   }
+  
 };

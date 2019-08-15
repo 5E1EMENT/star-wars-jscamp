@@ -71,7 +71,7 @@
 <script>
 /** Mehtods allows to validate form fields */
 import { email, required, minLength } from "vuelidate/lib/validators";
-import checkIsAdmin from "@/app/core/helpers/checkIsAdmin.js";
+import checkIsAdmin from "@/app/core/helpers/checkIsAdmin";
 
 export default {
   name: "Login",

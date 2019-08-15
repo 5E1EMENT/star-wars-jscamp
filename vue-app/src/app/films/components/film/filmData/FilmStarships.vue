@@ -65,9 +65,6 @@ export default {
 .trAlign {
   text-align: center !important;
 }
-.trActive:hover {
-  cursor: pointer;
-}
 .tdAlign {
   padding: 10px !important;
   text-align: center;

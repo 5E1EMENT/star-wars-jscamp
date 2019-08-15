@@ -22,11 +22,48 @@
                   type="number"
                   required
                 />
-                <v-text-field
-                  v-model="film.release_date"
-                  type="date"
-                  label="Release date"
-                />
+                
+                <v-menu
+                  ref="menu"
+                  v-model="menu"
+                  :close-on-content-click="false"
+                  :return-value.sync="film.release_date"
+                  transition="scale-transition"
+                  offset-y
+                  full-width
+                  max-width="290px"
+                  min-width="290px"
+                >
+                  <template v-slot:activator="{ on }">
+                    <v-text-field
+                      v-model="film.release_date"
+                      label="Release date"
+                      readonly
+                      v-on="on"
+                    />
+                  </template>
+                  <v-date-picker
+                    v-model="film.release_date"
+                    no-title
+                    scrollable
+                  >
+                    <v-spacer />
+                    <v-btn
+                      text
+                      color="primary"
+                      @click="menu = false"
+                    >
+                      Cancel
+                    </v-btn>
+                    <v-btn
+                      text
+                      color="primary"
+                      @click="$refs.menu.save(film.release_date)"
+                    >
+                      OK
+                    </v-btn>
+                  </v-date-picker>
+                </v-menu>
                 <v-text-field
                   v-model="film.director"
                   type="text"
@@ -66,7 +103,8 @@ import { mapActions } from "vuex";
 
 export default {
   data: () => ({
-    film: null
+    film: null,
+    menu: false
   }),
   /**
    * Getting film data from vuex

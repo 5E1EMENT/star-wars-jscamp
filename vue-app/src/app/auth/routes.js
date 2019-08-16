@@ -1,5 +1,5 @@
 import { authPageGuard } from '@/app/core/guards/auth.guard';
-import LoginPage from '@/app/auth/components/LoginPage.vue';
+import loginPage from '@/app/auth/components/LoginPage.vue';
 import registrationPage from '@/app/auth/components/RegisterPage.vue'
 export default [
   {
@@ -8,7 +8,7 @@ export default [
   },
   {
     path: "/login",
-    component: LoginPage,
+    component: loginPage,
     beforeEnter: authPageGuard
   },
   {

@@ -26,7 +26,7 @@
     <tbody>
       <router-link
         v-for="(film, index) in films"
-        :key="index + film.title"
+        :key="film.episode_id"
         tag="tr"
         :to="{ name: 'Film', params: { filmDbId: index }}"
         :class="$style['trActive']"

@@ -4,6 +4,7 @@
     app
     clipped
     disable-resize-watcher
+    stateless
   >
     <v-list
       v-if="uid !== null"
@@ -53,8 +54,7 @@
   
 <script>
 import { mapGetters, mapActions } from "vuex";
-import checkIsAdmin from "@/app/core/helpers/checkIsAdmin";
-
+import checkIsAdmin from "@/app/core/helpers/checkIsAdmin.js";
 export default {
   name: "HomePageSidebar",
   data: () => ({

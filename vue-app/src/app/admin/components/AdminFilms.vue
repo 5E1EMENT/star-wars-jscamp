@@ -7,22 +7,22 @@
     <v-simple-table v-else>
       <thead>
         <tr>
-          <th class="text-left">
+          <th :class="$style.thLeft">
             Film title
           </th>
-          <th class="text-left">
+          <th :class="$style.thLeft">
             Episode Id
           </th>
-          <th class="text-left">
-            Release Date
+          <th :class="$style.thLeft">
+            Release Dates
           </th>
-          <th class="text-left">
+          <th :class="$style.thLeft">
             Director
           </th>
-          <th class="text-left">
+          <th :class="$style.thLeft">
             Producer
           </th>
-          <th class="text-left">
+          <th :class="$style.thLeft">
             Opening crawl
           </th>
         </tr>
@@ -30,27 +30,27 @@
       <tbody>
         <router-link
           v-for="(film, index) in films"
-          :key="index + film.title"
+          :key="film.episode_id"
           tag="tr"
           :to="{ name: 'Edit film', params: { filmDbId: index }}"
-          :class="$style['trActive']"
+          :class="$style.trActive"
         >
-          <td :class="$style['tdAlign']">
+          <td :class="$style.tdAlign">
             {{ film.title }}
           </td>
-          <td :class="$style['tdAlign']">
+          <td :class="$style.tdAlign">
             {{ film.episode_id }}
           </td>
-          <td :class="$style['tdAlign']">
-            {{ formatDate(film.release_date) }}
+          <td :class="$style.tdAlign">
+            {{ film.release_date | date }}
           </td>
-          <td :class="$style['tdAlign']">
+          <td :class="$style.tdAlign">
             {{ film.director }}
           </td>
-          <td :class="$style['tdAlign']">
+          <td :class="$style.tdAlign">
             {{ film.producer }}
           </td>
-          <td :class="$style['tdAlign']">
+          <td :class="$style.tdAlign">
             {{ film.opening_crawl }}
           </td>
         </router-link>
@@ -79,21 +79,16 @@ export default {
     /**
      * @param loadFilms load films from db
      */
-    ...mapActions(["loadFilms"]),
-    /**
-     * Method formats date into normal view
-     * @param date film release date from db
-     * @returns {Date} new date format
-     */
-    formatDate(date) {
-      return new Date(date).toDateString();
-    }
+    ...mapActions(["loadFilms"])
   }
 };
 </script>
 <style lang="scss" module>
 .center {
   text-align: center;
+}
+.thLeft {
+  text-align: left
 }
 .trActive:hover {
   cursor: pointer;

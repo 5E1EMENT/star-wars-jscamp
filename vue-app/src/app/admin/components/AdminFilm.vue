@@ -30,7 +30,7 @@
             {{ film.episode_id }}
           </td>
           <td :class="$style.tdAlign">
-            {{ formatDate(film.release_date) }}
+            {{ film.release_date | date }}
           </td>
           <td :class="$style.tdAlign">
             {{ film.director }}
@@ -72,15 +72,7 @@ export default {
     /**
      * @param loadFilm load current film from db
      */
-    ...mapActions(["loadFilm"]),
-    /**
-     * Method formats date into normal view
-     * @param date film release date from db
-     * @return {Date} new date format
-     */
-    formatDate(date) {
-      return new Date(date).toDateString();
-    }
+    ...mapActions(["loadFilm"])
   }
 };
 </script>

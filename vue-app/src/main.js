@@ -4,9 +4,8 @@ import vuetify from "./plugins/vuetify";
 import router from "@/router/router.js";
 import store from "@/store/store.js";
 import Vuelidate from "vuelidate";
-
 import Loader from "./app/utils/BaseLoader";
-
+import dateFilter from '@/app/core/filters/date.filter.js'
 import firebase from "firebase/app";
 import "firebase/auth";
 import "firebase/database";
@@ -14,7 +13,7 @@ import "firebase/database";
 Vue.config.productionTip = false;
 
 Vue.use(Vuelidate);
-
+Vue.filter('date', dateFilter)
 Vue.component("Loader", Loader);
 /**
  * Firebase init configuration

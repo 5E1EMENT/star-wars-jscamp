@@ -2,8 +2,8 @@ import Vue from "vue";
 import Vuex from "vuex";
 import auth from "@/app/auth/store/auth.js";
 import homePage from "@/app/films/store/homePage.js";
-import filmData from "@/app/films/store/filmData.js"
-import admin from '@/app/admin/store/admin.js'
+import filmData from "@/app/films/store/filmData.js";
+import admin from "@/app/admin/store/admin.js";
 Vue.use(Vuex);
 
 /**

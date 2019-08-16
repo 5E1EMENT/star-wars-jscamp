@@ -1,60 +1,60 @@
 <template>
-  <div>
-    <v-navigation-drawer
-      :value="getSidebarState"
-      app
-      clipped
-      disable-resize-watcher
+  <v-navigation-drawer
+    :value="getSidebarState"
+    app
+    clipped
+    disable-resize-watcher
+    stateless
+  >
+    <v-list
+      v-if="uid !== null"
+      dense
     >
-      <v-list
-        v-if="uid !== null"
-        dense
-      >
-        <v-list-item @click="home">
-          <v-list-item-action>
-            <v-icon>mdi-home</v-icon>
-          </v-list-item-action>
-          <v-list-item-content>
-            <v-list-item-title>Home</v-list-item-title>
-          </v-list-item-content>
-        </v-list-item>
-        <v-list-item @click="logoutUser">
-          <v-list-item-action>
-            <v-icon>mdi-account</v-icon>
-          </v-list-item-action>
-          <v-list-item-content>
-            <v-list-item-title>Logout</v-list-item-title>
-          </v-list-item-content>
-        </v-list-item>
-      </v-list>
-      <v-list
-        v-else
-        dense
-      >
-        <v-list-item @click="login">
-          <v-list-item-action>
-            <v-icon>mdi-account</v-icon>
-          </v-list-item-action>
-          <v-list-item-content>
-            <v-list-item-title>Login</v-list-item-title>
-          </v-list-item-content>
-        </v-list-item>
-        <v-list-item @click="register">
-          <v-list-item-action>
-            <v-icon>mdi-account-plus</v-icon>
-          </v-list-item-action>
-          <v-list-item-content>
-            <v-list-item-title>Register</v-list-item-title>
-          </v-list-item-content>
-        </v-list-item>
-      </v-list>
-    </v-navigation-drawer>
-  </div>
+      <v-list-item @click="home">
+        <v-list-item-action>
+          <v-icon>mdi-home</v-icon>
+        </v-list-item-action>
+        <v-list-item-content>
+          <v-list-item-title>Home</v-list-item-title>
+        </v-list-item-content>
+      </v-list-item>
+      <v-list-item @click="logoutUser">
+        <v-list-item-action>
+          <v-icon>mdi-account</v-icon>
+        </v-list-item-action>
+        <v-list-item-content>
+          <v-list-item-title>Logout</v-list-item-title>
+        </v-list-item-content>
+      </v-list-item>
+    </v-list>
+    <v-list
+      v-else
+      dense
+    >
+      <v-list-item @click="login">
+        <v-list-item-action>
+          <v-icon>mdi-account</v-icon>
+        </v-list-item-action>
+        <v-list-item-content>
+          <v-list-item-title>Login</v-list-item-title>
+        </v-list-item-content>
+      </v-list-item>
+      <v-list-item @click="register">
+        <v-list-item-action>
+          <v-icon>mdi-account-plus</v-icon>
+        </v-list-item-action>
+        <v-list-item-content>
+          <v-list-item-title>Register</v-list-item-title>
+        </v-list-item-content>
+      </v-list-item>
+    </v-list>
+  </v-navigation-drawer>
 </template>
 
   
 <script>
 import { mapGetters, mapActions } from "vuex";
+import checkIsAdmin from "@/app/core/helpers/checkIsAdmin.js";
 export default {
   name: "HomePageSidebar",
   data: () => ({
@@ -87,7 +87,11 @@ export default {
      * Method redirects user to the home page
      */
     home() {
-      this.$router.push("/home");
+      if (checkIsAdmin()) {
+        this.$router.push("/films");
+      } else {
+        this.$router.push("/home");
+      }
     },
     /**
      * Method logout the user

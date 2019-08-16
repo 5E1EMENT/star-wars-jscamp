@@ -26,7 +26,7 @@
     <tbody>
       <router-link
         v-for="(film, index) in films"
-        :key="index + film.title"
+        :key="film.episode_id"
         tag="tr"
         :to="{ name: 'Film', params: { filmDbId: index }}"
         :class="$style['trActive']"
@@ -38,7 +38,7 @@
           {{ film.episode_id }}
         </td>
         <td :class="$style['tdAlign']">
-          {{ formatDate(film.release_date) }}
+          {{ film.release_date | date }}
         </td>
         <td :class="$style['tdAlign']">
           {{ film.director }}
@@ -74,14 +74,7 @@ export default {
     /**
      * @param loadFilms load films from db
      */
-    ...mapActions(["loadFilms"]),
-    /**
-     * Method formats date into normal view
-     * @param date film release date from db
-     */
-    formatDate(date) {
-      return new Date(date).toDateString();
-    }
+    ...mapActions(["loadFilms"])
   }
 };
 </script>

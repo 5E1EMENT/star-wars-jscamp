@@ -1,31 +1,43 @@
 <template>
   <div>
-    <h1 v-if="film">
-      {{ film.title }}
+    <h1 :class="$style.center">
+      Admin films editor
     </h1>
     <Loader v-if="loading" />
     <v-simple-table v-else>
       <thead>
         <tr>
-          <th :class="$style.trAlign">
+          <th :class="$style.thLeft">
+            Film title
+          </th>
+          <th :class="$style.thLeft">
             Episode Id
           </th>
-          <th :class="$style.trAlign">
-            Release Date
+          <th :class="$style.thLeft">
+            Release Dates
           </th>
-          <th :class="$style.trAlign">
+          <th :class="$style.thLeft">
             Director
           </th>
-          <th :class="$style.trAlign">
+          <th :class="$style.thLeft">
             Producer
           </th>
-          <th :class="$style.trAlign">
+          <th :class="$style.thLeft">
             Opening crawl
           </th>
         </tr>
       </thead>
       <tbody>
-        <tr :class="$style.trActive">
+        <router-link
+          v-for="(film, index) in films"
+          :key="film.episode_id"
+          tag="tr"
+          :to="{ name: 'Edit film', params: { filmDbId: index }}"
+          :class="$style.trActive"
+        >
+          <td :class="$style.tdAlign">
+            {{ film.title }}
+          </td>
           <td :class="$style.tdAlign">
             {{ film.episode_id }}
           </td>
@@ -41,51 +53,49 @@
           <td :class="$style.tdAlign">
             {{ film.opening_crawl }}
           </td>
-        </tr>
+        </router-link>
       </tbody>
     </v-simple-table>
-    <FilmAccordeon v-if="!loading" />
   </div>
 </template>
+
 <script>
 import { mapActions } from "vuex";
-import FilmAccordeon from "./FilmAccordeon";
 
 export default {
-  components: {
-    FilmAccordeon
-  },
+  name: "HomePage",
   data: () => ({
     loading: true,
-    film: null
+    films: null,
   }),
   /**
-   * Getting film data from vuex
+   * Getting films data from vuex
    */
   async mounted() {
-    const filmID = this.$route.params.filmDbId;
-    this.film = await this.loadFilm(filmID);
+    this.films = await this.loadFilms();
     this.loading = false;
   },
-
   methods: {
     /**
-     * @param loadFilm load current film from db
+     * @param loadFilms load films from db
      */
-    ...mapActions(["loadFilm"])
+    ...mapActions(["loadFilms"])
   }
 };
 </script>
 <style lang="scss" module>
-.trAlign {
-    text-align: center !important;
+.center {
+  text-align: center;
 }
+.thLeft {
+  text-align: left
+}
+.trActive:hover {
+  cursor: pointer;
+}
+
 .tdAlign {
   padding: 10px !important;
   text-align: center;
-}
-h1 {
-  text-align: center;
-  margin: 2rem 0;
 }
 </style>

@@ -44,16 +44,16 @@
         </tr>
       </tbody>
     </v-simple-table>
-    <FilmAccordeon v-if="!loading" />
+    <AdminFilmEditor />
   </div>
 </template>
 <script>
 import { mapActions } from "vuex";
-import FilmAccordeon from "./FilmAccordeon";
+import AdminFilmEditor from './AdminFilmEditor'
 
 export default {
   components: {
-    FilmAccordeon
+    AdminFilmEditor
   },
   data: () => ({
     loading: true,
@@ -79,6 +79,9 @@ export default {
 <style lang="scss" module>
 .trAlign {
     text-align: center !important;
+}
+.trActive:hover {
+  cursor: pointer;
 }
 .tdAlign {
   padding: 10px !important;

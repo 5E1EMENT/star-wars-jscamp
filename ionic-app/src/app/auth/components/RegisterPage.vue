@@ -2,12 +2,19 @@
   <div class="ion-page">
     <ion-header>
       <ion-toolbar>
-        <ion-title>Login</ion-title>
+        <ion-title>Register</ion-title>
       </ion-toolbar>
     </ion-header>
     <ion-content fullscreen>
       <form @submit.prevent="submitHandler">
         <ion-list lines="full" class="ion-no-margin ion-no-padding">
+          <ion-item>
+            <ion-label position="stacked">
+              Name
+              <ion-text color="danger">*</ion-text>
+            </ion-label>
+            <ion-input required type="text" :value="name" @input="name = $event.target.value"></ion-input>
+          </ion-item>
           <ion-item>
             <ion-label position="stacked">
               Email
@@ -24,7 +31,7 @@
           </ion-item>
         </ion-list>
         <div class="ion-padding">
-          <ion-button expand="block" type="submit" class="ion-no-margin">Login</ion-button>
+          <ion-button expand="block" type="submit" class="ion-no-margin">Register</ion-button>
         </div>
       </form>
     </ion-content>
@@ -33,14 +40,14 @@
 <script>
 /* eslint-disable */
 import {mapActions} from 'vuex'
-
 export default {
   data: () => ({
+    name: "",
     email: "",
     password: ""
   }),
   methods: {
-      ...mapActions(['login']),
+      ...mapActions(['register']),
     /**
      * Submit form handler
      * Emit's login action in auth store
@@ -50,12 +57,13 @@ export default {
     async submitHandler() {
       /* Object whitch will besent into firebase */
       const formData = {
+        name: this.name,
         email: this.email,
         password: this.password
       };
       console.log(formData)
       try {
-        await this.login(formData)
+        await this.register(formData);
           this.$router.push("/films");
       } catch (err) {
         /** Simple error handler */

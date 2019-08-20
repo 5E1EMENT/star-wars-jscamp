@@ -1,21 +1,31 @@
 <template>
-  <div class="ion-page">
-    <ion-header>
-      <ion-toolbar>
-        <ion-title>Hello World</ion-title>
-      </ion-toolbar>
-    </ion-header>
-    <ion-content class="ion-padding">
-      <img alt="Vue logo" src="../assets/logo.png">
-      <h1>Welcome To @ionic/vue</h1>
-      <router-link tag="button" type="submit" to="about" >Go to about</router-link>
+  <ion-page class="ion-page" main>
+    <ion-content class="ion-content" padding>
+      <ion-button @click="openModal">Open Modal</ion-button>
     </ion-content>
-  </div>
+  </ion-page>
 </template>
 
 <script>
+import Modal from '../components/Modal'
 
 export default {
-  name: 'home'
+  methods: {
+    openModal() {
+      return this.$ionic.modalController
+        .create({
+          component: Modal,
+          componentProps: {
+            data: {
+              content: 'New Content',
+            },
+            propsData: {
+              title: 'New title',
+            },
+          },
+        })
+        .then(m => m.present())
+    },
+  },
 }
 </script>

@@ -1,5 +1,9 @@
 .DS_Store
+/node_modules
 vue-app/node_modules
+angular-app/node_modules
+cordova-app/node_modules
+cordova-ionic/node_modules
 /dist
 
 # local env files

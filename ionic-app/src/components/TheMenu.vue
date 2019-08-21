@@ -7,7 +7,7 @@
     </ion-header>
     <ion-content padding>
       <ion-list>
-        <ion-item v-for="item in menuItems" :key="item.title" @click="handleClick(item)">
+        <ion-item v-for="(item,index) in menuItems" :key="index" @click="handleClick(item)">
           <ion-icon :name="item.icon" slot="start"></ion-icon>
           <ion-label>{{item.title}}</ion-label>
         </ion-item>
@@ -28,7 +28,7 @@ export default {
   computed: {
     menuItems() {
       let menuItems = [
-        { path: "/home", icon: "home", title: "Home", method: "home" },
+        { path: "/films", icon: "film", title: "Films", method: "films" },
         {
           path: "/login",
           icon: "exit",
@@ -93,7 +93,7 @@ export default {
     /**
      * Method redirect current user to home page
      */
-    home() {
+    films() {
       this.$router.push("/films");
     },
     /**

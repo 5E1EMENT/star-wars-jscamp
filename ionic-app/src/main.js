@@ -4,6 +4,7 @@ import router from './router/router'
 import firebase from 'firebase/app'
 import store from './store/store'
 import Ionic from '@ionic/vue';
+import dateFilter from '@/app/core/filters/date.filter.js'
 import '@ionic/core/css/ionic.bundle.css';
 
 import "firebase/auth";
@@ -12,6 +13,7 @@ import "firebase/database";
 
 Vue.config.productionTip = false
 Vue.use(Ionic)
+Vue.filter('date', dateFilter)
 
 firebase.initializeApp({
   apiKey: "AIzaSyBcE4tHDbQrvjjmL8DkmKzNGccGfz3Y8eE",

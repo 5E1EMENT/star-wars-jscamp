@@ -2,7 +2,10 @@
   <div class="ion-page" main>
     <ion-header>
       <ion-toolbar color="primary">
-        <ion-title>Login</ion-title>
+        <ion-buttons slot="end">
+          <ion-menu-button></ion-menu-button>
+        </ion-buttons>
+        <ion-title>Login Page</ion-title>
       </ion-toolbar>
     </ion-header>
     <ion-content fullscreen>
@@ -32,7 +35,6 @@
           <ion-button expand="block" type="submit" class="ion-no-margin">Login</ion-button>
         </div>
       </form>
-      <ion-button @click="openStart">Open Start Menu</ion-button>
     </ion-content>
   </div>
 </template>
@@ -47,9 +49,6 @@ export default {
   }),
   methods: {
       ...mapActions(['login']),
-      openStart() {
-      document.querySelector("ion-menu-controller").open("start");
-    },
     /**
      * Submit form handler
      * Emit's login action in auth store

@@ -18,7 +18,4 @@ export default {
 </script>
 
 <style>
-.ion-page {
-  text-align: center;
-}
 </style>

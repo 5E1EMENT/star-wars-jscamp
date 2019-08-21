@@ -2,7 +2,10 @@
   <div class="ion-page" main>
     <ion-header>
       <ion-toolbar color="primary">
-        <ion-title>Register</ion-title>
+        <ion-buttons slot="end">
+          <ion-menu-button></ion-menu-button>
+        </ion-buttons>
+        <ion-title>Register Page</ion-title>
       </ion-toolbar>
     </ion-header>
     <ion-content fullscreen>

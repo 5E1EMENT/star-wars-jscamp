@@ -1,5 +1,5 @@
 <template>
-  <div class="ion-page">
+  <div class="ion-page" main>
     <ion-header>
       <ion-toolbar color="primary">
         <ion-title>Login</ion-title>
@@ -20,13 +20,19 @@
               Password
               <ion-text color="danger">*</ion-text>
             </ion-label>
-            <ion-input required type="text" :value="password" @input="password = $event.target.value"></ion-input>
+            <ion-input
+              required
+              type="text"
+              :value="password"
+              @input="password = $event.target.value"
+            ></ion-input>
           </ion-item>
         </ion-list>
         <div class="ion-padding">
           <ion-button expand="block" type="submit" class="ion-no-margin">Login</ion-button>
         </div>
       </form>
+      <ion-button @click="openStart">Open Start Menu</ion-button>
     </ion-content>
   </div>
 </template>
@@ -41,6 +47,9 @@ export default {
   }),
   methods: {
       ...mapActions(['login']),
+      openStart() {
+      document.querySelector("ion-menu-controller").open("start");
+    },
     /**
      * Submit form handler
      * Emit's login action in auth store
@@ -53,7 +62,6 @@ export default {
         email: this.email,
         password: this.password
       };
-      console.log(formData)
       try {
         await this.login(formData)
           this.$router.push("/films");

@@ -73,7 +73,7 @@ export default {
     /**
      * Acton allows to logout current user
      */
-    async logout() {
+    async logoutUser() {
       await firebase.auth().signOut();
     }
   }

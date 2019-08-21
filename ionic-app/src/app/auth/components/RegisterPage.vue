@@ -1,5 +1,5 @@
 <template>
-  <div class="ion-page">
+  <div class="ion-page" main>
     <ion-header>
       <ion-toolbar color="primary">
         <ion-title>Register</ion-title>
@@ -61,7 +61,6 @@ export default {
         email: this.email,
         password: this.password
       };
-      console.log(formData)
       try {
         await this.register(formData);
           this.$router.push("/films");

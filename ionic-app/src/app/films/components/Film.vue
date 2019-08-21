@@ -23,22 +23,28 @@
             <ion-label>Film director: {{ film.director }}</ion-label>
           </ion-item>
           <ion-item>
-            <ion-label>Film producer: {{ film.producer   }}</ion-label>
+            <ion-label>Film producer: {{ film.producer }}</ion-label>
           </ion-item>
         </ion-list>
         <ion-card-content>{{ film.opening_crawl }}</ion-card-content>
       </ion-card>
+      <ion-button expand="block" @click.once="showFilmCharacters" v-if="film">Show film characters</ion-button>
+      <FilmCharacters ref="filmCharacters" />
     </ion-content>
   </div>
 </template>
 <script>
 /* eslint-disable */
 import { mapActions } from "vuex";
+import FilmCharacters from "./FilmCharacters";
 
 export default {
+  components: {
+    FilmCharacters
+  },
   data: () => ({
     film: null,
-    image: null,
+    image: null
   }),
   async mounted() {
     const filmID = this.$route.params.filmId;
@@ -51,7 +57,13 @@ export default {
      * @param loadFilm load current film from db
      * @param loadImages load current film image from db
      */
-    ...mapActions(["loadFilms", "loadImages"])
+    ...mapActions(["loadFilms", "loadImages"]),
+    /**
+     * Method allows to get film characters data
+     */
+    showFilmCharacters() {
+      this.$refs.filmCharacters.loadFilmCharacters();
+    },
   }
 };
 </script>

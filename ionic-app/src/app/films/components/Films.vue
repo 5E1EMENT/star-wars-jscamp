@@ -1,5 +1,5 @@
 <template>
-  <div class="ion-page">
+  <div class="ion-page" main>
     <ion-header>
       <ion-toolbar color="primary" class="toolbar-md-primary">
         <ion-title>Register</ion-title>
@@ -7,6 +7,7 @@
     </ion-header>
     <ion-content class="ion-padding">
       Films
+      <ion-button @click="openStart">Open Start Menu</ion-button>
     </ion-content>
   </div>
 </template>

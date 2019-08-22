@@ -30,8 +30,12 @@
       </ion-card>
       <ion-button expand="block" @click.once="showFilmCharacters" v-if="film">Show film characters</ion-button>
       <ion-button expand="block" @click.once="showFilmPlantes" v-if="film">Show film planets</ion-button>
+      <ion-button expand="block" @click.once="showFilmSpecies" v-if="film">Show film species</ion-button>
+      <ion-button expand="block" @click.once="showFilmStarships" v-if="film">Show film starships</ion-button>
       <FilmCharacters ref="filmCharacters" />
       <FilmPlanets ref="filmPlanets" />
+      <FilmSpecies ref="filmSpecies" />
+      <FilmStarships ref="filmStarships" />
     </ion-content>
   </div>
 </template>
@@ -41,18 +45,22 @@ import { mapActions } from "vuex";
 import { eventHub } from "@/main.js";
 import FilmCharacters from "@/app/films/components/filmDetails/FilmCharacters";
 import FilmPlanets from "@/app/films/components/filmDetails/FilmPlanets";
+import FilmSpecies from "@/app/films/components/filmDetails/FilmSpecies";
+import FilmStarships from "@/app/films/components/filmDetails/FilmStarships";
 import { setTimeout } from "timers";
 
 export default {
   components: {
     FilmCharacters,
-    FilmPlanets
+    FilmPlanets,
+    FilmSpecies,
+    FilmStarships
   },
   data: () => ({
     film: null,
     filmTitle: null,
     image: null,
-    title: 'title'
+    title: "title"
   }),
   /**
    * Upload all film data + film image
@@ -60,7 +68,7 @@ export default {
   async mounted() {
     const filmID = this.$route.params.filmId;
     this.film = await this.loadFilms(+filmID);
-    this.filmTitle = this.film.title
+    this.filmTitle = this.film.title;
     this.image = await this.loadImages(+filmID);
   },
   /**
@@ -72,7 +80,7 @@ export default {
     eventHub.$on("updateFilm", async function() {
       const filmID = that.$route.params.filmId;
       that.film = await that.loadFilms(+filmID);
-      that.filmTitle = that.film.title
+      that.filmTitle = that.film.title;
       that.image = await that.loadImages(+filmID);
     });
   },
@@ -86,25 +94,49 @@ export default {
      * Method allows to get film characters data
      */
     async showFilmCharacters() {
-      const characters = 'Characters'
+      const characters = "Characters";
 
       this.loading(characters);
       await this.$refs.filmCharacters.loadFilmCharacters();
       this.film = null;
-      this.filmTitle = this.filmTitle + ': ' + characters
+      this.filmTitle = this.filmTitle + ": " + characters;
       this.$ionic.loadingController.dismiss(`${characters}`);
     },
     /**
-     * Method allows to get film characters data
+     * Method allows to get film planets data
      */
     async showFilmPlantes() {
-      const planets = 'Planets'
+      const planets = "Planets";
 
       this.loading(planets);
       await this.$refs.filmPlanets.loadFilmPlanets();
       this.film = null;
-      this.filmTitle = this.filmTitle + ': ' + planets
+      this.filmTitle = this.filmTitle + ": " + planets;
       this.$ionic.loadingController.dismiss(`${planets}`);
+    },
+    /**
+     * Method allows to get film species data
+     */
+    async showFilmSpecies() {
+      const species = "Species";
+
+      this.loading(species);
+      await this.$refs.filmSpecies.loadFilmSpecies();
+      this.film = null;
+      this.filmTitle = this.filmTitle + ": " + species;
+      this.$ionic.loadingController.dismiss(`${species}`);
+    },
+    /**
+     * Method allows to get film starships data
+     */
+    async showFilmStarships() {
+      const starships = "Starships";
+
+      this.loading(starships);
+      await this.$refs.filmStarships.loadFilmStarships();
+      this.film = null;
+      this.filmTitle = this.filmTitle + ": " + starships;
+      this.$ionic.loadingController.dismiss(`${starships}`);
     },
     /**
      * Film loading details spinner message

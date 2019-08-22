@@ -40,7 +40,7 @@
 </template>
 <script>
 /* eslint-disable */
-import {mapActions} from 'vuex'
+import { mapActions } from "vuex";
 
 export default {
   data: () => ({
@@ -48,7 +48,7 @@ export default {
     password: ""
   }),
   methods: {
-      ...mapActions(['login']),
+    ...mapActions(["login"]),
     /**
      * Submit form handler
      * Emit's login action in auth store
@@ -62,12 +62,12 @@ export default {
         password: this.password
       };
       try {
-        await this.login(formData)
-          this.$router.push("/films");
+        await this.login(formData);
+        this.$router.push("/films");
       } catch (err) {
         /** Simple error handler */
         // this.error = err.code;
-        console.log(err)
+        console.log(err);
       }
     }
   }

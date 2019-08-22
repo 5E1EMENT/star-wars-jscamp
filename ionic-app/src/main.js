@@ -10,7 +10,6 @@ import '@ionic/core/css/ionic.bundle.css';
 import "firebase/auth";
 import "firebase/database";
 
-
 Vue.config.productionTip = false
 Vue.use(Ionic)
 Vue.filter('date', dateFilter)
@@ -43,3 +42,6 @@ firebase.auth().onAuthStateChanged(() => {
     }).$mount("#app");
   }
 });
+/** Event hub */
+// eslint-disable-next-line
+export const eventHub = new Vue(); 

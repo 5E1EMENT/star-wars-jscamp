@@ -1,0 +1,33 @@
+<template>
+  <ion-content class="ion-padding" v-if="planets">
+    <ion-title>Film planets</ion-title>
+    <ion-list>
+      <ion-item v-for="(planet, index) in planets" :key="index">
+        <ion-label>{{ planet.name }}</ion-label>
+      </ion-item>
+    </ion-list>
+    <ion-button expand="block" @click.once="backToFilm" v-if="planets">Back to fim</ion-button>
+  </ion-content>
+</template>
+<script>
+/* eslint-disable */
+import { mapActions } from "vuex";
+import { eventHub } from "@/main.js";
+
+export default {
+  data: () => ({
+    planets: null
+  }),
+  methods: {
+    ...mapActions(["loadPlanets"]),
+    async loadFilmPlanets() {
+      const filmID = this.$route.params.filmId;
+      this.planets = await this.loadPlanets(filmID);
+    },
+    backToFilm() {
+      eventHub.$emit("updateFilm");
+      this.planets = null
+    },
+  }
+};
+</script>

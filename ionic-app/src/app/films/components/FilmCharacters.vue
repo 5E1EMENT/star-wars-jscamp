@@ -13,6 +13,7 @@
 /* eslint-disable */
 import { mapActions } from "vuex";
 import { eventHub } from "@/main.js";
+import { setTimeout } from "timers";
 
 export default {
   data: () => ({
@@ -26,6 +27,7 @@ export default {
     },
     backToFilm() {
       eventHub.$emit("updateFilm");
+      this.characters = null
     }
   }
 };

@@ -38,6 +38,7 @@
 import { mapActions } from "vuex";
 import { eventHub } from "@/main.js";
 import FilmCharacters from "./FilmCharacters";
+import { setTimeout } from "timers";
 
 export default {
   components: {
@@ -57,15 +58,14 @@ export default {
   },
   /**
    * Method allows to react on components emit methods
-   * Reload component data and zeroize data in current method component
+   * Update component data and zeroize data in current method component
    */
-  created() {
-    const that = this
+  updated() {
+    const that = this;
     eventHub.$on("updateFilm", async function() {
       const filmID = that.$route.params.filmId;
       that.film = await that.loadFilms(+filmID);
       that.image = await that.loadImages(+filmID);
-      that.$refs.filmCharacters.characters = null
     });
   },
   methods: {

@@ -82,24 +82,28 @@ export default {
      */
     async logout() {
       await this.logoutUser();
+      this.$ionic.menuController.close()
       this.$router.push("/login");
     },
     /**
      * Method redirect current user to login page
      */
     login() {
+      this.$ionic.menuController.close()
       this.$router.push("/login");
     },
     /**
      * Method redirect current user to home page
      */
     films() {
+      this.$ionic.menuController.close()
       this.$router.push("/films");
     },
     /**
      * Method redirect current user to registration page
      */
     register() {
+      this.$ionic.menuController.close()
       this.$router.push("/register");
     }
   },

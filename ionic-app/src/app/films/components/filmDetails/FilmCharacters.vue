@@ -24,6 +24,7 @@ export default {
     async loadFilmCharacters() {
       const filmID = this.$route.params.filmId;
       this.characters = await this.loadCharacters(filmID);
+      console.log(this.characters)
     },
     backToFilm() {
       eventHub.$emit("updateFilm");

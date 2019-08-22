@@ -44,28 +44,6 @@ export default {
         "https://i.kinja-img.com/gawker-media/image/upload/s--0PEOTENT--/c_fill,fl_progressive,g_center,h_900,q_80,w_1600/19191t3iwc57cjpg.jpg"
       ];
       return id >= 0 ? filmsImages[id] : filmsImages
-    },
-    /**
-     * Method allows to get characters
-     * on this film from firebase db
-     * @param {Object} state vuex state
-     * @param {Number} filmId film id payload
-     */
-    async loadCharacters(state, filmId) {
-        const charactersIdArr = (await firebase
-          .database()
-          .ref(`swapi/films/${filmId}/fields/characters`)
-          .once("value")).val();
-  
-        const charactersData = (await firebase
-          .database()
-          .ref(`swapi/people`)
-          .once("value")).val();
-  
-        const characters = charactersData
-          .filter((character, i) => i in charactersIdArr)
-          .map(character => character.fields);
-        return characters;
-      },
+    }
   }
 };

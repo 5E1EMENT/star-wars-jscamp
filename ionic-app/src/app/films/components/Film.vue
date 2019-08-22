@@ -37,7 +37,7 @@
 /* eslint-disable */
 import { mapActions } from "vuex";
 import { eventHub } from "@/main.js";
-import FilmCharacters from "./FilmCharacters";
+import FilmCharacters from "@/app/films/components/filmDetails/FilmCharacters";
 import { setTimeout } from "timers";
 
 export default {

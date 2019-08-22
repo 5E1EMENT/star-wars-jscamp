@@ -5,7 +5,7 @@
         <ion-buttons slot="end">
           <ion-menu-button></ion-menu-button>
         </ion-buttons>
-        <ion-title v-if="film">{{ film.title }}</ion-title>
+        <ion-title v-if="filmTitle">{{ filmTitle }}</ion-title>
       </ion-toolbar>
     </ion-header>
     <ion-content class="ion-padding">
@@ -50,7 +50,9 @@ export default {
   },
   data: () => ({
     film: null,
-    image: null
+    filmTitle: null,
+    image: null,
+    title: 'title'
   }),
   /**
    * Upload all film data + film image
@@ -58,6 +60,7 @@ export default {
   async mounted() {
     const filmID = this.$route.params.filmId;
     this.film = await this.loadFilms(+filmID);
+    this.filmTitle = this.film.title
     this.image = await this.loadImages(+filmID);
   },
   /**
@@ -69,6 +72,7 @@ export default {
     eventHub.$on("updateFilm", async function() {
       const filmID = that.$route.params.filmId;
       that.film = await that.loadFilms(+filmID);
+      that.filmTitle = that.film.title
       that.image = await that.loadImages(+filmID);
     });
   },
@@ -82,28 +86,29 @@ export default {
      * Method allows to get film characters data
      */
     async showFilmCharacters() {
-      /**
-       * @param Characters - name of current loading details
-       */
-      this.loading('Characters');
+      const characters = 'Characters'
+
+      this.loading(characters);
       await this.$refs.filmCharacters.loadFilmCharacters();
       this.film = null;
-      this.$ionic.loadingController.dismiss("characters");
+      this.filmTitle = this.filmTitle + ': ' + characters
+      this.$ionic.loadingController.dismiss(`${characters}`);
     },
     /**
      * Method allows to get film characters data
      */
     async showFilmPlantes() {
-      /**
-       * @param Planets - name of current loading details
-       */
-      this.loading('Planets');
+      const planets = 'Planets'
+
+      this.loading(planets);
       await this.$refs.filmPlanets.loadFilmPlanets();
       this.film = null;
-      this.$ionic.loadingController.dismiss("Planets");
+      this.filmTitle = this.filmTitle + ': ' + planets
+      this.$ionic.loadingController.dismiss(`${planets}`);
     },
     /**
      * Film loading details spinner message
+     * @param loadingName name of current loading details
      * @returns {Promise} created loading spinner
      */
     async loading(loadingName) {

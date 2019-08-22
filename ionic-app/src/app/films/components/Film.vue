@@ -60,8 +60,7 @@ export default {
   data: () => ({
     film: null,
     filmTitle: null,
-    image: null,
-    title: "title"
+    image: null
   }),
   /**
    * Upload all film data + film image
@@ -73,8 +72,8 @@ export default {
     this.image = await this.loadImages(+filmID);
   },
   /**
-   * Method allows to react on components emit methods
-   * Update component data and zeroize data in current method component
+   * Method allows to react on components emit updateFilm method
+   * Updates film component
    */
   updated() {
     const that = this;

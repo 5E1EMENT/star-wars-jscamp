@@ -20,10 +20,17 @@ export default {
   }),
   methods: {
     ...mapActions(["loadStarships"]),
+    /**
+     * Method allows to get film starships
+     */
     async loadFilmStarships() {
       const filmID = this.$route.params.filmId;
       this.starships = await this.loadStarships(filmID);
     },
+    /**
+     * Method allows to return to the
+     * current film page
+     */
     backToFilm() {
       eventHub.$emit("updateFilm");
       this.starships = null;

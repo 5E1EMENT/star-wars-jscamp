@@ -20,14 +20,21 @@ export default {
   }),
   methods: {
     ...mapActions(["loadPlanets"]),
+    /**
+     * Method allows to get film planets
+     */
     async loadFilmPlanets() {
       const filmID = this.$route.params.filmId;
       this.planets = await this.loadPlanets(filmID);
     },
+    /**
+     * Method allows to return to the
+     * current film page
+     */
     backToFilm() {
       eventHub.$emit("updateFilm");
-      this.planets = null
-    },
+      this.planets = null;
+    }
   }
 };
 </script>

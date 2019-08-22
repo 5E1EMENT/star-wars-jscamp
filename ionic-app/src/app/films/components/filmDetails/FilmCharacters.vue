@@ -20,14 +20,21 @@ export default {
   }),
   methods: {
     ...mapActions(["loadCharacters"]),
+    /**
+     * Method allows to get film characters
+     */
     async loadFilmCharacters() {
       const filmID = this.$route.params.filmId;
       this.characters = await this.loadCharacters(filmID);
     },
+    /**
+     * Method allows to return to the
+     * current film page
+     */
     backToFilm() {
       eventHub.$emit("updateFilm");
-      this.characters = null
-    },
+      this.characters = null;
+    }
   }
 };
 </script>

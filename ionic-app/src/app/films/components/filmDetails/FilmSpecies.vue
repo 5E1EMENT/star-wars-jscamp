@@ -20,14 +20,21 @@ export default {
   }),
   methods: {
     ...mapActions(["loadSpecies"]),
+    /**
+     * Method allows to get film species
+     */
     async loadFilmSpecies() {
       const filmID = this.$route.params.filmId;
       this.species = await this.loadSpecies(filmID);
     },
+    /**
+     * Method allows to return to the
+     * current film page
+     */
     backToFilm() {
       eventHub.$emit("updateFilm");
-      this.species = null
-    },
+      this.species = null;
+    }
   }
 };
 </script>

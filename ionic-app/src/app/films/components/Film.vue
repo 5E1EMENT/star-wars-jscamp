@@ -29,7 +29,9 @@
         <ion-card-content>{{ film.opening_crawl }}</ion-card-content>
       </ion-card>
       <ion-button expand="block" @click.once="showFilmCharacters" v-if="film">Show film characters</ion-button>
+      <ion-button expand="block" @click.once="showFilmPlantes" v-if="film">Show film planets</ion-button>
       <FilmCharacters ref="filmCharacters" />
+      <FilmPlanets ref="filmPlanets" />
     </ion-content>
   </div>
 </template>
@@ -38,11 +40,13 @@
 import { mapActions } from "vuex";
 import { eventHub } from "@/main.js";
 import FilmCharacters from "@/app/films/components/filmDetails/FilmCharacters";
+import FilmPlanets from "@/app/films/components/filmDetails/FilmPlanets";
 import { setTimeout } from "timers";
 
 export default {
   components: {
-    FilmCharacters
+    FilmCharacters,
+    FilmPlanets
   },
   data: () => ({
     film: null,
@@ -77,9 +81,37 @@ export default {
     /**
      * Method allows to get film characters data
      */
-    showFilmCharacters() {
-      this.$refs.filmCharacters.loadFilmCharacters();
+    async showFilmCharacters() {
+      /**
+       * @param Characters - name of current loading details
+       */
+      this.loading('Characters');
+      await this.$refs.filmCharacters.loadFilmCharacters();
       this.film = null;
+      this.$ionic.loadingController.dismiss("characters");
+    },
+    /**
+     * Method allows to get film characters data
+     */
+    async showFilmPlantes() {
+      /**
+       * @param Planets - name of current loading details
+       */
+      this.loading('Planets');
+      await this.$refs.filmPlanets.loadFilmPlanets();
+      this.film = null;
+      this.$ionic.loadingController.dismiss("Planets");
+    },
+    /**
+     * Film loading details spinner message
+     * @returns {Promise} created loading spinner
+     */
+    async loading(loadingName) {
+      const loadingSpin = await this.$ionic.loadingController.create({
+        message: `${loadingName} are loading`,
+        id: `${loadingName}`
+      });
+      return await loadingSpin.present();
     }
   }
 };

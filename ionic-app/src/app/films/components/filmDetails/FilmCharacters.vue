@@ -13,7 +13,6 @@
 /* eslint-disable */
 import { mapActions } from "vuex";
 import { eventHub } from "@/main.js";
-import { setTimeout } from "timers";
 
 export default {
   data: () => ({
@@ -24,12 +23,11 @@ export default {
     async loadFilmCharacters() {
       const filmID = this.$route.params.filmId;
       this.characters = await this.loadCharacters(filmID);
-      console.log(this.characters)
     },
     backToFilm() {
       eventHub.$emit("updateFilm");
       this.characters = null
-    }
+    },
   }
 };
 </script>

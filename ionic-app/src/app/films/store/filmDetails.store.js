@@ -7,9 +7,10 @@ export default {
      * on this film from firebase db
      * @param {Object} state vuex state
      * @param {Number} filmId film id payload
+     * @returns {Array} film characters
      */
-    async loadCharacters({dispatch}, filmId) {
-      const sortedFilms = await dispatch("loadSortedFilms");
+    async loadCharacters({ dispatch }, filmId) {
+      const sortedFilms = await dispatch("loadFilms");
 
       const charactersIdArr = sortedFilms[filmId].characters;
 
@@ -28,9 +29,10 @@ export default {
      * on this film from firebase db
      * @param {Object} state vuex state
      * @param {Number} filmId film id payload
+     * @returns {Array} film planets
      */
-    async loadPlanets({dispatch}, filmId) {
-      const sortedFilms = await dispatch("loadSortedFilms");
+    async loadPlanets({ dispatch }, filmId) {
+      const sortedFilms = await dispatch("loadFilms");
 
       const planetsIdArr = sortedFilms[filmId].planets;
 
@@ -50,8 +52,8 @@ export default {
      * @param {Object} state vuex state
      * @param {Number} filmId film id payload
      */
-    async loadSpecies({dispatch}, filmId) {
-      const sortedFilms = await dispatch("loadSortedFilms");
+    async loadSpecies({ dispatch }, filmId) {
+      const sortedFilms = await dispatch("loadFilms");
 
       const speciesIdArr = sortedFilms[filmId].species;
 
@@ -70,9 +72,10 @@ export default {
      * on this film from firebase db
      * @param {Object} state vuex state
      * @param {Number} filmId film id payload
+     * @returns {Array} film starships
      */
     async loadStarships({ dispatch }, filmId) {
-      const sortedFilms = await dispatch("loadSortedFilms");
+      const sortedFilms = await dispatch("loadFilms");
 
       const starshipsIdArr = sortedFilms[filmId].starships;
 
@@ -85,21 +88,6 @@ export default {
         .filter((starship, i) => i in starshipsIdArr)
         .map(starship => starship.fields);
       return starships;
-    },
-    /**
-     * Method allows to get sorted sw films
-     * @returns {Array} array of sorted films by episode_id
-     */
-    async loadSortedFilms() {
-      const filmsDbSnapshot = await firebase
-        .database()
-        .ref("swapi/films")
-        .once("value");
-
-      const filmsDbSnapshotFields = filmsDbSnapshot
-        .val()
-        .map(item => item.fields);
-      return filmsDbSnapshotFields.sort((a, b) => a.episode_id - b.episode_id);
     }
   }
 };

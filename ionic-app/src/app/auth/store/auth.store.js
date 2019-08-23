@@ -13,7 +13,7 @@ export default {
   actions: {
     /**
      * Login action allows to login user with email and password.
-     *
+     * Put in the local storage current user
      * @param {Object} context vuex context.
      * @param {Function} context.commit mutation initiation.
      * @param {Object} payload action payload.
@@ -26,6 +26,7 @@ export default {
         
         await commit("setUid", user);
         await firebase.auth().signInWithEmailAndPassword(email, password);
+        localStorage.setItem('user', `${email}`)
       } catch (err) {
         throw err;
       }
@@ -72,9 +73,12 @@ export default {
     },
     /**
      * Acton allows to logout current user
+     * Delete from localstorage cirrent user
      */
-    async logoutUser() {
+    async logoutUser({dispatch}) {
+      const email = await dispatch('getUserEmail')
       await firebase.auth().signOut();
+      localStorage.removeItem('user',`${email}` )
     }
   }
 };

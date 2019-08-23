@@ -90,6 +90,8 @@ export default {
      * @param loadImages load current film image from db
      */
     ...mapActions(["loadFilms", "loadImages"]),
+
+    
     /**
      * Method allows to get film characters data
      */

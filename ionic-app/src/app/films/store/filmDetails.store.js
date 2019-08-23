@@ -8,18 +8,8 @@ export default {
      * @param {Object} state vuex state
      * @param {Number} filmId film id payload
      */
-    async loadCharacters(state, filmId) {
-      const filmsDbSnapshot = await firebase
-        .database()
-        .ref("swapi/films")
-        .once("value");
-
-      const filmsDbSnapshotFields = filmsDbSnapshot
-        .val()
-        .map(item => item.fields);
-      const sortedFilms = filmsDbSnapshotFields.sort(
-        (a, b) => a.episode_id - b.episode_id
-      );
+    async loadCharacters({dispatch}, filmId) {
+      const sortedFilms = await dispatch("loadSortedFilms");
 
       const charactersIdArr = sortedFilms[filmId].characters;
 
@@ -39,18 +29,8 @@ export default {
      * @param {Object} state vuex state
      * @param {Number} filmId film id payload
      */
-    async loadPlanets(state, filmId) {
-      const filmsDbSnapshot = await firebase
-        .database()
-        .ref("swapi/films")
-        .once("value");
-
-      const filmsDbSnapshotFields = filmsDbSnapshot
-        .val()
-        .map(item => item.fields);
-      const sortedFilms = filmsDbSnapshotFields.sort(
-        (a, b) => a.episode_id - b.episode_id
-      );
+    async loadPlanets({dispatch}, filmId) {
+      const sortedFilms = await dispatch("loadSortedFilms");
 
       const planetsIdArr = sortedFilms[filmId].planets;
 
@@ -70,18 +50,8 @@ export default {
      * @param {Object} state vuex state
      * @param {Number} filmId film id payload
      */
-    async loadSpecies(state, filmId) {
-      const filmsDbSnapshot = await firebase
-        .database()
-        .ref("swapi/films")
-        .once("value");
-
-      const filmsDbSnapshotFields = filmsDbSnapshot
-        .val()
-        .map(item => item.fields);
-      const sortedFilms = filmsDbSnapshotFields.sort(
-        (a, b) => a.episode_id - b.episode_id
-      );
+    async loadSpecies({dispatch}, filmId) {
+      const sortedFilms = await dispatch("loadSortedFilms");
 
       const speciesIdArr = sortedFilms[filmId].species;
 
@@ -101,30 +71,35 @@ export default {
      * @param {Object} state vuex state
      * @param {Number} filmId film id payload
      */
-    async loadStarships(state, filmId) {
-        const filmsDbSnapshot = await firebase
-          .database()
-          .ref("swapi/films")
-          .once("value");
-  
-        const filmsDbSnapshotFields = filmsDbSnapshot
-          .val()
-          .map(item => item.fields);
-        const sortedFilms = filmsDbSnapshotFields.sort(
-          (a, b) => a.episode_id - b.episode_id
-        );
-  
-        const starshipsIdArr = sortedFilms[filmId].starships;
-  
-        const starshipsData = (await firebase
-          .database()
-          .ref(`swapi/starships`)
-          .once("value")).val();
-  
-        const starships = starshipsData
-          .filter((starship, i) => i in starshipsIdArr)
-          .map(starship => starship.fields);
-        return starships;
-      }
+    async loadStarships({ dispatch }, filmId) {
+      const sortedFilms = await dispatch("loadSortedFilms");
+
+      const starshipsIdArr = sortedFilms[filmId].starships;
+
+      const starshipsData = (await firebase
+        .database()
+        .ref(`swapi/starships`)
+        .once("value")).val();
+
+      const starships = starshipsData
+        .filter((starship, i) => i in starshipsIdArr)
+        .map(starship => starship.fields);
+      return starships;
+    },
+    /**
+     * Method allows to get sorted sw films
+     * @returns {Array} array of sorted films by episode_id
+     */
+    async loadSortedFilms() {
+      const filmsDbSnapshot = await firebase
+        .database()
+        .ref("swapi/films")
+        .once("value");
+
+      const filmsDbSnapshotFields = filmsDbSnapshot
+        .val()
+        .map(item => item.fields);
+      return filmsDbSnapshotFields.sort((a, b) => a.episode_id - b.episode_id);
+    }
   }
 };

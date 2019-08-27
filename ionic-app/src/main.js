@@ -1,18 +1,19 @@
-import Vue from 'vue'
-import App from './App.vue'
-import router from './router/router'
-import firebase from 'firebase/app'
-import store from './store/store'
-import Ionic from '@ionic/vue';
-import dateFilter from '@/app/core/filters/date.filter.js'
-import '@ionic/core/css/ionic.bundle.css';
-
+import Vue from "vue";
+import App from "./App.vue";
+import router from "./router/router";
+import firebase from "firebase/app";
+import store from "./store/store";
+import Ionic from "@ionic/vue";
+import dateFilter from "@/app/core/filters/date.filter.js";
+import { FingerprintAIO } from "@ionic-native/fingerprint-aio";
+import { FingerprintShow } from "@/app/core/servicies/Fingerprint.js";
+import "@ionic/core/css/ionic.bundle.css";
 import "firebase/auth";
 import "firebase/database";
 
-Vue.config.productionTip = false
-Vue.use(Ionic)
-Vue.filter('date', dateFilter)
+Vue.config.productionTip = false;
+Vue.use(Ionic);
+Vue.filter("date", dateFilter);
 
 firebase.initializeApp({
   apiKey: "AIzaSyBcE4tHDbQrvjjmL8DkmKzNGccGfz3Y8eE",
@@ -22,7 +23,7 @@ firebase.initializeApp({
   storageBucket: "",
   messagingSenderId: "915033293057",
   appId: "1:915033293057:web:0928fe56063179b4"
-})
+});
 
 /**
  * Current application
@@ -30,9 +31,45 @@ firebase.initializeApp({
 let app;
 
 /**
- * Allows to display app
+ * Current user from local storage
  */
-firebase.auth().onAuthStateChanged(() => {
+const currentUser = localStorage.getItem("user");
+
+/**
+ * Function checks if touch id available on current device or not
+ * and runs appropriate callback
+ */
+FingerprintAIO.isAvailable(isAvailableSuccess, isAvailableError);
+
+/**
+ * If touch id is available
+ */
+function isAvailableSuccess() {
+  /** If current user doesn't exist we will not running figerprint verify
+   * If current user exist we will run fingerprint verify
+   */
+  if (!currentUser) {
+    firebase.auth().onAuthStateChanged(() => {
+      appInit();
+    });
+  } else {
+    FingerprintShow();
+  }
+}
+/**
+ * If touch id unavailable
+ */
+function isAvailableError() {
+  appInit();
+}
+
+/** Event hub */
+export const eventHub = new Vue();
+
+/**
+ * Function initialize new vue app instance
+ */
+export function appInit() {
   if (!app) {
     app = new Vue({
       router,
@@ -41,7 +78,6 @@ firebase.auth().onAuthStateChanged(() => {
       render: h => h(App)
     }).$mount("#app");
   }
-});
-/** Event hub */
-// eslint-disable-next-line
-export const eventHub = new Vue(); 
+}
+
+export default { appInit };

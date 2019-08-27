@@ -32,7 +32,8 @@ export default {
     },
     /**
      * Fetching films data from firebase database
-     * @returns {Array} films title images
+     * @returns {Array || String} if id exists returns image string link
+     * else returns array of image string links
      */
     async loadImages(state, id) {
       const filmsImages = await [

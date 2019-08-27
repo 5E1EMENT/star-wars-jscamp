@@ -16,7 +16,13 @@
               Email
               <ion-text color="danger">*</ion-text>
             </ion-label>
-            <ion-input required type="text" :value="email" @input="email = $event.target.value"></ion-input>
+            <ion-input
+              required
+              type="email"
+              :value="email"
+              @input="email = $event.target.value"
+              placeholder="dan@mail.ru"
+            ></ion-input>
           </ion-item>
           <ion-item>
             <ion-label position="stacked">
@@ -28,6 +34,7 @@
               type="text"
               :value="password"
               @input="password = $event.target.value"
+              placeholder="111111"
             ></ion-input>
           </ion-item>
         </ion-list>
@@ -41,6 +48,9 @@
 <script>
 /* eslint-disable */
 import { mapActions } from "vuex";
+import { Plugins } from "@capacitor/core";
+
+// import { FingerPrintAuth } from "capacitor-fingerprint-auth";
 
 export default {
   data: () => ({
@@ -70,6 +80,7 @@ export default {
         console.log(err);
       }
     }
-  }
+  },
+  async mounted() {}
 };
 </script>

@@ -2,6 +2,7 @@ export default [
     {
         path: '/films',
         name: 'films',
+        meta: { auth: true },
         component: () => import('@/app/films/components/Films.vue')
     },
     {

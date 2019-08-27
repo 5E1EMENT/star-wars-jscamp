@@ -6,24 +6,21 @@ import store from "./store/store";
 import Ionic from "@ionic/vue";
 import dateFilter from "@/app/core/filters/date.filter.js";
 import { FingerprintAIO } from "@ionic-native/fingerprint-aio";
-import { FingerprintShow } from "@/app/core/servicies/Fingerprint.js";
+import { FingerprintShow } from "@/app/core/servicies/fingerprint.service.js";
+import firebaseConfig from '@/app/core/configs/firebase.config.js'
 import "@ionic/core/css/ionic.bundle.css";
 import "firebase/auth";
 import "firebase/database";
 
 Vue.config.productionTip = false;
+
 Vue.use(Ionic);
 Vue.filter("date", dateFilter);
 
-firebase.initializeApp({
-  apiKey: "AIzaSyBcE4tHDbQrvjjmL8DkmKzNGccGfz3Y8eE",
-  authDomain: "ionic-app-680c5.firebaseapp.com",
-  databaseURL: "https://ionic-app-680c5.firebaseio.com",
-  projectId: "ionic-app-680c5",
-  storageBucket: "",
-  messagingSenderId: "915033293057",
-  appId: "1:915033293057:web:0928fe56063179b4"
-});
+/**
+ * Firebase init app function
+ */
+firebase.initializeApp(firebaseConfig);
 
 /**
  * Current application

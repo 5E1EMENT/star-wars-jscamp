@@ -18,7 +18,7 @@
             </ion-label>
             <ion-input
               required
-              type="text"
+              type="email"
               :value="email"
               @input="email = $event.target.value"
               placeholder="dan@mail.ru"

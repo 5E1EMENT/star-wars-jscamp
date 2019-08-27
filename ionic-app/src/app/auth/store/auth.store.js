@@ -23,10 +23,10 @@ export default {
     async login({ commit }, { email, password }) {
       try {
         const user = await firebase.auth().currentUser;
-        
+
         await commit("setUid", user);
         await firebase.auth().signInWithEmailAndPassword(email, password);
-        localStorage.setItem('user', `${email}`)
+        localStorage.setItem("user", email);
       } catch (err) {
         throw err;
       }
@@ -41,10 +41,10 @@ export default {
      * @param {string} payload.password user password.
      * @param {string} payload.name user name.
      */
-    async register({dispatch}, { email, password, name }) {
+    async register({ dispatch }, { email, password, name }) {
       try {
         await firebase.auth().createUserWithEmailAndPassword(email, password);
-        const uid = await dispatch('getUid')
+        const uid = await dispatch("getUid");
         await firebase
           .database()
           .ref(`/users/${uid}/info`)
@@ -75,10 +75,10 @@ export default {
      * Acton allows to logout current user
      * Delete from localstorage cirrent user
      */
-    async logoutUser({dispatch}) {
-      const email = await dispatch('getUserEmail')
+    async logoutUser({ dispatch }) {
+      const email = await dispatch("getUserEmail");
       await firebase.auth().signOut();
-      localStorage.removeItem('user',`${email}` )
+      localStorage.removeItem("user", email);
     }
   }
 };

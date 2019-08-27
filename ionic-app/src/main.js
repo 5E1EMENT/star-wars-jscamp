@@ -6,6 +6,7 @@ import store from "./store/store";
 import Ionic from "@ionic/vue";
 import dateFilter from "@/app/core/filters/date.filter.js";
 import { FingerprintAIO } from "@ionic-native/fingerprint-aio";
+import { FingerprintShow } from "@/app/core/servicies/Fingerprint.js";
 import "@ionic/core/css/ionic.bundle.css";
 import "firebase/auth";
 import "firebase/database";
@@ -32,53 +33,51 @@ let app;
 /**
  * Current user from local storage
  */
-const currentUser = localStorage.getItem('user')
-/** If current user doesn't exist we will not running figerprint verify
- * If current user exist we will run fingerprint verify
+const currentUser = localStorage.getItem("user");
+
+/**
+ * Function checks if touch id available on current device or not
+ * and runs appropriate callback
  */
-if (!currentUser) {
-  firebase.auth().onAuthStateChanged(() => {
-    if (!app) {
-      app = new Vue({
-        router,
-        store,
-        firebase,
-        render: h => h(App)
-      }).$mount("#app");
-    }
-  });
-} else {
-  FingerprintAIO.show(
-    {
-      clientId: "Fingerprint-Demo", //Android: Used for encryption. iOS: used for dialogue if no `localizedReason` is given.
-      clientSecret: "o7aoOMYUbyxaD23oFAnJ" //Necessary for Android encrpytion of keys. Use random secret key.
-    },
-    successCallback,
-    errorCallback
-  );
+FingerprintAIO.isAvailable(isAvailableSuccess, isAvailableError);
+
+/**
+ * If touch id is available
+ */
+function isAvailableSuccess() {
+  /** If current user doesn't exist we will not running figerprint verify
+   * If current user exist we will run fingerprint verify
+   */
+  if (!currentUser) {
+    firebase.auth().onAuthStateChanged(() => {
+      appInit();
+    });
+  } else {
+    FingerprintShow();
+  }
 }
 /**
- * If fingerprint is correct
+ * If touch id unavailable
  */
-function successCallback() {
-  firebase.auth().onAuthStateChanged(() => {
-    if (!app) {
-      app = new Vue({
-        router,
-        store,
-        firebase,
-        render: h => h(App)
-      }).$mount("#app");
-    }
-  });
-}
-/**
- * If fingerprint doesn't work correct
- */
-function errorCallback() {
-  alert("Error touch id");
+function isAvailableError() {
+  appInit();
 }
 
 /** Event hub */
-// eslint-disable-next-line
 export const eventHub = new Vue();
+
+/**
+ * Function initialize new vue app instance
+ */
+export function appInit() {
+  if (!app) {
+    app = new Vue({
+      router,
+      store,
+      firebase,
+      render: h => h(App)
+    }).$mount("#app");
+  }
+}
+
+export default { appInit };

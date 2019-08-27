@@ -23,7 +23,7 @@
               Email
               <ion-text color="danger">*</ion-text>
             </ion-label>
-            <ion-input required type="text" :value="email" @input="email = $event.target.value"></ion-input>
+            <ion-input required type="email" :value="email" @input="email = $event.target.value"></ion-input>
           </ion-item>
           <ion-item>
             <ion-label position="stacked">

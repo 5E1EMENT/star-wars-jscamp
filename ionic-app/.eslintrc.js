@@ -4,11 +4,7 @@ module.exports = {
     es6: true,
     jest: true
   },
-  extends: [
-    // add more generic rulesets here, such as:
-    // 'eslint:recommended',
-    "plugin:vue/recommended"
-  ],
+  extends: ["plugin:vue/recommended"],
   globals: {
     Atomics: "readonly",
     SharedArrayBuffer: "readonly"

@@ -1,12 +1,24 @@
 <template>
-  <ion-content class="ion-padding" v-if="species">
+  <ion-content
+    v-if="species"
+    class="ion-padding"
+  >
     <ion-title>Film species</ion-title>
     <ion-list>
-      <ion-item v-for="(type, index) in species" :key="index">
+      <ion-item
+        v-for="(type, index) in species"
+        :key="index"
+      >
         <ion-label>{{ type.name }}</ion-label>
       </ion-item>
     </ion-list>
-    <ion-button expand="block" @click.once="backToFilm" v-if="species">Back to fim</ion-button>
+    <ion-button
+      v-if="species"
+      expand="block"
+      @click.once="backToFilm"
+    >
+      Back to fim
+    </ion-button>
   </ion-content>
 </template>
 <script>

@@ -4,7 +4,7 @@
       <Menu />
       <ion-vue-router />
     </ion-app>
-    <ion-menu-controller></ion-menu-controller>
+    <ion-menu-controller />
   </div>
 </template>
 

@@ -1,16 +1,27 @@
 <template>
-  <div class="ion-page" main>
+  <div
+    class="ion-page"
+    main
+  >
     <ion-header>
-      <ion-toolbar color="primary" class="toolbar-md-primary">
+      <ion-toolbar
+        color="primary"
+        class="toolbar-md-primary"
+      >
         <ion-buttons slot="end">
-          <ion-menu-button></ion-menu-button>
+          <ion-menu-button />
         </ion-buttons>
-        <ion-title v-if="filmTitle">{{ filmTitle }}</ion-title>
+        <ion-title v-if="filmTitle">
+          {{ filmTitle }}
+        </ion-title>
       </ion-toolbar>
     </ion-header>
     <ion-content class="ion-padding">
       <ion-card v-if="film">
-        <img v-if="image" :src="image" />
+        <img
+          v-if="image"
+          :src="image"
+        >
         <ion-card-header>
           <ion-card-subtitle>Episode number {{ film.episode_id }}</ion-card-subtitle>
           <ion-card-title>{{ film.title }}</ion-card-title>
@@ -28,10 +39,34 @@
         </ion-list>
         <ion-card-content>{{ film.opening_crawl }}</ion-card-content>
       </ion-card>
-      <ion-button expand="block" @click.once="showFilmCharacters" v-if="film">Show film characters</ion-button>
-      <ion-button expand="block" @click.once="showFilmStarships" v-if="film">Show film starships</ion-button>
-      <ion-button expand="block" @click.once="showFilmPlantes" v-if="film">Show film planets</ion-button>
-      <ion-button expand="block" @click.once="showFilmSpecies" v-if="film">Show film species</ion-button>
+      <ion-button
+        v-if="film"
+        expand="block"
+        @click.once="showFilmCharacters"
+      >
+        Show film characters
+      </ion-button>
+      <ion-button
+        v-if="film"
+        expand="block"
+        @click.once="showFilmStarships"
+      >
+        Show film starships
+      </ion-button>
+      <ion-button
+        v-if="film"
+        expand="block"
+        @click.once="showFilmPlantes"
+      >
+        Show film planets
+      </ion-button>
+      <ion-button
+        v-if="film"
+        expand="block"
+        @click.once="showFilmSpecies"
+      >
+        Show film species
+      </ion-button>
 
       <FilmCharacters ref="filmCharacters" />
       <FilmPlanets ref="filmPlanets" />
@@ -41,7 +76,6 @@
   </div>
 </template>
 <script>
-/* eslint-disable */
 import { mapActions } from "vuex";
 import { eventHub } from "@/main.js";
 import FilmCharacters from "@/app/films/components/filmDetails/FilmCharacters";

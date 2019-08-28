@@ -28,7 +28,7 @@ export default {
         (a, b) => a.episode_id - b.episode_id
       );
 
-      return id >= 0 ? sortedFilms[id] : sortedFilms
+      return id >= 0 ? sortedFilms[id] : sortedFilms;
     },
     /**
      * Fetching films data from firebase database
@@ -44,7 +44,7 @@ export default {
         "https://i1.wp.com/nerdbastards.com/wp-content/uploads/2013/10/empire-strikes-back-poster.jpg",
         "https://i.kinja-img.com/gawker-media/image/upload/s--0PEOTENT--/c_fill,fl_progressive,g_center,h_900,q_80,w_1600/19191t3iwc57cjpg.jpg"
       ];
-      return id >= 0 ? filmsImages[id] : filmsImages
+      return id >= 0 ? filmsImages[id] : filmsImages;
     }
   }
 };

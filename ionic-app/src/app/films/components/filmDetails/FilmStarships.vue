@@ -1,12 +1,24 @@
 <template>
-  <ion-content class="ion-padding" v-if="starships">
+  <ion-content
+    v-if="starships"
+    class="ion-padding"
+  >
     <ion-title>Film starships</ion-title>
     <ion-list>
-      <ion-item v-for="(starship, index) in starships" :key="index">
+      <ion-item
+        v-for="(starship, index) in starships"
+        :key="index"
+      >
         <ion-label>{{ starship.starship_class }}</ion-label>
       </ion-item>
     </ion-list>
-    <ion-button expand="block" @click.once="backToFilm" v-if="starships">Back to fim</ion-button>
+    <ion-button
+      v-if="starships"
+      expand="block"
+      @click.once="backToFilm"
+    >
+      Back to fim
+    </ion-button>
   </ion-content>
 </template>
 <script>

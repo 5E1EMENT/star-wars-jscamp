@@ -1,15 +1,33 @@
 <template>
-  <ion-menu side="start" type="overlay">
+  <ion-menu
+    side="start"
+    type="overlay"
+  >
     <ion-header class="toolbar-md-primary">
       <ion-toolbar translucent>
-        <ion-title>Menu</ion-title>
+        <ion-title class="ion-padding">
+          Menu
+        </ion-title>
+        <ion-title
+          v-if="user"
+          class="ion-padding"
+        >
+          Account: {{ user }}
+        </ion-title>
       </ion-toolbar>
     </ion-header>
     <ion-content padding>
       <ion-list>
-        <ion-item v-for="(item,index) in menuItems" :key="index" @click="handleClick(item)">
-          <ion-icon :name="item.icon" slot="start"></ion-icon>
-          <ion-label>{{item.title}}</ion-label>
+        <ion-item
+          v-for="(item,index) in menuItems"
+          :key="index"
+          @click="handleClick(item)"
+        >
+          <ion-icon
+            slot="start"
+            :name="item.icon"
+          />
+          <ion-label>{{ item.title }}</ion-label>
         </ion-item>
       </ion-list>
     </ion-content>
@@ -23,7 +41,8 @@ import { mapActions } from "vuex";
 export default {
   name: "Sidebar",
   data: () => ({
-    uid: ''
+    uid: '',
+    user: ''
   }),
   computed: {
     menuItems() {

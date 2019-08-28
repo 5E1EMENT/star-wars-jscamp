@@ -2,6 +2,8 @@ import { mount, shallowMount, createLocalVue } from "@vue/test-utils";
 import Vuex from "vuex";
 import VueRouter from "vue-router";
 import TheMenu from "@/components/TheMenu.vue";
+import Films from "@/app/films/components/Films.vue";
+import { wrap } from "module";
 
 const localVue = createLocalVue();
 
@@ -41,18 +43,18 @@ describe("TheMenu", () => {
     wrapper.find("ion-item").trigger("click");
     expect(actions.getUid).toHaveBeenCalled();
   });
-//   it('вызывает действие хранилища "getUserEmail" по переходу на роут', () => {
-//     const $route = {
-//       path: "/films"
-//     };
 
-//     const wrapper = shallowMount(TheMenu, {
-//       mocks: {
-//         $route
-//       }
-//     });
+  it("Переходим по роуту /films", () => {
+    const routes = [
+      {
+        path: "/films",
+        component: Films
+      }
+    ];
+    const wrapper = shallowMount(TheMenu, { store, localVue });
+    wrapper.find("ion-item").trigger("click");
+    expect(wrapper.vm.$route).toBe(routes.path);
+    console.log(wrapper.vm.$route);
+  });
 
-//     wrapper.vm.$route.path;
-//     expect($route).toHaveBeenCalled();
-//   });
 });

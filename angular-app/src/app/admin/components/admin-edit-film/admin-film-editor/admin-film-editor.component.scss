@@ -1,9 +1,16 @@
-mat-toolbar {
+.editor-wrapper {
     height: auto;
     justify-content: center;
+    display: flex;
 }
 form {
     display: flex;
     flex-direction: column;
+}
+mat-card {
+    max-width: 300px;
     width: 100%;
+}
+textarea {
+    white-space: normal;
 }

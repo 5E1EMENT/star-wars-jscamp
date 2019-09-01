@@ -1,8 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { map, switchMap } from 'rxjs/operators';
-
+import { map } from 'rxjs/operators';
+import { AppConfig } from '../app.config';
 import { CharacterDetails } from '../models/characterDetails';
 import { DetailFilm } from '../models/detailFilm';
 import { Film } from '../models/film';
@@ -17,8 +17,8 @@ import { DatabaseRecord, FilmRecordDto } from './dto/film-dto';
   providedIn: 'root',
 })
 export class FilmsService {
-  private filmsUrl = 'https://angular-film-app.firebaseio.com/swapi/films.json';
-  private charactersUrl = 'https://angular-film-app.firebaseio.com/swapi/people.json';
+  private filmsUrl = this.appConfig.FILMS_URL;
+  private charactersUrl = this.appConfig.CHARACTERS_URL;
   /**
    * Film page status for home btn
    */
@@ -27,7 +27,7 @@ export class FilmsService {
    * .ctor
    * @param http - http package
    */
-  public constructor(private http: HttpClient) {}
+  public constructor(private http: HttpClient, private appConfig: AppConfig,) {}
   /**
    * Method getFilms allows to get data about films
    */

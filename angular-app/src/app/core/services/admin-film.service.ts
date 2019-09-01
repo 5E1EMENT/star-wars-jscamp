@@ -16,14 +16,14 @@ export class AdminFilmService {
   /**
    * Film edit status page
    */
-  public onFilm = false;
+  public onFilm = true;
   constructor(private filmsService: FilmsService, ) { }
    /**
    * Method allows to get current clicked film by id from query parameters
    * @param id film id
    */
   public getFilm(id: number): Observable<DetailFilm> {
-    this.onFilm = true;
+    this.onFilm = false;
     return this.filmsService.getDetailedFilm().pipe(
       map((films) => films.find(film => film.episodeId === +id)),
     );

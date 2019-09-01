@@ -31,6 +31,7 @@ export class AuthComponent {
     private filmsService: FilmsService,
     private router: Router,
     private adminFilmService: AdminFilmService,
+    private FilmsService: FilmsService,
   ) {}
 
   /**
@@ -39,6 +40,8 @@ export class AuthComponent {
 
   public logout(): void {
     this.authorizationService.logout();
+    this.filmsService.onFilm = false
+    this.adminFilmService.onFilm = false
   }
   /**
    * Login - Inherit

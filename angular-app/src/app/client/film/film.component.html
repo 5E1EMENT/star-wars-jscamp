@@ -1,5 +1,8 @@
-<h1 class="film-title" *ngIf="film$ | async as film">{{ film.title}}</h1>
-<mat-table [dataSource]="filmTableDataSource$ | async" class="mat-elevation-z12">
+<h1 class="film-title" *ngIf="film$ | async as film">{{ film.title }}</h1>
+<mat-table
+  [dataSource]="filmTableDataSource$ | async"
+  class="mat-elevation-z12"
+>
   <ng-container matColumnDef="openingCrawl">
     <mat-header-cell *matHeaderCellDef>Opening Crawl</mat-header-cell>
     <mat-cell *matCellDef="let film"> {{ film.openingCrawl }} </mat-cell>
@@ -21,9 +24,9 @@
     <mat-cell *matCellDef="let film"> {{ film.director }} </mat-cell>
   </ng-container>
   <mat-header-row *matHeaderRowDef="displayedFilmColumns"></mat-header-row>
-  <mat-row
-    *matRowDef="let row; columns: displayedFilmColumns"
-  ></mat-row>
+  <mat-row *matRowDef="let row; columns: displayedFilmColumns"></mat-row>
 </mat-table>
 
-<app-film-characters [characters$]="filmCharacters$ | async"></app-film-characters>
+<app-film-characters
+  [characters$]="filmCharacters$ | async"
+></app-film-characters>

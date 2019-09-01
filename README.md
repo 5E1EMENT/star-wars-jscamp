@@ -17,3 +17,20 @@ Admin module: implemented
 
 ![Angular film page](http://dl3.joxi.net/drive/2019/09/01/0026/3116/1756204/04/15281fd733.jpg)
 
+
+## Vue app
+Vue js Star Wars Films application
+
+BackEnd: Firebase
+
+CSS Framework: Vuetify
+
+Admin module: implemented
+
+### Vue app home page
+
+![Angular app home page](http://dl4.joxi.net/drive/2019/09/01/0026/3116/1756204/04/3ec8903681.jpg)
+
+### Vue app film page
+
+![Angular app home page](http://dl4.joxi.net/drive/2019/09/01/0026/3116/1756204/04/2381716a31.jpg)

@@ -4,26 +4,12 @@
 Angular Star Wars Films application
 
 This app interact with  Firebase Rest Api
+
 CSS Framework: Angular Material
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
 
-### Compiles and minifies for production
-```
-npm run build
-```
+### Angular app home page
+![alt text](http://joxi.ru/Drl0GpetVBXBJr)
 
-### Run your tests
-```
-npm run test
-```
+### Angular film page
+![alt text](http://joxi.ru/l2ZkZeyFzd1dQA)
 
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).

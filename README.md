@@ -29,8 +29,8 @@ Admin module: implemented
 
 ### Vue app home page
 
-![Angular app home page](http://dl4.joxi.net/drive/2019/09/01/0026/3116/1756204/04/3ec8903681.jpg)
+![Vue app home page](http://dl3.joxi.net/drive/2019/09/01/0026/3116/1756204/04/4cf6ede899.jpg)
 
 ### Vue app film page
 
-![Angular app home page](http://dl4.joxi.net/drive/2019/09/01/0026/3116/1756204/04/2381716a31.jpg)
+![Vue app home page](http://dl4.joxi.net/drive/2019/09/01/0026/3116/1756204/04/2381716a31.jpg)

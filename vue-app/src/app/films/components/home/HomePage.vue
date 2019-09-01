@@ -3,23 +3,20 @@
   <v-simple-table v-else>
     <thead>
       <tr>
-        <th class="text-left">
+        <th :class="$style.thAlign">
           Film title
         </th>
-        <th class="text-left">
+        <th :class="$style.thAlign">
           Episode Id
         </th>
-        <th class="text-left">
+        <th :class="$style.thAlign">
           Release Date
         </th>
-        <th class="text-left">
+        <th :class="$style.thAlign">
           Director
         </th>
-        <th class="text-left">
+        <th :class="$style.thAlign">
           Producer
-        </th>
-        <th class="text-left">
-          Opening crawl
         </th>
       </tr>
     </thead>
@@ -45,9 +42,6 @@
         </td>
         <td :class="$style['tdAlign']">
           {{ film.producer }}
-        </td>
-        <td :class="$style['tdAlign']">
-          {{ film.opening_crawl }}
         </td>
       </router-link>
     </tbody>
@@ -82,7 +76,9 @@ export default {
 .trActive:hover {
   cursor: pointer;
 }
-
+.thAlign {
+    text-align: center !important;
+}
 .tdAlign {
   padding: 10px !important;
   text-align: center;

@@ -1,14 +1,26 @@
-<h1 mat-dialog-title>{{data.title}}</h1>
-<div mat-dialog-content>
-    <form>
-        <div class="email-data">
-                <label for="email">Имя</label>
-                <input type="text" name="email" #email>
-        </div>
-        <div class="password-data">
-                <label for="password">Пароль</label>
-                <input type="text" name="password" #password>
-        </div>
-    </form>
-    
+<h1 mat-dialog-title class="login-title">{{ data.title }}</h1>
+<div mat-dialog-content class="login-form">
+  <form [formGroup]="authForm" (submit)="registration()">
+    <mat-form-field class="example-full-width email-data">
+      <label for="email">Email</label>
+      <input 
+        matInput 
+        formControlName="email" 
+        type="text" 
+        name="email"
+        #email />
+    </mat-form-field>
+    <mat-form-field class="example-full-width password-data">
+      <label for="password">Password</label>
+      <input
+        matInput
+        formControlName="password"
+        type="text"
+        name="password"
+        #password
+      />
+    </mat-form-field>
+      <button mat-raised-button color="primary" class="login-enter__btn">Register</button>
+  </form>
+  <h2>{{ error }}</h2>
 </div>

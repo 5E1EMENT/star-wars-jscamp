@@ -15,9 +15,9 @@ export class AppConfig {
    */
   public API_URL = 'https://www.googleapis.com/identitytoolkit/v3/relyingparty/verifyPassword?key=';
   /**
-   * Database url
+   * API Register URL
    */
-  public API_DATABASE_URL = 'https://angular-film-app.firebaseio.com/swapi';
+  public API_REGISTER = 'https://identitytoolkit.googleapis.com/v1/accounts:signUp?key='
   /**
    * Web-API key from Firebase
    */
@@ -30,6 +30,18 @@ export class AppConfig {
    * TOKEN_KEY - is a key for email
    */
   public EMAIL_KEY = 'email';
+  /**
+   * Database url
+   */
+  public API_DATABASE_URL = 'https://angular-app-1f1de.firebaseio.com/swapi';
+  /**
+   * FILMS_URL - url with films data
+   */
+  public FILMS_URL = `${this.API_DATABASE_URL}/films.json`; 
+  /**
+   * CHARACTERS_URL - url with characters data
+   */
+  public CHARACTERS_URL = `${this.API_DATABASE_URL}/people.json`;
   /**
    * User email: dan@mail.ru / test@mail.ru
    * Password: 123456

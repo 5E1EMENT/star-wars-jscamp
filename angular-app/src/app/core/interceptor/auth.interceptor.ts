@@ -38,6 +38,10 @@ import { AppConfig } from '../app.config';
     if (request.url.includes(this.config.API_URL)) {
       return next.handle(request.clone({params: request.params.set('key', this.config.API_KEY)}));
     }
+    // Works when register new user, adds API Token (key) to a query
+    if (request.url.includes(this.config.API_REGISTER)) {
+      return next.handle(request.clone({params: request.params.set('key', this.config.API_KEY)}));
+    }
     // Works when accessing database, adds auth idToken to a query
     if (request.url.includes(environment.firebase.databaseURL)) {
       return next.handle(request.clone({params: request.params.set('auth', this.auth.getToken())}));

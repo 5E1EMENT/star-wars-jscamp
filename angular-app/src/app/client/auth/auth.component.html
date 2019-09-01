@@ -7,7 +7,7 @@
         <button mat-raised-button color="accent"  *ngIf="authorizationService.isAdmin" [disabled]="!adminFilmService.onFilm " (click)="redirectHome()"><mat-icon>home</mat-icon></button>
         <button mat-raised-button color="primary" *ngIf="!authorizationService.lastUserEmail" (click)="login()">Login</button>
         <button mat-raised-button color="primary" *ngIf="authorizationService.lastUserEmail" (click)="logout()">Logout</button>
-        <button mat-raised-button color="accent" disabled (click)="register()">Register</button>
+        <button mat-raised-button color="accent" *ngIf="!authorizationService.lastUserEmail" (click)="registration()">Register</button>
     </div>
     
 </mat-toolbar-row> 

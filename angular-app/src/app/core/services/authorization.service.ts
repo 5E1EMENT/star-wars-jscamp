@@ -7,7 +7,9 @@ import { environment } from 'src/environments/environment';
 
 import { AppConfig } from '../app.config';
 import { LoginData } from '../models/login';
+import { RegisterData } from '../models/register';
 import { User } from '../models/user';
+import { newUser } from '../models/newUser';
 /**
  * AuthorizationService - service for user Authorization
  */
@@ -15,8 +17,9 @@ import { User } from '../models/user';
   providedIn: 'root',
 })
 export class AuthorizationService {
-  private loginApiKey = 'AIzaSyBggsqbMyphOxNDjpgko8FvQ6jabHr9Pm0';
+  private loginApiKey = this.appConfig.API_KEY;
   private loginApi = `${this.appConfig.API_URL}${this.loginApiKey}`;
+  private registerApi = `${this.appConfig.API_REGISTER}${this.loginApiKey}`
 
   /**
    * User - user variable
@@ -48,6 +51,30 @@ export class AuthorizationService {
     return this.http.post<User>(this.loginApi, body).pipe(
       map(response => new User(response)),
       tap((userModel: User) => {
+        localStorage.setItem(this.appConfig.TOKEN_KEY, userModel.idToken);
+        localStorage.setItem(this.appConfig.EMAIL_KEY, userModel.email);
+        this.lastUserEmail = userModel.email;
+        // If this current user - admin, recirect him into a films page
+        if (userModel.email === environment.adminEmail) {
+          this.router.navigate(['films']);
+        }
+      }),
+    );
+  }
+
+  /**
+   * Login method access to login in firebase
+   * @param data data from form inputs: email and password
+   */
+  public register(data: RegisterData): Observable<newUser> {
+    const body = {
+      email: data.email,
+      password: data.password,
+      returnSecureToken: true,
+    };
+    return this.http.post<newUser>(this.registerApi, body).pipe(
+      map(response => new newUser(response)),
+      tap((userModel: newUser) => {
         localStorage.setItem(this.appConfig.TOKEN_KEY, userModel.idToken);
         localStorage.setItem(this.appConfig.EMAIL_KEY, userModel.email);
         this.lastUserEmail = userModel.email;

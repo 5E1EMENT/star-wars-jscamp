@@ -34,3 +34,20 @@ Admin module: implemented
 ### Vue app film page
 
 ![Vue app home page](http://dl4.joxi.net/drive/2019/09/01/0026/3116/1756204/04/2381716a31.jpg)
+
+## Ionic + Vue + Capacitor app
+Application based on Vue js framework
+
+Capactitor allows to transform app into mobile app version
+
+BackEnd: Firebase
+
+CSS Framework: Ionic
+
+Touch Id(Fingerprint) module: implemented
+
+Sidebar menu: implemented
+
+### Ionic film page
+
+![Ionic app film page](http://dl4.joxi.net/drive/2019/09/01/0026/3116/1756204/04/10541d97a2.jpg)

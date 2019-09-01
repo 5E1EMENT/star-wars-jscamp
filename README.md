@@ -8,8 +8,8 @@ This app interact with  Firebase Rest Api
 CSS Framework: Angular Material
 
 ### Angular app home page
-![alt text](http://joxi.ru/Drl0GpetVBXBJr)
+![alt text](README_IMG/angular-main.jpg)
 
 ### Angular film page
-![alt text](http://joxi.ru/l2ZkZeyFzd1dQA)
+![alt text](README_IMG/angular-film.jpg)
 

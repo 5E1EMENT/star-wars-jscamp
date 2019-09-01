@@ -1,5 +1,7 @@
 # ionic-app
 
+Application can be started only on Android Studio or android device
+
 ## Project setup
 ```
 npm install
@@ -15,14 +17,14 @@ npm run serve
 npm run build
 ```
 
-### Run your tests
+### Capacitor sync
 ```
-npm run test
+npx cap sync
 ```
 
-### Lints and fixes files
+### Android Studio
 ```
-npm run lint
+npx cap open android
 ```
 
 ### Customize configuration
